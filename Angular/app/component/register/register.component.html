@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="main">
+        <div class="card">
+            <h2 style="text-align: center;">Register to explore amazing career opportunities</h2>
+<form #regform="ngForm" name="regform" (ngSubmit)="RegisterData(regform)">
+    <div class="container">
+
+    <div>
+        <label for="uname"><b>Name</b></label>
+        <input type="text" name="name" [(ngModel)]="model.name" placeholder="Enter Name" #name="ngModel" required>
+        <span *ngIf="name.errors?.required">Name has to be entered</span>
+    </div>
+    <div>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" name="txtpass" [(ngModel)]="model.txtpass" placeholder="Enter Password" #txtpass="ngModel" minlength="4" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?.*[#$%&])" required>
+        <span *ngIf="txtpass.errors?.required">Password cannot be blank</span>
+        <span *ngIf="txtpass.errors?.pattern">Follow password restriction</span>
+        <span *ngIf="txtpass.errors?.minlength">Minimum password length is 4 characters</span>
+    </div>
+    <div>
+        <label for="email"><b>Email Address</b></label>
+        <input type="email" name="txtemail" [(ngModel)]="model.txtemail" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" placeholder="Enter Email" #txtemail="ngModel" required>
+        <span *ngIf="txtemail.errors?.required">Email cannot be blank</span>
+        <span *ngIf="txtemail.errors?.pattern">Follow Email restriction</span>
+    </div>
+    <div>
+        <label for="city"><b>Address</b></label>
+        <input type="text" name="city" [(ngModel)]="model.city" placeholder="Enter City" #city="ngModel" required>
+        <span *ngIf="city.errors?.required">Address has to be entered</span>
+    </div>
+
+
+                  <label for="mobile"><b>Mobile No.</b></label>
+        <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
+        <span *ngIf="mno.errors?.required">Mobile No cannot be blank</span>
+        <span *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</span>
+    
+    
+    
+    
+        <button type="submit" [disabled]="regform.invalid">Register</button>
+    
+   
+  </div>
+</form>
+
+</div>
+</div>
+</div>
+<div class="footer">
+    <p>&copy; 2020 Larsen & Toubro Infotech Limited</p>
+  </div>
