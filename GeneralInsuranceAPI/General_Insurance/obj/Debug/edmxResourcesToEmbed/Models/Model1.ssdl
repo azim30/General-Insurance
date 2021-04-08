@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GeneralInsuranceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ClaimDetails">
+    <Key>
+      <PropertyRef Name="ClaimNo" />
+    </Key>
+    <Property Name="ClaimNo" Type="int" Nullable="false" />
+    <Property Name="UserMobNo" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="VehId" Type="int" />
+    <Property Name="PolNo" Type="int" />
+    <Property Name="ClaimReason" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ClaimStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ClaimAmt" Type="money" Nullable="false" />
+    <Property Name="ClaimDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PolicyDetails">
+    <Key>
+      <PropertyRef Name="PolicyNo" />
+    </Key>
+    <Property Name="PolicyNo" Type="int" Nullable="false" />
+    <Property Name="UserMobNo" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="VehId" Type="int" />
+    <Property Name="PolicyName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Period" Type="int" Nullable="false" />
+    <Property Name="PolicyAmt" Type="money" Nullable="false" />
+    <Property Name="PolicyStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="MobNo" />
+    </Key>
+    <Property Name="MobNo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="DOB" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehicleDetails">
+    <Key>
+      <PropertyRef Name="VehicleID" />
+    </Key>
+    <Property Name="VehicleID" Type="int" Nullable="false" />
+    <Property Name="UserMobNo" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Maufacturer" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VehicleType" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="DrivingLicense" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="RegistrationNo" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="EngineNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ChassisNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PurchaseDate" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__ClaimDeta__PolNo__49C3F6B7">
+    <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="0..1" />
+    <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PolicyDetails">
+        <PropertyRef Name="PolicyNo" />
+      </Principal>
+      <Dependent Role="ClaimDetails">
+        <PropertyRef Name="PolNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClaimDeta__UserM__47DBAE45">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+    <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="MobNo" />
+      </Principal>
+      <Dependent Role="ClaimDetails">
+        <PropertyRef Name="UserMobNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClaimDeta__VehId__48CFD27E">
+    <End Role="VehicleDetails" Type="Self.VehicleDetails" Multiplicity="0..1" />
+    <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleDetails">
+        <PropertyRef Name="VehicleID" />
+      </Principal>
+      <Dependent Role="ClaimDetails">
+        <PropertyRef Name="VehId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PolicyDet__UserM__440B1D61">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+    <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="MobNo" />
+      </Principal>
+      <Dependent Role="PolicyDetails">
+        <PropertyRef Name="UserMobNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PolicyDet__VehId__44FF419A">
+    <End Role="VehicleDetails" Type="Self.VehicleDetails" Multiplicity="0..1" />
+    <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleDetails">
+        <PropertyRef Name="VehicleID" />
+      </Principal>
+      <Dependent Role="PolicyDetails">
+        <PropertyRef Name="VehId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VehicleDe__UserM__412EB0B6">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+    <End Role="VehicleDetails" Type="Self.VehicleDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="MobNo" />
+      </Principal>
+      <Dependent Role="VehicleDetails">
+        <PropertyRef Name="UserMobNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GeneralInsuranceModelStoreContainer">
+    <EntitySet Name="ClaimDetails" EntityType="Self.ClaimDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PolicyDetails" EntityType="Self.PolicyDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleDetails" EntityType="Self.VehicleDetails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ClaimDeta__PolNo__49C3F6B7" Association="Self.FK__ClaimDeta__PolNo__49C3F6B7">
+      <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+      <End Role="ClaimDetails" EntitySet="ClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClaimDeta__UserM__47DBAE45" Association="Self.FK__ClaimDeta__UserM__47DBAE45">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="ClaimDetails" EntitySet="ClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClaimDeta__VehId__48CFD27E" Association="Self.FK__ClaimDeta__VehId__48CFD27E">
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+      <End Role="ClaimDetails" EntitySet="ClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PolicyDet__UserM__440B1D61" Association="Self.FK__PolicyDet__UserM__440B1D61">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PolicyDet__VehId__44FF419A" Association="Self.FK__PolicyDet__VehId__44FF419A">
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+      <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VehicleDe__UserM__412EB0B6" Association="Self.FK__VehicleDe__UserM__412EB0B6">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

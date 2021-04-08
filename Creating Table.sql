@@ -99,6 +99,19 @@ insert into ClaimDetails Values(3,7123456789,3,89,'Accident','Approved',200000,'
 insert into ClaimDetails Values(5,5123456789,5,56,'Accident','Pending',400000,'12-08-2008');
 
 
+
+--6. Creating Table ticket details
+create table TicketDetails
+(
+	TicketNo int primary key,
+	Source varchar(10) not null,
+	Destination varchar(10) not null,
+	DateOfTravel date not null,
+	NoOfPassengers int not null,
+	--InsuraceAmount money not null,
+	ValidityOfInsurance numeric not null
+)
+
 --To calculate the premium
 create or alter proc proc_calcprem(@policyid bigint, @manu varchar(20),@model varchar(40))
 as
