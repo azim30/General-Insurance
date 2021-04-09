@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="main">
+        <div class="card">
+            <h2 style="text-align: center;">Login to Enjoy our Services...</h2>
+<form #LoginForm="ngForm" name="LoginForm" (ngSubmit)="Login(LoginForm)">
+    <div class="container">
+
+    
+        <label for="mobile"><b>Mobile No.</b></label>
+        <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
+        <span *ngIf="mno.errors?.required">Mobile No cannot be blank</span>
+        <span *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</span>
+    
+    <div>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" name="txtpass" [(ngModel)]="model.txtpass" placeholder="Enter Password" #txtpass="ngModel" required>
+        <span *ngIf="txtpass.errors?.required">Password cannot be blank</span>
+        <span *ngIf="txtpass.errors?.pattern">Follow password restriction</span>
+        <span *ngIf="txtpass.errors?.minlength">Minimum password length is 4 characters</span>
+    </div>
+       
+    
+    
+    
+    <button type="submit">Login</button>
+    <input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
+    <div class="container" style="background-color:#f1f1f1">
+       <button type="button" class="cancelbtn">Cancel</button>
+       <span class="psw">Not yet registered <a routerLink="../register">Click-Me!</a>
+       </span>
+     </div>
+   
+  </div>
+</form>
+
+</div>
+</div>
+</div>
+<div class="footer">
+    <p>&copy; 2020 Larsen & Toubro Infotech Limited</p>
+  </div>
