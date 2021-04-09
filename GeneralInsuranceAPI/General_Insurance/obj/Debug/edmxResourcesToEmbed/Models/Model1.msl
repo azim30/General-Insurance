@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GeneralInsuranceModelStoreContainer" CdmEntityContainer="GeneralInsuranceEntities">
+    <EntitySetMapping Name="ClaimDetails">
+      <EntityTypeMapping TypeName="GeneralInsuranceModel.ClaimDetail">
+        <MappingFragment StoreEntitySet="ClaimDetails">
+          <ScalarProperty Name="ClaimNo" ColumnName="ClaimNo" />
+          <ScalarProperty Name="UserMobNo" ColumnName="UserMobNo" />
+          <ScalarProperty Name="VehId" ColumnName="VehId" />
+          <ScalarProperty Name="PolNo" ColumnName="PolNo" />
+          <ScalarProperty Name="ClaimReason" ColumnName="ClaimReason" />
+          <ScalarProperty Name="ClaimStatus" ColumnName="ClaimStatus" />
+          <ScalarProperty Name="ClaimAmt" ColumnName="ClaimAmt" />
+          <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PolicyDetails">
+      <EntityTypeMapping TypeName="GeneralInsuranceModel.PolicyDetail">
+        <MappingFragment StoreEntitySet="PolicyDetails">
+          <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+          <ScalarProperty Name="UserMobNo" ColumnName="UserMobNo" />
+          <ScalarProperty Name="VehId" ColumnName="VehId" />
+          <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="PolicyAmt" ColumnName="PolicyAmt" />
+          <ScalarProperty Name="PolicyStatus" ColumnName="PolicyStatus" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="GeneralInsuranceModel.UserDetail">
+        <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="MobNo" ColumnName="MobNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleDetails">
+      <EntityTypeMapping TypeName="GeneralInsuranceModel.VehicleDetail">
+        <MappingFragment StoreEntitySet="VehicleDetails">
+          <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+          <ScalarProperty Name="UserMobNo" ColumnName="UserMobNo" />
+          <ScalarProperty Name="Maufacturer" ColumnName="Maufacturer" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="DrivingLicense" ColumnName="DrivingLicense" />
+          <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+          <ScalarProperty Name="EngineNo" ColumnName="EngineNo" />
+          <ScalarProperty Name="ChassisNo" ColumnName="ChassisNo" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
