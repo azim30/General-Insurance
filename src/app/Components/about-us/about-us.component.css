@@ -1,126 +1,41 @@
-*{
-    box-sizing: border-box;
-    font-family: 'Muli', 'Baloo Da 2', 'Montserrat', sans-serif;
-  }
-  body{
-    font-family: Arial;
-    padding: 10px;
-    background: cornsilk;
-    /* background: rgb(241,241,242); */
+img{
+    
+ /* display:block;
+  align-self: center;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;*/
   
-  }
-  
-  .header{
-    padding: 10px;
-    text-align: center;
-    background: white;
-    width: 80%;
-    margin: auto;
-  }
-  
-  /* Style the top navigation bar */
-  .topnav {
-    overflow: hidden; 
-    background-color: darkcyan;
-    width: 100%;
-    margin: auto;
-  }
-  
-  .topnav ul {
-    list-style-type: none;
-  }
-  
-  /* Style the topnav links */
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-    letter-spacing: 1px;
-    height: 70px;
-  } 
-  .main {  
-    width: 100%;
-    margin: auto;
-    background-color:cornsilk;
-  
-  }
-  
-  /* Add a card effect for articles */
-  .card {
-    padding: 20px;
-    overflow: hidden;
-  }
-  
-  /* Clear floats after the columns */
-  /* .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  } */
-  
-  .cc {
-    float: left;
-    padding: 20px;
-  }
-  
-  img{
-      width: 500px;
-      max-width: 192px;
-      height: 200px;
-     
-  }
-  
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  .footer {
-    padding: 20px;
-    text-align: center;
-    background: #ddd;
-    margin-top: 20px;
-    width: 100%;
-    margin: auto;
-  }
-  
-  .container {
-    padding: 16px;
-    width: 350px;
-    margin: auto;
-  }
-  /* Full-width inputs */
-  input[type=text], input[type=password], input[type=email], input[type=tel] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  
-  /* Set a style for all buttons */
-  button {
-    background-color:blue;
-    color:white;
-    padding: 15px 20px;
-    margin: 20px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-  }
-  span.psw {
-    float: right;
-    padding-top: 16px;
-  }
-  button:hover {
-    opacity: 0.8;
-  }
+  border-radius: 50%;
+
+  padding: 15px;
+  width: 150px;
+}
+.header {
+  background-color: #f8c6d7;
+  color:darkslateblue;
+  padding: 30px;
+  margin:0px 0px 8px;
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 40px;
+}
+.row {
+  display: -webkit-flex;
+  display: flex;
+}
+.column {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 10px;
+  height: 350px; /* Should be removed. Only for demonstration */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  color:bisque
+}
+div h4{
+  text-align: center;
+  color: antiquewhite;
+  font-size: x-large;
+}
