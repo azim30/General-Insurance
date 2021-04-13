@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,7 +13,7 @@ namespace General_Insurance.Controllers
     [Route("api/UserAPI")]
     public class UserAPIController : ApiController
     {
-        GeneralInsuranceEntities db = new GeneralInsuranceEntities();
+        GeneralInsuranceEntities2 db = new GeneralInsuranceEntities2();
         [HttpGet]
         [Route("api/UserAPI/GetAllUsers")]
         public IEnumerable<UserDataModel> Get()

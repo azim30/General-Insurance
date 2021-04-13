@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GeneralInsuranceModelStoreContainer" CdmEntityContainer="GeneralInsuranceEntities">
+  <EntityContainerMapping StorageEntityContainer="GeneralInsuranceModelStoreContainer" CdmEntityContainer="GeneralInsuranceEntities2">
     <EntitySetMapping Name="ClaimDetails">
       <EntityTypeMapping TypeName="GeneralInsuranceModel.ClaimDetail">
         <MappingFragment StoreEntitySet="ClaimDetails">
@@ -27,6 +27,18 @@
           <ScalarProperty Name="PolicyStatus" ColumnName="PolicyStatus" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketDetails">
+      <EntityTypeMapping TypeName="GeneralInsuranceModel.TicketDetail">
+        <MappingFragment StoreEntitySet="TicketDetails">
+          <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="DateOfTravel" ColumnName="DateOfTravel" />
+          <ScalarProperty Name="NoOfPassengers" ColumnName="NoOfPassengers" />
+          <ScalarProperty Name="ValidityOfInsurance" ColumnName="ValidityOfInsurance" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -58,5 +70,65 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_calcprem" FunctionName="GeneralInsuranceModel.Store.proc_calcprem">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralInsuranceModel.proc_calcprem_Result">
+          <ScalarProperty Name="Maufacturer" ColumnName="Maufacturer" />
+          <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetAllClaimsOfUser" FunctionName="GeneralInsuranceModel.Store.proc_GetAllClaimsOfUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralInsuranceModel.proc_GetAllClaimsOfUser_Result">
+          <ScalarProperty Name="ClaimNo" ColumnName="ClaimNo" />
+          <ScalarProperty Name="UserMobNo" ColumnName="UserMobNo" />
+          <ScalarProperty Name="VehId" ColumnName="VehId" />
+          <ScalarProperty Name="PolNo" ColumnName="PolNo" />
+          <ScalarProperty Name="ClaimReason" ColumnName="ClaimReason" />
+          <ScalarProperty Name="ClaimStatus" ColumnName="ClaimStatus" />
+          <ScalarProperty Name="ClaimAmt" ColumnName="ClaimAmt" />
+          <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetAllPoliciesOfUser" FunctionName="GeneralInsuranceModel.Store.proc_GetAllPoliciesOfUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralInsuranceModel.proc_GetAllPoliciesOfUser_Result">
+          <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+          <ScalarProperty Name="UserMobNo" ColumnName="UserMobNo" />
+          <ScalarProperty Name="VehId" ColumnName="VehId" />
+          <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="PolicyAmt" ColumnName="PolicyAmt" />
+          <ScalarProperty Name="PolicyStatus" ColumnName="PolicyStatus" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_UserLoginCheck" FunctionName="GeneralInsuranceModel.Store.proc_UserLoginCheck" />
+    <EntitySetMapping Name="MotorClaimDetailsTables">
+      <EntityTypeMapping TypeName="GeneralInsuranceModel.MotorClaimDetailsTable">
+        <MappingFragment StoreEntitySet="MotorClaimDetailsTable">
+          <ScalarProperty Name="Claim_Status" ColumnName="Claim_Status" />
+          <ScalarProperty Name="Amount_Sanctioned" ColumnName="Amount_Sanctioned" />
+          <ScalarProperty Name="Bill_Copy" ColumnName="Bill_Copy" />
+          <ScalarProperty Name="Estimated_Amount_For_Repair" ColumnName="Estimated_Amount_For_Repair" />
+          <ScalarProperty Name="Authenticated_Letter_from_RTO" ColumnName="Authenticated_Letter_from_RTO" />
+          <ScalarProperty Name="RC_Copy" ColumnName="RC_Copy" />
+          <ScalarProperty Name="License_Copy" ColumnName="License_Copy" />
+          <ScalarProperty Name="Insurance_Copy" ColumnName="Insurance_Copy" />
+          <ScalarProperty Name="Date_Of_Applying" ColumnName="Date_Of_Applying" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Mobile_Number" ColumnName="Mobile_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Policy_Id" ColumnName="Policy_Id" />
+          <ScalarProperty Name="Claim_Id" ColumnName="Claim_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_insertMotorClaim" FunctionName="GeneralInsuranceModel.Store.sp_insertMotorClaim" />
+    <FunctionImportMapping FunctionImportName="sp_insertMotorClaim1" FunctionName="GeneralInsuranceModel.Store.sp_insertMotorClaim1" />
   </EntityContainerMapping>
 </Mapping>

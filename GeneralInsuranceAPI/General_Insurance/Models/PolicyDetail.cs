@@ -17,6 +17,7 @@ namespace General_Insurance.Models
         public PolicyDetail()
         {
             this.ClaimDetails = new HashSet<ClaimDetail>();
+            this.MotorClaimDetailsTables = new HashSet<MotorClaimDetailsTable>();
         }
     
         public int PolicyNo { get; set; }
@@ -32,5 +33,6 @@ namespace General_Insurance.Models
         public virtual ICollection<ClaimDetail> ClaimDetails { get; set; }
         public virtual UserDetail UserDetail { get; set; }
         public virtual VehicleDetail VehicleDetail { get; set; }
+        public virtual ICollection<MotorClaimDetailsTable> MotorClaimDetailsTables { get; set; }
     }
 }

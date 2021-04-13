@@ -12,11 +12,14 @@ namespace General_Insurance.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
-    public partial class GeneralInsuranceEntities : DbContext
+    public partial class GeneralInsuranceEntities2 : DbContext
     {
-        public GeneralInsuranceEntities()
-            : base("name=GeneralInsuranceEntities")
+        public GeneralInsuranceEntities2()
+            : base("name=GeneralInsuranceEntities2")
         {
         }
     
@@ -27,7 +30,163 @@ namespace General_Insurance.Models
     
         public DbSet<ClaimDetail> ClaimDetails { get; set; }
         public DbSet<PolicyDetail> PolicyDetails { get; set; }
+        public DbSet<TicketDetail> TicketDetails { get; set; }
         public DbSet<UserDetail> UserDetails { get; set; }
         public DbSet<VehicleDetail> VehicleDetails { get; set; }
+        public DbSet<MotorClaimDetailsTable> MotorClaimDetailsTables { get; set; }
+    
+        public virtual ObjectResult<proc_calcprem_Result> proc_calcprem(Nullable<long> policyid, string manu, string model)
+        {
+            var policyidParameter = policyid.HasValue ?
+                new ObjectParameter("policyid", policyid) :
+                new ObjectParameter("policyid", typeof(long));
+    
+            var manuParameter = manu != null ?
+                new ObjectParameter("manu", manu) :
+                new ObjectParameter("manu", typeof(string));
+    
+            var modelParameter = model != null ?
+                new ObjectParameter("model", model) :
+                new ObjectParameter("model", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_calcprem_Result>("proc_calcprem", policyidParameter, manuParameter, modelParameter);
+        }
+    
+        public virtual ObjectResult<proc_GetAllClaimsOfUser_Result> proc_GetAllClaimsOfUser(string mobile)
+        {
+            var mobileParameter = mobile != null ?
+                new ObjectParameter("mobile", mobile) :
+                new ObjectParameter("mobile", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetAllClaimsOfUser_Result>("proc_GetAllClaimsOfUser", mobileParameter);
+        }
+    
+        public virtual ObjectResult<proc_GetAllPoliciesOfUser_Result> proc_GetAllPoliciesOfUser(string mobile)
+        {
+            var mobileParameter = mobile != null ?
+                new ObjectParameter("mobile", mobile) :
+                new ObjectParameter("mobile", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetAllPoliciesOfUser_Result>("proc_GetAllPoliciesOfUser", mobileParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> proc_UserLoginCheck(string uid, string pswd)
+        {
+            var uidParameter = uid != null ?
+                new ObjectParameter("uid", uid) :
+                new ObjectParameter("uid", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("proc_UserLoginCheck", uidParameter, pswdParameter);
+        }
+    
+        public virtual int sp_insertMotorClaim(Nullable<int> policy_Id, string name, string mobile_Number, string reason, Nullable<System.DateTime> date_Of_Applying, Nullable<double> estimated_Amount_For_Repair, string license_Copy, string rC_Copy, string insurance_Copy, string bill_Copy, string authenticated_Letter_from_RTO, string claim_Status)
+        {
+            var policy_IdParameter = policy_Id.HasValue ?
+                new ObjectParameter("Policy_Id", policy_Id) :
+                new ObjectParameter("Policy_Id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var mobile_NumberParameter = mobile_Number != null ?
+                new ObjectParameter("Mobile_Number", mobile_Number) :
+                new ObjectParameter("Mobile_Number", typeof(string));
+    
+            var reasonParameter = reason != null ?
+                new ObjectParameter("Reason", reason) :
+                new ObjectParameter("Reason", typeof(string));
+    
+            var date_Of_ApplyingParameter = date_Of_Applying.HasValue ?
+                new ObjectParameter("Date_Of_Applying", date_Of_Applying) :
+                new ObjectParameter("Date_Of_Applying", typeof(System.DateTime));
+    
+            var estimated_Amount_For_RepairParameter = estimated_Amount_For_Repair.HasValue ?
+                new ObjectParameter("Estimated_Amount_For_Repair", estimated_Amount_For_Repair) :
+                new ObjectParameter("Estimated_Amount_For_Repair", typeof(double));
+    
+            var license_CopyParameter = license_Copy != null ?
+                new ObjectParameter("License_Copy", license_Copy) :
+                new ObjectParameter("License_Copy", typeof(string));
+    
+            var rC_CopyParameter = rC_Copy != null ?
+                new ObjectParameter("RC_Copy", rC_Copy) :
+                new ObjectParameter("RC_Copy", typeof(string));
+    
+            var insurance_CopyParameter = insurance_Copy != null ?
+                new ObjectParameter("Insurance_Copy", insurance_Copy) :
+                new ObjectParameter("Insurance_Copy", typeof(string));
+    
+            var bill_CopyParameter = bill_Copy != null ?
+                new ObjectParameter("Bill_Copy", bill_Copy) :
+                new ObjectParameter("Bill_Copy", typeof(string));
+    
+            var authenticated_Letter_from_RTOParameter = authenticated_Letter_from_RTO != null ?
+                new ObjectParameter("Authenticated_Letter_from_RTO", authenticated_Letter_from_RTO) :
+                new ObjectParameter("Authenticated_Letter_from_RTO", typeof(string));
+    
+            var claim_StatusParameter = claim_Status != null ?
+                new ObjectParameter("Claim_Status", claim_Status) :
+                new ObjectParameter("Claim_Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_insertMotorClaim", policy_IdParameter, nameParameter, mobile_NumberParameter, reasonParameter, date_Of_ApplyingParameter, estimated_Amount_For_RepairParameter, license_CopyParameter, rC_CopyParameter, insurance_CopyParameter, bill_CopyParameter, authenticated_Letter_from_RTOParameter, claim_StatusParameter);
+        }
+    
+        public virtual int sp_insertMotorClaim1(Nullable<int> policy_Id, string name, string mobile_Number, string reason, Nullable<System.DateTime> date_Of_Applying, Nullable<double> estimated_Amount_For_Repair, string license_Copy, string rC_Copy, string insurance_Copy, string bill_Copy, string authenticated_Letter_from_RTO, string claim_Status)
+        {
+            var policy_IdParameter = policy_Id.HasValue ?
+                new ObjectParameter("Policy_Id", policy_Id) :
+                new ObjectParameter("Policy_Id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var mobile_NumberParameter = mobile_Number != null ?
+                new ObjectParameter("Mobile_Number", mobile_Number) :
+                new ObjectParameter("Mobile_Number", typeof(string));
+    
+            var reasonParameter = reason != null ?
+                new ObjectParameter("Reason", reason) :
+                new ObjectParameter("Reason", typeof(string));
+    
+            var date_Of_ApplyingParameter = date_Of_Applying.HasValue ?
+                new ObjectParameter("Date_Of_Applying", date_Of_Applying) :
+                new ObjectParameter("Date_Of_Applying", typeof(System.DateTime));
+    
+            var estimated_Amount_For_RepairParameter = estimated_Amount_For_Repair.HasValue ?
+                new ObjectParameter("Estimated_Amount_For_Repair", estimated_Amount_For_Repair) :
+                new ObjectParameter("Estimated_Amount_For_Repair", typeof(double));
+    
+            var license_CopyParameter = license_Copy != null ?
+                new ObjectParameter("License_Copy", license_Copy) :
+                new ObjectParameter("License_Copy", typeof(string));
+    
+            var rC_CopyParameter = rC_Copy != null ?
+                new ObjectParameter("RC_Copy", rC_Copy) :
+                new ObjectParameter("RC_Copy", typeof(string));
+    
+            var insurance_CopyParameter = insurance_Copy != null ?
+                new ObjectParameter("Insurance_Copy", insurance_Copy) :
+                new ObjectParameter("Insurance_Copy", typeof(string));
+    
+            var bill_CopyParameter = bill_Copy != null ?
+                new ObjectParameter("Bill_Copy", bill_Copy) :
+                new ObjectParameter("Bill_Copy", typeof(string));
+    
+            var authenticated_Letter_from_RTOParameter = authenticated_Letter_from_RTO != null ?
+                new ObjectParameter("Authenticated_Letter_from_RTO", authenticated_Letter_from_RTO) :
+                new ObjectParameter("Authenticated_Letter_from_RTO", typeof(string));
+    
+            var claim_StatusParameter = claim_Status != null ?
+                new ObjectParameter("Claim_Status", claim_Status) :
+                new ObjectParameter("Claim_Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_insertMotorClaim1", policy_IdParameter, nameParameter, mobile_NumberParameter, reasonParameter, date_Of_ApplyingParameter, estimated_Amount_For_RepairParameter, license_CopyParameter, rC_CopyParameter, insurance_CopyParameter, bill_CopyParameter, authenticated_Letter_from_RTOParameter, claim_StatusParameter);
+        }
     }
 }
