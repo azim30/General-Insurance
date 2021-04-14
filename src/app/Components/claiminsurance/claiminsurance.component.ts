@@ -136,7 +136,7 @@ export class ClaiminsuranceComponent implements OnInit {
        this.theftBool = false;
        this.otherBool = false;
      }
-     if (this.choice == "theft")
+     if (this.choice == " ")
        this.theftBool = true;
      else
        this.otherBool = true;
