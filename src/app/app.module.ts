@@ -15,6 +15,10 @@ import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { FaqComponent } from './Components/faq/faq.component';
 import { ClaiminsuranceComponent } from './Components/claiminsurance/claiminsurance.component';
+import { HelpComponent } from './Components/help/help.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { BackgroundComponent } from './Components/background/background.component';
+import { CalculateInsuranceComponent } from './Components/calculate-insurance/calculate-insurance.component';
 
 
 
@@ -31,6 +35,10 @@ import { ClaiminsuranceComponent } from './Components/claiminsurance/claiminsura
     BuyInsuranceComponent,
     FaqComponent,
     ClaiminsuranceComponent,
+    HelpComponent,
+    FooterComponent,
+    BackgroundComponent,
+    CalculateInsuranceComponent,
    
 
     
