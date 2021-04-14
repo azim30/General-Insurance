@@ -1,11 +1,38 @@
-.sidenav-container {
+
+
+.navbar{
+  justify-content:space-between;
+}
+a{
+  padding-right:1rem;
+  margin:auto;
+  color:antiquewhite;
+  text-decoration: none;
+}
+mat-sidenav-container {
   height: 100%;
 }
-
-.sidenav {
-  width: 200px;
+mat-sidenav,mat-sidenav-content{
+  padding:16px;
+ 
 }
-
+p{
+  font-size: 30px;
+  text-align: center;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #3f51b5;
+  color: white;
+  text-align:center;
+}
+a div{
+  float:right;
+}
+/*
 .sidenav .mat-toolbar {
   background: inherit;
 }
@@ -33,3 +60,6 @@ mat-toolbar a{
   color: white;
   text-align:center;
 }
+a mat-button{
+  font: size 100px;
+}*/

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import{FormsModule} from '@angular/forms';
 import{MaterialModule} from '../../Modules/material/material.module';
 
 @Component({
@@ -10,12 +11,13 @@ import{MaterialModule} from '../../Modules/material/material.module';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  /*isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
     map(result => result.matches),
     shareReplay()
   );
-
+*/
+opened=false;
 constructor(private breakpointObserver: BreakpointObserver) {}
 
 
