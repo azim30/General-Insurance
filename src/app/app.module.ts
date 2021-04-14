@@ -11,8 +11,12 @@ import { LoginComponent } from './Components/login/login.component';
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { FaqComponent } from './Components/faq/faq.component';
+//<<<<<<< HEAD
 import { ClaiminsuranceComponent } from './Components/claiminsurance/claiminsurance.component';
 
+//=======
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//>>>>>>> fa3d85d5d5f74b70ccbce070f1ed791511d301a0
 
 
 @NgModule({
@@ -36,7 +40,8 @@ import { ClaiminsuranceComponent } from './Components/claiminsurance/claiminsura
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    //BrowserAnimationsModule
 
   ],
   providers: [],
