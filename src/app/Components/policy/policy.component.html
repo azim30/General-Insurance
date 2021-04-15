@@ -1,0 +1,45 @@
+<h1><strong>Policy Details</strong></h1>
+
+<form #policydetailsform="ngForm" name="policydetailsform" (ngSubmit)="policyData(policydetailsform)">
+    
+    <div>Select Vehicle type</div>
+    <input type="text" name="vtype" [(ngModel)]="model.vtype" #vtype="ngModel" required>
+    <!--<span *ngIf="eid.errors?.required">Employee ID cannot be blank</span>-->
+
+
+    <div>Enter mobile number</div>
+    <input type="text" name="umob" [(ngModel)]="model.umob" #umob="ngModel" required>
+
+    <div>Enter vehicle ID</div>
+    <input type="text" name="vid" [(ngModel)]="model.vid" #vid="ngModel" required>
+
+    <div>Enter Policy Name</div>
+    <select type="text" name="pname" [(ngModel)]="model.pname" #pname="ngModel" required>
+        <option value="New India Assurance">New India Assurance. </option>
+        <option value="IFFCO Tokio">IFFCO Tokio.</option>
+        <option value="HDFC ERGO">HDFC ERGO.</option>
+        <option value="Reliance">Reliance.</option>
+        <option value="Tata AIG">Tata AIG.</option>
+        <option value="Bajaj Allianz">Bajaj Allianz.</option>
+    </select>
+
+    <div>Select Period</div>
+    <select type="text" name="period" [(ngModel)]="model.period" #period="ngModel" required>
+        <option value="Select">Select</option>
+        <option value="1">1</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+    </select>
+    
+
+    <div>Enter Start date</div>
+    <input type="date" name="sdate" [(ngModel)]="model.sdate" #sdate="ngModel" required>
+
+    <div>Enter End date</div>
+    <input type="date" name="edate" [(ngModel)]="model.edate" #edate="ngModel" required>
+        
+    <div>
+        <button type="submit" [disabled]="policydetailsform.invalid">Submit</button>
+    </div>
+</form>
+

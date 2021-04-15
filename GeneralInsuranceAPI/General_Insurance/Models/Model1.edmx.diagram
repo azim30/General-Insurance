@@ -4,20 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b8c06632288843c2bb5a8021bf6d85d6" Name="Diagram1">
+      <Diagram DiagramId="9ebcab1906494a56978ef51c7cbf4e7d" Name="Diagram1">
         <EntityTypeShape EntityType="GeneralInsuranceModel.ClaimDetail" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GeneralInsuranceModel.PolicyDetail" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GeneralInsuranceModel.TicketDetail" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GeneralInsuranceModel.UserDetail" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GeneralInsuranceModel.VehicleDetail" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
-        <AssociationConnector Association="GeneralInsuranceModel.FK__ClaimDeta__PolNo__48CFD27E" ManuallyRouted="false" />
-        <AssociationConnector Association="GeneralInsuranceModel.FK__ClaimDeta__UserM__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="GeneralInsuranceModel.FK__ClaimDeta__VehId__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="GeneralInsuranceModel.FK__PolicyDet__UserM__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="GeneralInsuranceModel.FK__PolicyDet__VehId__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="GeneralInsuranceModel.FK__VehicleDe__UserM__403A8C7D" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="GeneralInsuranceModel.MotorClaimDetailsTable" Width="1.5" PointX="10.5" PointY="9.375" />
-        <AssociationConnector Association="GeneralInsuranceModel.FK__MotorClai__Polic__534D60F1" />
+        <AssociationConnector Association="GeneralInsuranceModel.FK__ClaimDeta__PolNo__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneralInsuranceModel.FK__ClaimDeta__UserM__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneralInsuranceModel.FK__ClaimDeta__VehId__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneralInsuranceModel.FK__PolicyDet__UserM__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneralInsuranceModel.FK__PolicyDet__VehId__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneralInsuranceModel.FK__VehicleDe__UserM__412EB0B6" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
