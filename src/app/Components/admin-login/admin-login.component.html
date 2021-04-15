@@ -1,7 +1,8 @@
+<p>admin-login works!</p>
 <div class="row">
     <div class="main">
         <div class="card">
-            <h2 style="text-align: center;">Login to Enjoy our Services...</h2>
+            <h2 style="text-align: center;">Admin Login</h2>
 <form #LoginForm="ngForm" name="LoginForm" (ngSubmit)="Login(LoginForm)">
     <div class="container">
 
@@ -13,7 +14,7 @@
     
     <div>
         <label for="psw"><b>Password</b></label>
-        <input type="password" name="txtpass" [(ngModel)]="model.txtpass" placeholder="Enter Password" minlength="4" maxlength="8" #txtpass="ngModel" required>
+        <input type="password" name="txtpass" [(ngModel)]="model.txtpass" placeholder="Enter Password" minlength="4" maxlength="15" #txtpass="ngModel" required>
         <span *ngIf="txtpass.errors?.required">Password cannot be blank</span>
         <span *ngIf="txtpass.errors?.pattern">Follow password restriction</span>
         <span *ngIf="txtpass.errors?.minlength">Minimum password length is 4 characters</span>
@@ -29,8 +30,6 @@
     <input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
     <div class="container" style="background-color:#f1f1f1">
        <button type="button" class="cancelbtn">Cancel</button>
-       <span class="psw">Not yet registered <a routerLink="../register">Click-Me!</a>
-       </span>
        <span class="psw">Forget <a routerLink="../forget-password">Password ?</a>
        </span>
      </div>

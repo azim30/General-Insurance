@@ -1,24 +1,24 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormsModule,NgForm,FormGroup} from '@angular/forms';
-import {UserInfoModule} from 'src/app/Modules/user-info/user-info.module';
-import {UserInfoService} from 'src/app/Services/user-info.service';
-import { VehicleinfomoduleModule } from 'src/app/Modules/vehicleinfomodule/vehicleinfomodule.module';
-import { VehicleinfoserviceService } from 'src/app/Services/vehicleinfoservice.service';
+import {VehicleInfoModule} from '../../Modules/vehicle-info/vehicle-info.module';
+import {VehicleinfoService} from '../../Services/vehicleinfo.service';
+
+
 @Component({
-  selector: 'app-registervehicle',
-  templateUrl: './registervehicle.component.html',
-  styleUrls: ['./registervehicle.component.css']
+  selector: 'app-register-vehicle',
+  templateUrl: './register-vehicle.component.html',
+  styleUrls: ['./register-vehicle.component.css']
 })
-export class RegistervehicleComponent implements OnInit {
+export class RegisterVehicleComponent implements OnInit {
 
   model: any = [];
-  svc:VehicleinfoserviceService;
-  usr = new VehicleinfomoduleModule();
+  svc:VehicleinfoService;
+  usr = new VehicleInfoModule();
   ngzone: NgZone;
   router: Router;
   
-  constructor(svc: VehicleinfoserviceService, ngzone: NgZone,
+  constructor(svc: VehicleinfoService, ngzone: NgZone,
     router: Router) 
     {
       this.svc = svc;
@@ -34,7 +34,7 @@ export class RegistervehicleComponent implements OnInit {
   {
     console.log(vehicleRegisterationForm.value);
     //this.usr.VehicleID = buyinsuranceform.value.vid;
-    this.usr.Maufacturer = vehicleRegisterationForm.value.cbmanu; 
+    this.usr.Manufacturer = vehicleRegisterationForm.value.cbmanu; 
     this.usr.Model = vehicleRegisterationForm.value.cbmodel;
     this.usr.DrivingLicense = vehicleRegisterationForm.value.lic; 
     this.usr.VehicleType = vehicleRegisterationForm.value.vtype;
@@ -43,8 +43,9 @@ export class RegistervehicleComponent implements OnInit {
     this.usr.ChassisNo = vehicleRegisterationForm.value.cnum; 
     this.usr.PurchaseDate = vehicleRegisterationForm.value.pdate;
     this.usr.UserMobNo = vehicleRegisterationForm.value.umob; 
+    this.usr.Price= vehicleRegisterationForm.value.price;
     //alert(this.usr.VehicleID+','+this.usr.Maufacturer);
-    this.svc.RegisterVehicle(this.usr).subscribe((data: boolean) =>
+    this.svc.Register(this.usr).subscribe((data: boolean) =>
     {
       //alert(data);
       if(data==true)
@@ -58,5 +59,5 @@ export class RegistervehicleComponent implements OnInit {
  }
 
 
-}
 
+}

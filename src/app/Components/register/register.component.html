@@ -39,8 +39,13 @@
         <label for="dob"><b>DOB</b></label>
         <input type="date" name="dob" [(ngModel)]="model.dob" placeholder="Enter DOB" #dob="ngModel" required>
         <span *ngIf="dob.errors?.required">DOB has to be entered</span>
+    </div><br><br>
+    <div>
+        <label for="gen"><b>Select Gender</b></label>
+        <input type="radio" name="gen" [(ngModel)]="model.gen" placeholder="Enter Gender " #gen="ngModel" required value="Male">Male
+        <input type="radio" name="gen" [(ngModel)]="model.gen" #gen="ngModel" required value="Female">Female<br>
+        <span *ngIf="gen.errors?.required">Gender has to be selected</span>
     </div>
-
 
                  
     

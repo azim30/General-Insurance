@@ -9,13 +9,13 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class UserInfoModule {
-  MobNo: string;
+export class ContactModule {
+
+  MobNo: number;
   Email: string;
   UserName: string;
-  Password: string;
-  Address: string;
-  DOB: Date;
-  Gender: string;
-  OTP: string;
+  Subject: string;
+  Message: string;
+ 
+
  }

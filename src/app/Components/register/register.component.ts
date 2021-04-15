@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import {FormsModule,NgForm,FormGroup} from '@angular/forms';
-import {UserInfoModule} from 'src/app/Modules/user-info/user-info.module';
-import {UserInfoService} from 'src/app/Services/user-info.service';
+import {UserInfoModule} from '../../Modules/user-info/user-info.module';
+import {UserInfoService} from '../../Services/user-info.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
     this.usr.Password=regform.value.txtpass;
     this.usr.Address=regform.value.city;
     this.usr.DOB=regform.value.dob;
+    this.usr.Gender=regform.value.gen;
 
     this.svc.Register(this.usr).subscribe((data: boolean) =>
     {
@@ -47,8 +48,13 @@ export class RegisterComponent implements OnInit {
         alert('New User Registered');
         this.ngzone.run(()=>this.router.navigateByUrl('/login'));
       }
+      else
+      {
+        console.log(data);
+        alert('Mobile No. Already Registered');
+      }
   });
- 
+
  }
 
 }

@@ -1,8 +1,12 @@
-<h1><strong>Register Vehicle</strong></h1>
+<div class="row">
+    <div class="main">
+        <div class="card">
+            <h2 style="text-align: center;">Register Your Vehicle...</h2>
 
 <form #vehicleRegisterationForm="ngForm" name="vehicleRegisterationForm" (ngSubmit)="vehicleData(vehicleRegisterationForm)">
     
     <!--<span *ngIf="eid.errors?.required">Employee ID cannot be blank</span>-->
+    <div class="container">
 
 
     <div>Enter mobile number</div>
@@ -36,16 +40,22 @@
     
 
     <div>Enter registeration number</div>
-    <input type="date" name="rno" [(ngModel)]="model.rno" #rno="ngModel" required>
+    <input type="text" name="rno" [(ngModel)]="model.rno" #rno="ngModel" required>
 
     <div>Enter engine number</div>
     <input type="text" name="enum" [(ngModel)]="model.enum" #enum="ngModel" required>
 
     <div>Enter chassis number</div>
-    <input type="test" name="cnum" [(ngModel)]="model.cnum" #cnum="ngModel" required>
+    <input type="text" name="cnum" [(ngModel)]="model.cnum" #cnum="ngModel" required>
+
+    <div>Enter Price Of vehicle</div>
+    <input type="number" name="price" [(ngModel)]="model.price" #price="ngModel" required>
     
     <div>
         <button type="submit" [disabled]="vehicleRegisterationForm.invalid">Submit</button>
     </div>
+    </div>
 </form>
-
+</div>
+</div>
+</div>
