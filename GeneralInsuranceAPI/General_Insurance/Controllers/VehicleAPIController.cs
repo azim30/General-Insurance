@@ -10,32 +10,36 @@ using System.Web.Http.Cors;
 namespace General_Insurance.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [Route("api/VehicleAPI")]
+    [Route("api/UserAPI")]
     public class VehicleAPIController : ApiController
     {
         GeneralInsuranceEntities db = new GeneralInsuranceEntities();
+
         [HttpGet]
         [Route("api/VehicleAPI/GetAllVehicles")]
-        public IEnumerable<VehicleDataModel> Get()
+        public IEnumerable<VehicleDataModel> GetAllVehicles()
         {
             try
             {
-                var data = from v in db.VehicleDetails
+                var data = from u in db.VehicleDetails
                            select new VehicleDataModel
                            {
-                               VehicleID = v.VehicleID,
-                               UserMobNo = (long)v.UserMobNo,
-                               Maufacturer = v.Maufacturer,
-                               Model = v.Model,
-                               EngineNo = v.EngineNo,
-                               ChassisNo = v.ChassisNo,
-                               RegistrationNo = v.RegistrationNo,
-                               VehicleType = v.VehicleType,
-                               DrivingLicense = v.DrivingLicense,
-                               PurchaseDate = v.PurchaseDate
+                               VehicleID = u.VehicleID,
+                               UserMobNo = u.UserMobNo,
+                               VehicleType = u.VehicleType,
+                               Manufacturer = u.Manufacturer,
+                               Model = u.Model,
+                               DrivingLicense = u.DrivingLicense,
+                               RegistrationNo = u.RegistrationNo,
+                               PurchaseDate = u.PurchaseDate,
+                               Price = u.Price,
+                               ChassisNo = u.ChassisNo,
+                               EngineNo = u.EngineNo,
+
                            };
                 return data;
             }
+            //this Get() method retrieves all employees from the table
             catch (Exception ex)
             {
                 throw ex;
