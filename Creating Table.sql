@@ -44,6 +44,7 @@ EngineNo varchar(20) not null,
 ChassisNo varchar (20) not null, 
 PurchaseDate date not null
 )
+Alter table VehicleDetails set VehicleID PRIMARY KEY as identity {8,1}
 
 select * from VehicleDetails
 insert into VehicleDetails Values(1,9123456789,'Maruti','Maruti Dezirezxi','Four Wheeler','MH18202000008775',
@@ -138,3 +139,72 @@ begin
 end
 
 exec proc_GetAllClaimsOfUser '9123456789'
+
+create table MotorClaimDetailsTable
+(
+Claim_Id bigint identity(110001,1) primary key,
+Policy_Id int foreign key references PolicyDetails(PolicyNo),
+Name varchar(30),
+Mobile_Number varchar(12),
+Reason varchar(15),
+Date_Of_Applying date,
+Insurance_Copy varchar(200),
+License_Copy varchar(200),
+RC_Copy varchar(200),
+Authenticated_Letter_from_RTO varchar(200),
+Estimated_Amount_For_Repair float,
+Bill_Copy varchar(200),
+Amount_Sanctioned float, 
+Claim_Status varchar(20),
+)
+
+select * from MotorClaimDetailsTable
+
+create PROCEDURE sp_insertMotorClaim (
+										@Policy_Id   int,  
+                                          @Name    VARCHAR(200),  
+                                          @Mobile_Number      varchar(30),  
+                                          @Reason         VARCHAR(12), 
+                                          @Date_Of_Applying date,
+										  @Estimated_Amount_For_Repair float,
+										  @License_Copy varchar(200),
+										  @RC_Copy varchar(200),
+										  @Insurance_Copy varchar(200),
+										  @Bill_Copy varchar(200),
+										  @Authenticated_Letter_from_RTO varchar(200),
+										  @Claim_Status varchar(20)
+										    )  
+AS  
+  BEGIN  
+
+            INSERT INTO MotorClaimDetailsTable  
+                        (Policy_Id   ,  
+                                          Name,  
+                                          Mobile_Number,  
+                                          Reason, 
+                                          Date_Of_Applying ,
+										  Estimated_Amount_For_Repair ,
+										  License_Copy ,
+										  RC_Copy ,
+										  Insurance_Copy ,
+										  Bill_Copy ,
+										  Authenticated_Letter_from_RTO ,
+										  Claim_Status  
+)  
+            VALUES     ( 				  @Policy_Id   ,  
+                                          @Name,  
+                                          @Mobile_Number,  
+                                          @Reason, 
+                                          @Date_Of_Applying ,
+										  @Estimated_Amount_For_Repair ,
+										  @License_Copy ,
+										  @RC_Copy ,
+										  @Insurance_Copy ,
+										  @Bill_Copy ,
+										  @Authenticated_Letter_from_RTO ,
+										  @Claim_Status 
+										   )  
+        END
+exec sp_insertMotorClaim @Policy_Id=23,@Name='azar',@Mobile_Number='9894101041',@Reason='Accident',@Date_Of_Applying='2020-12-12',@Estimated_Amount_For_Repair=230000.0,@License_Copy='azarlic.txt'
+,@RC_Copy='azar.txt',@Insurance_Copy='azar2.txt',@Bill_Copy='azar3.txt',@Authenticated_Letter_from_RTO='azar4.txt',@Claim_Status='pending' 
+0 comments on commit 0446658
