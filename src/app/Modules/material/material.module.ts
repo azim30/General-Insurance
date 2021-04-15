@@ -9,6 +9,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatRippleModule} from '@angular/material/core';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const MaterialComponents=[
   MatToolbarModule,
@@ -21,7 +24,9 @@ const MaterialComponents=[
   MatFormFieldModule,
   MatDividerModule,
   MatRippleModule,
-  
+  MatStepperModule,
+  MatRadioModule,
+  MatSnackBarModule,
 ]
 
 @NgModule({
