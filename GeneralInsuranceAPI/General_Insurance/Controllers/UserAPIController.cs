@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,7 +13,7 @@ namespace General_Insurance.Controllers
     [Route("api/UserAPI")]
     public class UserAPIController : ApiController
     {
-        GeneralInsuranceEntities2 db = new GeneralInsuranceEntities2();
+        GeneralInsuranceEntities db = new GeneralInsuranceEntities();
         [HttpGet]
         [Route("api/UserAPI/GetAllUsers")]
         public IEnumerable<UserDataModel> Get()
@@ -23,7 +23,7 @@ namespace General_Insurance.Controllers
                 var data = from u in db.UserDetails
                            select new UserDataModel
                            {
-                               MobNo = u.MobNo,
+                               MobNo = (long)u.MobNo,
                                Email = u.Email,
                                UserName = u.UserName,
                                Password = u.Password,
@@ -32,12 +32,12 @@ namespace General_Insurance.Controllers
                            };
                 return data;
             }
-            //this Get() method retrieves all employees from the table
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+        
         [Route("api/UserAPI/Login/{mob}/{pwd}")]
         [HttpGet]
         public string Get(long mob, string pwd)

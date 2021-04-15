@@ -7,7 +7,7 @@ namespace General_Insurance.Models
 {
     public class UserDataModel
     {
-        public decimal MobNo { get; set; }
+        public long MobNo { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
