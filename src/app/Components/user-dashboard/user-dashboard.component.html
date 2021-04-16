@@ -1,0 +1,70 @@
+<p>userhomepage works!</p>
+<a mat-raised-button color="accent"  (click)="GetAllVehicles()"  role="button">Get all Vehicles</a>&nbsp;
+<a mat-raised-button color="accent"  (click)="GetPolicies()"  role="button">Get all Policies</a>&nbsp;
+
+<div *ngIf="buttonName1=='GetAllVehicles'">
+    <table border="1">
+        <tr>
+            <th>Vehicle ID</th>
+            <th>Mobile No.</th>
+            <th>Vehicle Type</th>
+            <th>Manufacturer</th>
+            <th>Model</th>
+            <th>Driving License</th>
+            <th>Registration No.</th>
+            <th>Purchase Date</th>
+            <th>Price </th>
+            <th>Chassis No.</th>
+            <th>Engine No.</th>
+            <th>Update Details</th>
+            <th>Buy Insurance</th>
+            <th>Delete</th>
+
+
+        </tr>
+        <tr *ngFor="let value of vehlist">
+            <td>{{value.VehicleID}}</td>
+            <td>{{value.UserMobNo}}</td>
+            <td>{{value.VehicleType}}</td>
+            <td>{{value.Manufacturer}}</td>
+            <td>{{value.Model}}</td>
+            <td>{{value.DrivingLicense}}</td>
+            <td>{{value.RegistrationNo}}</td>
+            <td>{{value.PurchaseDate}}</td>
+            <td>{{value.Price}}</td>
+            <td>{{value.ChassisNo}}</td>
+            <td>{{value.EngineNo}}</td>
+            <td><button (click)="Update(value.VehicleID)" >Update</button></td>
+            <td><button (click)="buyinsurance(value.VehicleID)" >Buy Insurance</button></td>
+            <td><button (click)="delete(value.VehicleID)">Delete </button></td>
+        </tr>
+    </table></div>
+
+    <div *ngIf="buttonName2=='GetPolicies'">
+        <table border="1">
+            <tr>
+                <th>PolicyNo</th>
+                <th>Mobile No.</th>
+                <th>Vehicle ID</th>
+                <th>Policy Name</th>
+                <th>Period</th>
+                <th>Policy Amount</th>
+                <th>Policy Status</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Claim</th>
+            </tr>
+            <tr *ngFor="let value of pollist">
+                <td>{{value.PolicyNo}}</td>
+                <td>{{value.UserMobNo}}</td>
+                <td>{{value.VehID}}</td>
+                <td>{{value.PolicyName}}</td>
+                <td>{{value.Period}}</td>
+                <td>{{value.PolicyAmt}}</td>
+                <td>{{value.PolicyStatus}}</td>
+                <td>{{value.StartDate}}</td>
+                <td>{{value.EndDate}}</td>
+                <td><button (click)="ClaimInsurance(value.PolicyNo)">Claim</button></td>
+
+            </tr>
+        </table></div>

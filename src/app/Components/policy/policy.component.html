@@ -5,8 +5,9 @@
     <div>Enter mobile number</div>
     <input type="text" name="umob" [(ngModel)]="model.umob" #umob="ngModel" required>
 
+    
     <div>Enter vehicle ID</div>
-    <input type="text" name="vid" [(ngModel)]="model.vid" #vid="ngModel" required>
+    <input type="text" name="vid" [(ngModel)]="model.vid"   #vid="ngModel" required>
 
     <div>Enter Policy Name</div>
     <select type="text" name="pname" [(ngModel)]="model.pname" #pname="ngModel" required>
@@ -18,14 +19,17 @@
         <option value="Bajaj Allianz">Bajaj Allianz.</option>
     </select>
 
-    <div>Select Period</div>
-    <select type="text" name="period" [(ngModel)]="model.period" #period="ngModel" required>
+    <div>Select Period (Years)</div>
+    <select type="text" name="period" [(ngModel)]="model.period" #period="ngModel" required (change)= "try()">
         <option value="Select">Select</option>
         <option value="1">1</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
     </select>
-    
+
+   <div>Amount You have to Pay</div>
+   {{PolicyA}}
+  
 
     <div>Enter Start date</div>
     <input type="date" name="sdate" [(ngModel)]="model.sdate" #sdate="ngModel" required>
@@ -37,4 +41,3 @@
         <button type="submit" [disabled]="policydetailsform.invalid">Submit</button>
     </div>
 </form>
-

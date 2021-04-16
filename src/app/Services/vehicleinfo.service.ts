@@ -23,11 +23,17 @@ export class VehicleinfoService {
   {
     return this.http.get<VehicleInfoModule[]>(this.url+'/'+'GetAllVehicles');
   }
-  
+  GetVehicleByID(phone:number):Observable<VehicleInfoModule[]>
+  {
+    return this.http.get<VehicleInfoModule[]>(this.url+'/'+'GetVehicleByID' +'/'+phone, this.httpOptions);
+  }
 
   Register(usr: VehicleInfoModule):Observable<boolean>
   {
     return this.http.post<boolean>(this.url+'/'+ 'RegisterVehicle',usr, this.httpOptions);
   }
-
+  DeleteVehicle(id:number):Observable<boolean>
+  {
+    return this.http.delete<boolean>(this.url + '/' + 'DeleteVehicle' + '/' +id);
+  }
 }
