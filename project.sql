@@ -137,6 +137,8 @@ begin
 end
 
 exec proc_GetAllClaimsOfUser '9123456789'
+                                                             
+ ---7.Creating a table For MotorclaimDetail--                                                            
 
 create table MotorClaimDetailsTable
 (
@@ -205,3 +207,53 @@ AS
         END
 exec sp_insertMotorClaim @Policy_Id=23,@Name='azar',@Mobile_Number='9894101041',@Reason='Accident',@Date_Of_Applying='2020-12-12',@Estimated_Amount_For_Repair=230000.0,@License_Copy='azarlic.txt'
 ,@RC_Copy='azar.txt',@Insurance_Copy='azar2.txt',@Bill_Copy='azar3.txt',@Authenticated_Letter_from_RTO='azar4.txt',@Claim_Status='pending'
+                                                             
+                                                             
+                                                             
+                                                             
+     -----8.Creating Table for  TravelClaimDetails
+                                                             
+                                                             
+      create table TravelClaimDetailsTable
+(
+Travel_Claim_Id bigint identity(1000001,1) primary key,
+Policy_Id int foreign key references PolicyDetails(PolicyNo),
+Ticket_Copy varchar(200),
+Reason_for_Claim varchar(30),
+Mobile_Number  numeric foreign key references UserDetails (MobNo) ,
+Amount_Sanctioned float, 
+Claim_Status varchar(20),
+Complaint_Copy varchar(200),
+)
+select * from MotorClaimDetailsTable
+select * from TravelClaimDetailsTable
+select * from Userdetails
+
+create PROCEDURE sp_insertTravelClaim1 (
+										@Policy_Id   int,  
+                                          @Ticket_Copy    VARCHAR(200),  
+                                          @Reason_for_Claim       varchar(30),  
+                                          @Mobile_Number       numeric, 
+                                          @Claim_Status VARCHAR(20),
+										   @Complaint_Copy VARCHAR(200)
+										    )  
+AS  
+  BEGIN  
+     
+            INSERT INTO TravelClaimDetailsTable  
+                        (Policy_Id,
+Ticket_Copy ,
+Reason_for_Claim ,
+Mobile_Number ,
+Claim_Status ,
+Complaint_Copy 
+)  
+            VALUES     ( 	@Policy_Id,  
+                                          @Ticket_Copy,  
+                                          @Reason_for_Claim,  
+                                          @Mobile_Number,
+                                          @Claim_Status,
+										  @Complaint_Copy
+										   )  
+        END                                                        
+                           
