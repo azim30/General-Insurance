@@ -29,12 +29,13 @@ export class PolicyComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.model.VehicleID = localStorage.getItem('VID');
   }
   policyData(policydetailsform: NgForm):void
   {
     console.log(policydetailsform.value);
     this.pol.UserMobNo = policydetailsform.value.umob;
-    this.pol.VehID = policydetailsform.value.vid;
+    this.pol.VehID = this.model.VehicleID;
     this.pol.PolicyName = policydetailsform.value.vid;
     this.pol.Period = policydetailsform.value.period;
     this.pol.PolicyAmt = (policydetailsform.value.period)*1000;
