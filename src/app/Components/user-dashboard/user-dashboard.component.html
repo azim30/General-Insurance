@@ -57,14 +57,14 @@
             <tr *ngFor="let value of pollist">
                 <td>{{value.PolicyNo}}</td>
                 <td>{{value.UserMobNo}}</td>
-                <td>{{value.VehID}}</td>
+                <td>{{value.VehId}}</td>
                 <td>{{value.PolicyName}}</td>
                 <td>{{value.Period}}</td>
                 <td>{{value.PolicyAmt}}</td>
                 <td>{{value.PolicyStatus}}</td>
                 <td>{{value.StartDate}}</td>
                 <td>{{value.EndDate}}</td>
-                <td><button (click)="ClaimInsurance(value.PolicyNo)">Claim</button></td>
+                <td><button (click)="ClaimInsurance(value.PolicyNo,value.VehId)">Claim</button></td>
 
             </tr>
         </table></div>

@@ -1,351 +1,47 @@
-<div class="container" style="height: 800px; display: inline-block;">
+<p>Claim insurance works</p>
+<div class="row">
+    <div class="main">
+        <div class="card">
+            <h2 style="text-align: center;">Claim Insurance...</h2>
+
+<form #claimInsuranceForm="ngForm" name="claimInsuranceForm" (ngSubmit)="claimData(claimInsuranceForm)">
+    
+    <!--<span *ngIf="eid.errors?.required">Employee ID cannot be blank</span>-->
     <div class="container">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                aria-selected="true">Motor Claim Insurance</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-                aria-selected="false">Travel Claim Insurance</a>
-        </li>
-    </ul>
+
+    <div>Enter mobile number</div>
+    <input type="text" name="umob" [(ngModel)]="model.umob" #umob="ngModel" required>
+
     
-    <div class="tab-content" id="myTabContent">
-        <!-- Motor Claim Tab Starting -->
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <label> <strong>Select Reason</strong> </label><br>
-            <select name="" id="" [(ngModel)]="choice" (change)="selectChange()">
-                <!-- <option  selected>Select Reason </option> -->
-                <option value="none" disabled selected="selected" value="selectoption">Select an Option </option>
-                <option value="Accident">Accident</option>
-                <option value="NaturalDisaster">Natural Disaster</option>
-                <option value="ManMadeDisaster">Man Made Disaster</option>
-                <option value="theft">Theft</option>
-            </select>
-    
-            <!-- Motor Claim Form For  Theft -->
-            <div *ngIf="theftBool">
-                <br><br>
-                <div class="container">
-                    <h4 class="card-header bg-info " style="width: 800px;">Register Claim</h4>
-                    <div class="card-body " style=" width: 800px ;">
-    
-                        <form [formGroup]="motorClaimFormForTheft" (ngSubmit)="addClaimForTheft(Policy_Id,Name,Mobile_Number,Reason,Date_Of_Applying,
-                License_Copy,RC_Copy,Insurance_Copy,Authenticated_Letter_from_RTO)">
-                            <div class="form-group">
-                                <label for="Mobile_Number">Policy_Id </label>
-                                <input type="number" class="form-control" #Policy_Id [(ngModel)]="motorclaim.Policy_Id"
-                                    formControlName="Policy_Id" placeholder="Policy Id" />
-                                <div *ngIf="ft.Policy_Id.touched && ft.Policy_Id.invalid" class="alert alert-danger">
-                                    <strong> Policy ID
-                                        is
-                                        invalid</strong></div>
-                            </div>
-                            <div class="form-group">
-                                <label>Name: </label>
-                                <input type="text" class="form-control" #Name [(ngModel)]="motorclaim.Name"
-                                    formControlName="Name" placeholder="Name" />
-                                <div *ngIf="ft.Name.touched && ft.Name.invalid" class="alert alert-danger"><strong>Name is
-                                        invalid.</strong>
-                                </div>
-                            </div>
-                            <div class="form-group" >
-                                <label class="fieldlabels"> Mobile Number: </label>
-                                <input type="text" class="form-control" #Mobile_Number
-                                    [(ngModel)]="motorclaim.Mobile_Number" formControlName="Mobile_Number"
-                                    placeholder="Mobile Number" [ngModel]="userMobile" />
-                                <div *ngIf="ft. Mobile_Number.touched && ft. Mobile_Number.invalid"
-                                    class="alert alert-danger">
-                                    <strong>Mobile Number is invalid.</strong>
-                                </div>
-    
-                            </div>
-                            <div class="form-group" >
-                                <label class="fieldlabels">Reason (As selected above): </label>
-                                <input type="text" class="form-control" #Reason [(ngModel)]="motorclaim.Reason"
-                                    formControlName="Reason" placeholder="Reason(Reason As selected above)" [ngModel]="choice" />
-                                <div *ngIf="ft.Reason.touched && ft.Reason.invalid" class="alert alert-danger">
-                                    <strong>Reason is
-                                        invalid.</strong></div>
-    
-                            </div>
-    
-                            <div class="form-group" >
-                                <label class="fieldlabels">Date Of Applying </label>
-                                <input type="date" class="form-control" #Date_Of_Applying
-                                    [(ngModel)]="motorclaim.Date_Of_Applying" formControlName="Date_Of_Applying"
-                                    placeholder="Date Of Applying" [ngModel]="getToday()"  />
-                                <div *ngIf="ft.Date_Of_Applying.touched && ft.Date_Of_Applying.invalid"
-                                    class="alert alert-danger">
-                                    <strong>Date Of Applying is invalid.</strong>
-                                </div>
-    
-                            </div>
-                            <p>License Copy</p>
-                            <input type="file" #License_Copy formControlName="License_Copy"
-                                (change)=" onSelectLicence($event)" [(ngModel)]="motorclaim.License_Copy">
-                            <br><br>
-                            <p>RC Copy</p>
-                            <input type="file" #RC_Copy formControlName="RC_Copy" (change)=" onSelectRc($event)"
-                                [(ngModel)]="motorclaim.RC_Copy">
-                            <br><br>
-                            <p>Insurance Copy</p>
-                            <input type="file" #Insurance_Copy formControlName="Insurance_Copy"
-                                (change)=" onSelectInsurance($event)" [(ngModel)]="motorclaim.Insurance_Copy">
-                            <br><br>
-                            <p>Authenticated Letter from RTO Copy</p>
-                            <input type="file" #Authenticated_Letter_from_RTO
-                                formControlName="Authenticated_Letter_from_RTO" (change)=" onSelectRto($event)"
-                                [(ngModel)]="motorclaim.Authenticated_Letter_from_RTO">
-                            <br><br>
-    
-                            <button type="submit" class="btn btn-info"
-                                [disabled]="!motorClaimFormForTheft.valid">Submit</button>
-    
-    
-                        </form>
-                        <br><br>
-                    </div>
-                </div>
-            </div>
-    
-    
-    
-            <!-- Motor Claim Form For Accident Natural Disaster Man Made disaster -->
-            <div *ngIf="otherBool">
-    
-                <br><br>
-                <div class="container">
-                    <h4 class="card-header bg-info " style="width: 800px;">Register Claim</h4>
-                    <div class="card-body " style=" width: 800px ;">
-    
-                        <form [formGroup]="motorClaimForm" (ngSubmit)="addClaim(Policy_Id,Name,Mobile_Number,Reason,Date_Of_Applying,Estimated_Amount_For_Repair,
-                License_Copy,RC_Copy,Insurance_Copy,Bill_Copy)">
-                            <div class="form-group">
-                                <label for="Mobile_Number">Policy_Id </label>
-                                <input type="text" class="form-control" #Policy_Id [(ngModel)]="motorclaim.Policy_Id"
-                                    formControlName="Policy_Id" placeholder="Policy Id" />
-                                <div *ngIf="f.Policy_Id.touched && f.Policy_Id.invalid" class="alert alert-danger"> <strong>
-                                        Policy ID
-                                        is
-                                        invalid</strong></div>
-                            </div>
-                            <div class="form-group">
-                                <label>Name: </label>
-                                <input type="text" class="form-control" #Name [(ngModel)]="motorclaim.Name"
-                                    formControlName="Name" placeholder="Name" />
-                                <div *ngIf="f.Name.touched && f.Name.invalid" class="alert alert-danger"><strong>Name is
-                                        invalid.</strong>
-                                </div>
-                            </div>
-                            <div class="form-group" >
-                                <label class="fieldlabels"> Mobile Number: </label>
-                                <input type="text" class="form-control" #Mobile_Number
-                                    [(ngModel)]="motorclaim.Mobile_Number" formControlName="Mobile_Number"
-                                    placeholder="Mobile Number" [ngModel]="userMobile" />
-                                <div *ngIf="f. Mobile_Number.touched && f. Mobile_Number.invalid"
-                                    class="alert alert-danger">
-                                    <strong>Mobile Number is invalid.</strong>
-                                </div>
-    
-                            </div>
-                            <div class="form-group" >
-                                <label class="fieldlabels">Reason (As selected above): </label>
-                                <input type="text" class="form-control" #Reason [(ngModel)]="motorclaim.Reason"
-                                    formControlName="Reason" placeholder="Reason(Reason As selected above)" [ngModel]="choice"/>
-                                <div *ngIf="f.Reason.touched && f.Reason.invalid" class="alert alert-danger"><strong>Reason
-                                        is
-                                        invalid.</strong></div>
-    
-                            </div>
-    
-                            <div class="form-group" >
-                                <label class="fieldlabels">Date Of Applying </label>
-                                <input type="date" class="form-control" #Date_Of_Applying 
-                                    [(ngModel)]="motorclaim.Date_Of_Applying" formControlName="Date_Of_Applying"
-                                    placeholder="Date Of Applying" [ngModel]="getToday()"  />
-                                <div *ngIf="f.Date_Of_Applying.touched && f.Date_Of_Applying.invalid"
-                                    class="alert alert-danger">
-                                    <strong>Date Of Applying is invalid.</strong>
-                                </div>
-    
-                            </div>
-                            <div class="form-group">
-                                <label class="fieldlabels">Estimated Amount For Repair </label>
-                                <input type="text" class="form-control" #Estimated_Amount_For_Repair
-                                    [(ngModel)]="motorclaim.Estimated_Amount_For_Repair"
-                                    formControlName="Estimated_Amount_For_Repair" placeholder="Amount" />
-                                <div *ngIf="f.Estimated_Amount_For_Repair.touched && f.Estimated_Amount_For_Repair.invalid"
-                                    class="alert alert-danger"><strong>Estimated Amount is invalid.</strong></div>
-    
-                            </div>
-                            <p>License Copy</p>
-                            <input type="file" #License_Copy formControlName="License_Copy"
-                                (change)=" onSelectLicence($event)" [(ngModel)]="motorclaim.License_Copy">
-                            <br><br>
-                            <p>RC Copy</p>
-                            <input type="file" #RC_Copy formControlName="RC_Copy" (change)=" onSelectRc($event)"
-                                [(ngModel)]="motorclaim.RC_Copy">
-                            <br><br>
-                            <p>Insurance Copy</p>
-                            <input type="file" #Insurance_Copy formControlName="Insurance_Copy"
-                                (change)=" onSelectInsurance($event)" [(ngModel)]="motorclaim.Insurance_Copy">
-                            <br><br>
-                            <p>Bill Copy</p>
-                            <input type="file" #Bill_Copy formControlName="Bill_Copy" (change)=" onSelectBill($event)"
-                                [(ngModel)]="motorclaim.Bill_Copy">
-                            <br><br>
-                            <button type="submit" class="btn btn-info" [disabled]="!motorClaimForm.valid">Submit</button>
-    
-    
-                        </form>
-                        <br><br>
-    
-    
-                    </div>
-                </div>
-                <br><br>
-    
-    
-    
-    
-            </div>
-    
-        </div>
-        <!-- Motor claim Tab ends -->
-    
-        <!--Travel Claim tab Starts  -->
-        <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-    
-            <label> <strong>Select Reason</strong> </label><br>
-            <select name="" id="" [(ngModel)]="choiceFortravel" (change)="selectChangeTravel()">
-    
-                <option value="none" disabled selected="selected" value="selectoption">Select an Option </option>
-                <option value="accident">Accident</option>
-                <option value="theftofbaggage">Theft</option>
-            </select> -->
-            <!-- Travel theft Form Starts -->
-    
-            <!-- <div *ngIf="theftBoolForTravel">
-    
-                <br><br>
-                <div class="container">
-                    <h4 class="card-header bg-info " style="width: 800px;">Register Claim</h4>
-                    <div class="card-body " style=" width: 800px ;">
-    
-                        <form [formGroup]="travelClaimForm" (ngSubmit)="addTravelClaim(Travel_Policy_Id,Ticket_Copy,
-                Reason_for_Claim,
-                Mobile_Number,
-                Complaint_Copy)" enctype="multipart/form-data">
-    
-                            <div class="form-group">
-                                <label for="Mobile_Number">Travel Policy Id </label>
-                                <input type="text" class="form-control" #Travel_Policy_Id formControlName="Travel_Policy_Id"
-                                    placeholder="Travel Policy Id" [(ngModel)]="travelclaim.Travel_Policy_Id" />
-                                <div *ngIf="g.Travel_Policy_Id.touched && g.Travel_Policy_Id.invalid"
-                                    class="alert alert-danger"> <strong>
-                                        Policy ID
-                                        is
-                                        invalid</strong></div>
-                            </div>
-    
-                            <div class="form-group">
-                                <label>Reason for Claim: </label>
-                                <input type="text" #Reason_for_Claim class="form-control" formControlName="Reason_for_Claim"
-                                    placeholder="Reason For Claim as Mentioned above"
-                                    [(ngModel)]="travelclaim.Reason_for_Claim" />
-                                <div *ngIf="g.Reason_for_Claim.touched && g.Reason_for_Claim.invalid"
-                                    class="alert alert-danger">
-                                    <strong>Reason is
-                                        invalid.</strong>
-                                </div>
-                            </div>
-    
-                            <div class="form-group" hidden>
-                                <label class="fieldlabels"> Mobile Number: </label>
-                                <input type="text" class="form-control" #Mobile_Number formControlName="Mobile_Number"
-                                    placeholder="Mobile Number" [(ngModel)]="travelclaim.Mobile_Number"  [ngModel]="userMobile"/>
-                                <div *ngIf="g.Mobile_Number.touched && g.Mobile_Number.invalid" class="alert alert-danger">
-                                    <strong>Mobile Number is invalid.</strong>
-                                </div>
-                            </div>
-    
-                            <label class="fieldlabels">Ticket Copy</label>
-                            <input type="file" #Ticket_Copy formControlName="Ticket_Copy" (change)="onSelectFile($event)"
-                                [(ngModel)]="travelclaim.Ticket_Copy">
-                           
-                            <br><br>
-                            <label class="fieldlabels">Complaint Copy</label>
-                            <input type="file" #Complaint_Copy formControlName="Complaint_Copy"
-                                (change)="onSelectFile2($event)" [(ngModel)]="travelclaim.Complaint_Copy">
-                            
-                            <br><br>
-    
-                            <button type="submit" [disabled]="!travelClaimForm.valid" class="btn btn-info">Submit</button>
-                        </form>
-                        <br><br>
-    
-    
-                    </div>
-                </div>
-            </div> -->
-            <!-- travel theft Form Ends -->
-            <!-- Travel accident Form Starts -->
-            <!-- <div *ngIf="otherBoolForTravel"><br><br>
-                <div class="container">
-                    <h4 class="card-header bg-info " style="width: 800px;">Register Claim</h4>
-                    <div class="card-body " style=" width: 800px ;">
-    
-                        <form [formGroup]="travelClaimFormForAccident" (ngSubmit)="addTravelClaimAccident(Travel_Policy_Id,Ticket_Copy,
-                Reason_for_Claim,
-                Mobile_Number)">
-                            <div class="form-group">
-                                <label for="Mobile_Number">Travel Policy Id </label>
-                                <input type="text" class="form-control" #Travel_Policy_Id formControlName="Travel_Policy_Id"
-                                    placeholder="Travel Policy Id" [(ngModel)]="travelclaim.Travel_Policy_Id" />
-                                <div *ngIf="g.Travel_Policy_Id.touched && g.Travel_Policy_Id.invalid"
-                                    class="alert alert-danger"> <strong> Policy ID
-                                        is
-                                        invalid</strong></div>
-                            </div>
-                            <div class="form-group">
-                                <label>Reason for Claim: </label>
-                                <input type="text" class="form-control" #Reason_for_Claim
-                                    [(ngModel)]="travelclaim.Reason_for_Claim" formControlName="Reason_for_Claim"
-                                    placeholder="Reason For Claim as Mentioned above" />
-                                <div *ngIf="g.Reason_for_Claim.touched && g.Reason_for_Claim.invalid"
-                                    class="alert alert-danger"><strong>Reason is
-                                        invalid.</strong>
-                                </div>
-                            </div>
-                            <div class="form-group" hidden>
-                                <label class="fieldlabels"> Mobile Number: </label>
-                                <input type="text" class="form-control" #Mobile_Number
-                                    [(ngModel)]="travelclaim.Mobile_Number" formControlName="Mobile_Number"
-                                    placeholder="Mobile Number" [ngModel]="userMobile"/>
-                                <div *ngIf="g.Mobile_Number.touched && g.Mobile_Number.invalid" class="alert alert-danger">
-                                    <strong>Mobile Number is invalid.</strong>
-                                </div>
-                            </div>
-    
-                            <label class="fieldlabels">Ticket Copy</label>
-                            <input type="file" #Ticket_Copy formControlName="Ticket_Copy" (change)="onSelectFile($event)"
-                                [(ngModel)]="travelclaim.Ticket_Copy">
-                            <br><br>
-    
-                            <button type="submit" [disabled]="!travelClaimFormForAccident.valid" class="btn btn-info">Submit</button>
-                        </form>
-                        <br><br>
-    
-    
-                    </div>
-                </div>
-            </div> -->
-            <!-- Travel accident Form Ends -->
-        <!-- </div> -->
-        <!-- Travel Claim Tab Ends -->
-    
+    <!--<div>Enter vehicle ID</div>
+    <input type="text" name="vid" [(ngModel)]="model.vid" #vid="ngModel" required>-->
+
+    <div>Vehicle ID</div>
+    <input type="text" name="vehid" [(ngModel)]="model.vehid" #vehid="ngModel" readonly>
+    <!--<span *ngIf="ename.errors?.required">Name cannot be blank</span>-->
+
+    <div>Policy ID</div>
+    <input type="text" name="polid" [(ngModel)]="model.polid" #polid="ngModel" readonly>
+
+    <div>Select claim reason</div>
+    <select type="text" name="creason" [(ngModel)]="model.creason" #creason="ngModel" required>
+        <option value="">Select</option>
+        <option value="Accident">Accident</option>
+        <option value="Theft">Theft</option>
+        <option value="Natural Disasters">Natural Disasters</option>
+        <option value="Fire">Fire</option>
+    </select>
+
+    <div>Enter Claim Amount</div>
+    <input type="number" name="price" [(ngModel)]="model.price" #price="ngModel" required>
+
+    <div>Select claim date</div>
+    <input type="date" name="cdate" [(ngModel)]="model.cdate" #cdate="ngModel" required>
+    <div>
+        <button type="submit" [disabled]="claimInsuranceForm.invalid">Submit</button>
     </div>
     </div>
-    </div>
+</form>
+</div>
+</div>
+</div>

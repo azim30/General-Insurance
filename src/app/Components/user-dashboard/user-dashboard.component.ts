@@ -85,4 +85,14 @@ export class UserDashboardComponent implements OnInit {
 
   
     }
+    ClaimInsurance(id1:number, id2:number):void{
+      console.log(id1);
+      console.log(id2);
+      sessionStorage.setItem("idstore1",id1.toString());
+      sessionStorage.setItem("idstore2", id2.toString());
+
+      this.ngzone.run(()=>this.router.navigateByUrl('/claim-insurance'));
+
+  
+    }
 }
