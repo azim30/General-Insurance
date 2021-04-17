@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="main">
+        <div class="card">
+            <h2 style="text-align: center;">Enter Travel Details To Buy Insurance</h2>
+<form #travelform="ngForm" name="travelform" (ngSubmit)="RegisterData(travelform)">
+    <div class="container">
+       
+        
+        <div>
+            <label for="source"><b>Source:- </b></label>
+            <input type="text" name="source" [(ngModel)]="model.source" placeholder="Enter Source" #source="ngModel" required>
+            <span *ngIf="source.errors?.required"></span>
+        </div>
+        <div>
+            <label for="destination"><b>Destination:-</b></label>
+            <input type="text" name="destination" [(ngModel)]="model.destination" placeholder="Enter Destination" #destination="ngModel" required>
+            <span *ngIf="destination.errors?.required"></span>
+        </div>
+        <div>
+            <label for="sdate"><b> Trip Start date :-</b></label>
+            <input type="date" name="sdate" [(ngModel)]="model.sdate" placeholder="Enter date of Travel" #sdate="ngModel" required>
+            <span *ngIf="sdate.errors?.required"></span>
+        </div>
+        <div>
+            <label for="edate"><b>Trip End Date  :-</b></label>
+            <input type="date" name="edate" [(ngModel)]="model.edate" placeholder="Enter date of Travel" #edate="ngModel" required>
+            <span *ngIf="edate.errors?.required"></span>
+        </div>
+        <div>
+            <label for="uname"><b>Enter Name  :- </b></label>
+            <input type="text" name="uname" [(ngModel)]="model.uname" placeholder="Enter Name" #uname="ngModel" required>
+            <span *ngIf="uname.errors?.required"></span>
+            </div>
+            <div>
+                <label for="address"><b>Address :- </b></label>
+                <input type="text" name="address" [(ngModel)]="model.address" placeholder="Enter Address" #address="ngModel" required>
+                <span *ngIf="address.errors?.required"></span>
+            </div>
+            <div>
+                <label for="age"><b>Age:-</b></label>
+                <input type="number" name="age" [(ngModel)]="model.age" placeholder="Enter Age" #age="ngModel" required>
+                <span *ngIf="age.errors?.required"></span>
+            </div>
+            <div>
+                <label for="mno"><b>Mobile No :-</b></label>
+                <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
+                <span *ngIf="mno.errors?.required">Mobile No cannot be blank</span>
+                <span *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</span>
+            </div>
+            
+            <div>
+            <label for="npassenger"><b>No Of Passengers :-</b></label>
+            <input type="number" name="npassenger" [(ngModel)]="model.npassenger" placeholder="Enter Number Of Passengers" #npassenger="ngModel" required>
+            <span *ngIf="npassenger.errors?.required"></span>
+           </div>
+           <div>
+            <label for="plan"><b>Choose Plan:-</b></label>
+            <input type="radio" value="premiun" name="plan"  [(ngModel)]="model.plan"  required  #plan="ngModel">Gold
+            <input type="radio" value="gold" name="plan" [(ngModel)]="model.plan" required  #plan="ngModel"> Silver
+            
+           </div>
+        <button type="submit" [disabled]="travelform.invalid" >Save</button>
+        
+    
+   
+  </div>
+</form>
+
+</div>
+</div>
+</div>
+<div class="footer">
+    <p>&copy; 2020 Larsen & Toubro Infotech Limited</p>
+  </div>
