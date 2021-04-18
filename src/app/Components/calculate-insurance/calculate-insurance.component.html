@@ -1,1 +1,53 @@
-<p>calculate-insurance works!</p>
+<mat-card>
+    <mat-card-content>
+        <div class="header">
+            <h2>Calculate Insurance Premium</h2><br>
+            <p style="font-weight: 400;"> Get an estimation of your insurance in minutes</p>
+        </div>
+        <form #premiumform="ngForm" name="premiumform" (ngSubmit)="getPremium(premiumform);">
+        <div class="selectinput">
+            <mat-form-field  class="full-width" appearence="outline">
+                <mat-label>Car and Model</mat-label>
+                <mat-select name="brand" [(ngModel)]="brand" required >
+                    <mat-option> None</mat-option>
+                    <mat-optgroup *ngFor="let group of carGroups" [label]="group.name" style="font-weight: 500;">
+                    <mat-option *ngFor="let car of group.Car" [value]="car.value">
+                        {{car.viewValue}}
+                    </mat-option>
+                    </mat-optgroup>
+                </mat-select>
+               
+            </mat-form-field>
+
+        </div>
+         <div class="selectinput" >
+            <mat-form-field  class="full-width" appearence="outline">
+                <mat-label>Select your fuel type</mat-label>
+                    <mat-select name="fuel" [(ngModel)]="fuel" required >
+                    <mat-option value="Petrol"> Petrol</mat-option>
+                    <mat-option value="Diesel"> Diesel</mat-option>
+                    <mat-option value="CNG"> CNG(Compressed Natural Gas)</mat-option>
+                   </mat-select> 
+            </mat-form-field>
+         </div>
+        <div class="selectinput">
+            <mat-form-field calss="full-width" appearence="outline">
+                <mat-label> Registration Year</mat-label>
+                <input matInput type="number" name="registyear" [(ngModel)]="registyear" required >
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field calss="full-width" appearence="outline">
+                <mat-label> Price</mat-label>
+                <input matInput type="number" name="price" [(ngModel)]="price"required >
+              
+            </mat-form-field> 
+        </div>
+        <button mat-flat-button color="accent"  type="submit" [disabled]="!premiumform.valid">Calculate Insurance</button><mat-divider></mat-divider> 
+        <h3 style="font: size 30px;"> Your premium is ₹ {{premium}} yearly</h3>
+       
+    </form>
+   </mat-card-content>
+</mat-card>
+   
+

@@ -1,0 +1,22 @@
+mat-card{
+    background-image: linear-gradient(to right, #83a4d4, #b6fbff);
+  
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+     max-width: 800px;
+     margin: 2em auto;
+     text-align: center;
+     max-height: 800px;
+}
+
+.header{
+    text-align: center;
+    font-family: Roboto;
+
+}
+.full-width{
+color:black;
+    width:80%
+}
+.selectinput{
+    padding-top: 10px;
+}
