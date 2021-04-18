@@ -12,19 +12,16 @@ namespace General_Insurance.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ClaimDetail
+    public partial class TravelClaimDetail
     {
-        public int ClaimNo { get; set; }
-        public string UserMobNo { get; set; }
-        public Nullable<int> VehId { get; set; }
-        public Nullable<int> PolNo { get; set; }
-        public string ClaimReason { get; set; }
-        public string ClaimStatus { get; set; }
-        public decimal ClaimAmt { get; set; }
-        public System.DateTime ClaimDate { get; set; }
+        public int Travel_Claim_Id { get; set; }
+        public Nullable<int> PolicyNo { get; set; }
+        public string Reason_for_Claim { get; set; }
+        public string MobNo { get; set; }
+        public decimal Amount { get; set; }
+        public string Claim_Status { get; set; }
     
-        public virtual PolicyDetail PolicyDetail { get; set; }
         public virtual UserDetail UserDetail { get; set; }
-        public virtual VehicleDetail VehicleDetail { get; set; }
+        public virtual TravelInsurance TravelInsurance { get; set; }
     }
 }

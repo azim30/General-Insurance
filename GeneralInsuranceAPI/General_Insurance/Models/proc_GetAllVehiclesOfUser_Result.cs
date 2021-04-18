@@ -10,16 +10,9 @@
 namespace General_Insurance.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class VehicleDetail
+    public partial class proc_GetAllVehiclesOfUser_Result
     {
-        public VehicleDetail()
-        {
-            this.ClaimDetails = new HashSet<ClaimDetail>();
-            this.PolicyDetails = new HashSet<PolicyDetail>();
-        }
-    
         public int VehicleID { get; set; }
         public string UserMobNo { get; set; }
         public string Manufacturer { get; set; }
@@ -31,9 +24,5 @@ namespace General_Insurance.Models
         public string ChassisNo { get; set; }
         public System.DateTime PurchaseDate { get; set; }
         public Nullable<decimal> Price { get; set; }
-    
-        public virtual ICollection<ClaimDetail> ClaimDetails { get; set; }
-        public virtual ICollection<PolicyDetail> PolicyDetails { get; set; }
-        public virtual UserDetail UserDetail { get; set; }
     }
 }

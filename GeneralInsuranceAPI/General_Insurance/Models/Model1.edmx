@@ -5,12 +5,24 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GeneralInsuranceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GeneralInsurance.dbo.AdminDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AdminDetails">
+          <Key>
+            <PropertyRef Name="AdminID" />
+            <PropertyRef Name="MobNo" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MobNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="ClaimDetails">
           <Key>
             <PropertyRef Name="ClaimNo" />
           </Key>
           <Property Name="ClaimNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserMobNo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="UserMobNo" Type="varchar" MaxLength="50" />
           <Property Name="VehId" Type="int" />
           <Property Name="PolNo" Type="int" />
           <Property Name="ClaimReason" Type="varchar" MaxLength="100" Nullable="false" />
@@ -18,12 +30,47 @@
           <Property Name="ClaimAmt" Type="money" Nullable="false" />
           <Property Name="ClaimDate" Type="date" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GeneralInsurance.dbo.ContactUs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ContactUs">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="MobNo" />
+            <PropertyRef Name="Subject" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MotorClaimDetailsTable">
+          <Key>
+            <PropertyRef Name="Claim_Id" />
+          </Key>
+          <Property Name="Claim_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Policy_Id" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Mobile_Number" Type="varchar" MaxLength="12" />
+          <Property Name="Reason" Type="varchar" MaxLength="15" />
+          <Property Name="Date_Of_Applying" Type="date" />
+          <Property Name="Insurance_Copy" Type="varchar" MaxLength="200" />
+          <Property Name="License_Copy" Type="varchar" MaxLength="200" />
+          <Property Name="RC_Copy" Type="varchar" MaxLength="200" />
+          <Property Name="Authenticated_Letter_from_RTO" Type="varchar" MaxLength="200" />
+          <Property Name="Estimated_Amount_For_Repair" Type="float" />
+          <Property Name="Bill_Copy" Type="varchar" MaxLength="200" />
+          <Property Name="Amount_Sanctioned" Type="float" />
+          <Property Name="Claim_Status" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="PolicyDetails">
           <Key>
             <PropertyRef Name="PolicyNo" />
           </Key>
           <Property Name="PolicyNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserMobNo" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="UserMobNo" Type="varchar" MaxLength="50" />
           <Property Name="VehId" Type="int" />
           <Property Name="PolicyName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Period" Type="int" Nullable="false" />
@@ -32,33 +79,66 @@
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="TravelClaimDetails">
+          <Key>
+            <PropertyRef Name="Travel_Claim_Id" />
+          </Key>
+          <Property Name="Travel_Claim_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PolicyNo" Type="int" />
+          <Property Name="Reason_for_Claim" Type="varchar" MaxLength="30" />
+          <Property Name="MobNo" Type="varchar" MaxLength="50" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="Claim_Status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TravelInsurance">
+          <Key>
+            <PropertyRef Name="PolicyNo" />
+          </Key>
+          <Property Name="PolicyNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Source" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Destination" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TripStart" Type="date" Nullable="false" />
+          <Property Name="TripEnd" Type="date" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="MobileNo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NoOfPassengers" Type="int" Nullable="false" />
+          <Property Name="IPlan" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserDetails">
           <Key>
             <PropertyRef Name="MobNo" />
           </Key>
-          <Property Name="MobNo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CustID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MobNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" />
+          <Property Name="EmailVerification" Type="bit" />
+          <Property Name="ActivetionCode" Type="uniqueidentifier" />
+          <Property Name="OTP" Type="nvarchar" MaxLength="4" />
         </EntityType>
         <EntityType Name="VehicleDetails">
           <Key>
             <PropertyRef Name="VehicleID" />
           </Key>
           <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserMobNo" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="Maufacturer" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserMobNo" Type="varchar" MaxLength="50" />
+          <Property Name="Manufacturer" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="VehicleType" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="DrivingLicense" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="RegistrationNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="RegistrationNo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="EngineNo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ChassisNo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="PurchaseDate" Type="date" Nullable="false" />
+          <Property Name="Price" Type="money" />
         </EntityType>
-        <Association Name="FK__ClaimDeta__PolNo__656C112C">
+        <Association Name="FK__ClaimDeta__PolNo__245D67DE">
           <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="0..1" />
           <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -70,7 +150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ClaimDeta__UserM__6383C8BA">
+        <Association Name="FK__ClaimDeta__UserM__22751F6C">
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
           <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -82,7 +162,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ClaimDeta__VehId__6477ECF3">
+        <Association Name="FK__ClaimDeta__VehId__236943A5">
           <End Role="VehicleDetails" Type="Self.VehicleDetails" Multiplicity="0..1" />
           <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -94,7 +174,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PolicyDet__UserM__5FB337D6">
+        <Association Name="FK__MotorClai__Polic__07C12930">
+          <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="0..1" />
+          <End Role="MotorClaimDetailsTable" Type="Self.MotorClaimDetailsTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PolicyDetails">
+              <PropertyRef Name="PolicyNo" />
+            </Principal>
+            <Dependent Role="MotorClaimDetailsTable">
+              <PropertyRef Name="Policy_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PolicyDet__UserM__7C4F7684">
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
           <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -106,7 +198,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PolicyDet__VehId__60A75C0F">
+        <Association Name="FK__PolicyDet__VehId__7D439ABD">
           <End Role="VehicleDetails" Type="Self.VehicleDetails" Multiplicity="0..1" />
           <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -118,7 +210,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VehicleDe__UserM__5CD6CB2B">
+        <Association Name="FK__TravelCla__MobNo__5224328E">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+          <End Role="TravelClaimDetails" Type="Self.TravelClaimDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="MobNo" />
+            </Principal>
+            <Dependent Role="TravelClaimDetails">
+              <PropertyRef Name="MobNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TravelCla__Polic__51300E55">
+          <End Role="TravelInsurance" Type="Self.TravelInsurance" Multiplicity="0..1" />
+          <End Role="TravelClaimDetails" Type="Self.TravelClaimDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TravelInsurance">
+              <PropertyRef Name="PolicyNo" />
+            </Principal>
+            <Dependent Role="TravelClaimDetails">
+              <PropertyRef Name="PolicyNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehicleDe__UserM__76969D2E">
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
           <End Role="VehicleDetails" Type="Self.VehicleDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -130,32 +246,107 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="proc_calcprem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="policyid" Type="bigint" Mode="In" />
+          <Parameter Name="manu" Type="varchar" Mode="In" />
+          <Parameter Name="model" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetAllClaimsOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mobile" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetAllPoliciesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mobile" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetAllVehiclesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mobile" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetBrandNewPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="manu" Type="varchar" Mode="In" />
+          <Parameter Name="model" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetCarsOfManufacturer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="manu" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetManufacturers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_UpdatePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="otp" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_UserLoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="varchar" Mode="In" />
+          <Parameter Name="pswd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_insertMotorClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Policy_Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile_Number" Type="varchar" Mode="In" />
+          <Parameter Name="Reason" Type="varchar" Mode="In" />
+          <Parameter Name="Date_Of_Applying" Type="date" Mode="In" />
+          <Parameter Name="Estimated_Amount_For_Repair" Type="float" Mode="In" />
+          <Parameter Name="License_Copy" Type="varchar" Mode="In" />
+          <Parameter Name="RC_Copy" Type="varchar" Mode="In" />
+          <Parameter Name="Insurance_Copy" Type="varchar" Mode="In" />
+          <Parameter Name="Bill_Copy" Type="varchar" Mode="In" />
+          <Parameter Name="Authenticated_Letter_from_RTO" Type="varchar" Mode="In" />
+          <Parameter Name="Claim_Status" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="GeneralInsuranceModelStoreContainer">
           <EntitySet Name="ClaimDetails" EntityType="Self.ClaimDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MotorClaimDetailsTable" EntityType="Self.MotorClaimDetailsTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PolicyDetails" EntityType="Self.PolicyDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TravelClaimDetails" EntityType="Self.TravelClaimDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TravelInsurance" EntityType="Self.TravelInsurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleDetails" EntityType="Self.VehicleDetails" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__ClaimDeta__PolNo__656C112C" Association="Self.FK__ClaimDeta__PolNo__656C112C">
+          <EntitySet Name="AdminDetails" EntityType="Self.AdminDetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[AdminDetails].[AdminID] AS [AdminID], 
+[AdminDetails].[MobNo] AS [MobNo], 
+[AdminDetails].[Password] AS [Password]
+FROM [dbo].[AdminDetails] AS [AdminDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ContactUs" EntityType="Self.ContactUs" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ContactUs].[UserName] AS [UserName], 
+[ContactUs].[Email] AS [Email], 
+[ContactUs].[MobNo] AS [MobNo], 
+[ContactUs].[Subject] AS [Subject], 
+[ContactUs].[Message] AS [Message]
+FROM [dbo].[ContactUs] AS [ContactUs]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__ClaimDeta__PolNo__245D67DE" Association="Self.FK__ClaimDeta__PolNo__245D67DE">
             <End Role="PolicyDetails" EntitySet="PolicyDetails" />
             <End Role="ClaimDetails" EntitySet="ClaimDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__ClaimDeta__UserM__6383C8BA" Association="Self.FK__ClaimDeta__UserM__6383C8BA">
+          <AssociationSet Name="FK__ClaimDeta__UserM__22751F6C" Association="Self.FK__ClaimDeta__UserM__22751F6C">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="ClaimDetails" EntitySet="ClaimDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__ClaimDeta__VehId__6477ECF3" Association="Self.FK__ClaimDeta__VehId__6477ECF3">
+          <AssociationSet Name="FK__ClaimDeta__VehId__236943A5" Association="Self.FK__ClaimDeta__VehId__236943A5">
             <End Role="VehicleDetails" EntitySet="VehicleDetails" />
             <End Role="ClaimDetails" EntitySet="ClaimDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__PolicyDet__UserM__5FB337D6" Association="Self.FK__PolicyDet__UserM__5FB337D6">
+          <AssociationSet Name="FK__MotorClai__Polic__07C12930" Association="Self.FK__MotorClai__Polic__07C12930">
+            <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+            <End Role="MotorClaimDetailsTable" EntitySet="MotorClaimDetailsTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PolicyDet__UserM__7C4F7684" Association="Self.FK__PolicyDet__UserM__7C4F7684">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="PolicyDetails" EntitySet="PolicyDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__PolicyDet__VehId__60A75C0F" Association="Self.FK__PolicyDet__VehId__60A75C0F">
+          <AssociationSet Name="FK__PolicyDet__VehId__7D439ABD" Association="Self.FK__PolicyDet__VehId__7D439ABD">
             <End Role="VehicleDetails" EntitySet="VehicleDetails" />
             <End Role="PolicyDetails" EntitySet="PolicyDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__VehicleDe__UserM__5CD6CB2B" Association="Self.FK__VehicleDe__UserM__5CD6CB2B">
+          <AssociationSet Name="FK__TravelCla__MobNo__5224328E" Association="Self.FK__TravelCla__MobNo__5224328E">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="TravelClaimDetails" EntitySet="TravelClaimDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelCla__Polic__51300E55" Association="Self.FK__TravelCla__Polic__51300E55">
+            <End Role="TravelInsurance" EntitySet="TravelInsurance" />
+            <End Role="TravelClaimDetails" EntitySet="TravelClaimDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehicleDe__UserM__76969D2E" Association="Self.FK__VehicleDe__UserM__76969D2E">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="VehicleDetails" EntitySet="VehicleDetails" />
           </AssociationSet>
@@ -169,23 +360,23 @@
             <PropertyRef Name="ClaimNo" />
           </Key>
           <Property Name="ClaimNo" Type="Int32" Nullable="false" />
-          <Property Name="UserMobNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UserMobNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="VehId" Type="Int32" />
           <Property Name="PolNo" Type="Int32" />
           <Property Name="ClaimReason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ClaimStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ClaimAmt" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="ClaimDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="PolicyDetail" Relationship="Self.FK__ClaimDeta__PolNo__49C3F6B7" FromRole="ClaimDetails" ToRole="PolicyDetails" />
-          <NavigationProperty Name="UserDetail" Relationship="Self.FK__ClaimDeta__UserM__47DBAE45" FromRole="ClaimDetails" ToRole="UserDetails" />
-          <NavigationProperty Name="VehicleDetail" Relationship="Self.FK__ClaimDeta__VehId__48CFD27E" FromRole="ClaimDetails" ToRole="VehicleDetails" />
+          <NavigationProperty Name="PolicyDetail" Relationship="Self.FK__ClaimDeta__PolNo__02084FDA" FromRole="ClaimDetails" ToRole="PolicyDetails" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__ClaimDeta__UserM__00200768" FromRole="ClaimDetails" ToRole="UserDetails" />
+          <NavigationProperty Name="VehicleDetail" Relationship="Self.FK__ClaimDeta__VehId__01142BA1" FromRole="ClaimDetails" ToRole="VehicleDetails" />
         </EntityType>
         <EntityType Name="PolicyDetail">
           <Key>
             <PropertyRef Name="PolicyNo" />
           </Key>
-          <Property Name="PolicyNo" Type="Int32" Nullable="false" />
-          <Property Name="UserMobNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PolicyNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserMobNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="VehId" Type="Int32" />
           <Property Name="PolicyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Period" Type="Int32" Nullable="false" />
@@ -193,43 +384,75 @@
           <Property Name="PolicyStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="ClaimDetails" Relationship="Self.FK__ClaimDeta__PolNo__49C3F6B7" FromRole="PolicyDetails" ToRole="ClaimDetails" />
-          <NavigationProperty Name="UserDetail" Relationship="Self.FK__PolicyDet__UserM__440B1D61" FromRole="PolicyDetails" ToRole="UserDetails" />
-          <NavigationProperty Name="VehicleDetail" Relationship="Self.FK__PolicyDet__VehId__44FF419A" FromRole="PolicyDetails" ToRole="VehicleDetails" />
+          <NavigationProperty Name="ClaimDetails" Relationship="Self.FK__ClaimDeta__PolNo__02084FDA" FromRole="PolicyDetails" ToRole="ClaimDetails" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__PolicyDet__UserM__7C4F7684" FromRole="PolicyDetails" ToRole="UserDetails" />
+          <NavigationProperty Name="VehicleDetail" Relationship="Self.FK__PolicyDet__VehId__7D439ABD" FromRole="PolicyDetails" ToRole="VehicleDetails" />
+          <NavigationProperty Name="MotorClaimDetailsTables" Relationship="GeneralInsuranceModel.FK__MotorClai__Polic__07C12930" FromRole="PolicyDetail" ToRole="MotorClaimDetailsTable" />
         </EntityType>
         <EntityType Name="UserDetail">
           <Key>
             <PropertyRef Name="MobNo" />
           </Key>
-          <Property Name="MobNo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CustID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MobNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="ClaimDetails" Relationship="Self.FK__ClaimDeta__UserM__47DBAE45" FromRole="UserDetails" ToRole="ClaimDetails" />
-          <NavigationProperty Name="PolicyDetails" Relationship="Self.FK__PolicyDet__UserM__440B1D61" FromRole="UserDetails" ToRole="PolicyDetails" />
-          <NavigationProperty Name="VehicleDetails" Relationship="Self.FK__VehicleDe__UserM__412EB0B6" FromRole="UserDetails" ToRole="VehicleDetails" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailVerification" Type="Boolean" />
+          <Property Name="ActivetionCode" Type="Guid" />
+          <Property Name="OTP" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClaimDetails" Relationship="Self.FK__ClaimDeta__UserM__00200768" FromRole="UserDetails" ToRole="ClaimDetails" />
+          <NavigationProperty Name="PolicyDetails" Relationship="Self.FK__PolicyDet__UserM__7C4F7684" FromRole="UserDetails" ToRole="PolicyDetails" />
+          <NavigationProperty Name="VehicleDetails" Relationship="Self.FK__VehicleDe__UserM__76969D2E" FromRole="UserDetails" ToRole="VehicleDetails" />
+          <NavigationProperty Name="TravelClaimDetails" Relationship="GeneralInsuranceModel.FK__TravelCla__MobNo__5224328E" FromRole="UserDetail" ToRole="TravelClaimDetail" />
         </EntityType>
         <EntityType Name="VehicleDetail">
           <Key>
             <PropertyRef Name="VehicleID" />
           </Key>
-          <Property Name="VehicleID" Type="Int32" Nullable="false" />
-          <Property Name="UserMobNo" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Maufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VehicleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserMobNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="VehicleType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DrivingLicense" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RegistrationNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegistrationNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EngineNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ChassisNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="ClaimDetails" Relationship="Self.FK__ClaimDeta__VehId__48CFD27E" FromRole="VehicleDetails" ToRole="ClaimDetails" />
-          <NavigationProperty Name="PolicyDetails" Relationship="Self.FK__PolicyDet__VehId__44FF419A" FromRole="VehicleDetails" ToRole="PolicyDetails" />
-          <NavigationProperty Name="UserDetail" Relationship="Self.FK__VehicleDe__UserM__412EB0B6" FromRole="VehicleDetails" ToRole="UserDetails" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="ClaimDetails" Relationship="Self.FK__ClaimDeta__VehId__01142BA1" FromRole="VehicleDetails" ToRole="ClaimDetails" />
+          <NavigationProperty Name="PolicyDetails" Relationship="Self.FK__PolicyDet__VehId__7D439ABD" FromRole="VehicleDetails" ToRole="PolicyDetails" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__VehicleDe__UserM__76969D2E" FromRole="VehicleDetails" ToRole="UserDetails" />
         </EntityType>
-        <Association Name="FK__ClaimDeta__PolNo__49C3F6B7">
+        <EntityType Name="AdminDetail">
+          <Key>
+            <PropertyRef Name="AdminID" />
+            <PropertyRef Name="MobNo" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MobNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactU">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="MobNo" />
+            <PropertyRef Name="Subject" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MobNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ClaimDeta__PolNo__02084FDA">
           <End Role="PolicyDetails" Type="Self.PolicyDetail" Multiplicity="0..1" />
           <End Role="ClaimDetails" Type="Self.ClaimDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -241,7 +464,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ClaimDeta__UserM__47DBAE45">
+        <Association Name="FK__ClaimDeta__UserM__00200768">
           <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1" />
           <End Role="ClaimDetails" Type="Self.ClaimDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -253,7 +476,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ClaimDeta__VehId__48CFD27E">
+        <Association Name="FK__ClaimDeta__VehId__01142BA1">
           <End Role="VehicleDetails" Type="Self.VehicleDetail" Multiplicity="0..1" />
           <End Role="ClaimDetails" Type="Self.ClaimDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -265,7 +488,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PolicyDet__UserM__440B1D61">
+        <Association Name="FK__PolicyDet__UserM__7C4F7684">
           <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1" />
           <End Role="PolicyDetails" Type="Self.PolicyDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -277,7 +500,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PolicyDet__VehId__44FF419A">
+        <Association Name="FK__PolicyDet__VehId__7D439ABD">
           <End Role="VehicleDetails" Type="Self.VehicleDetail" Multiplicity="0..1" />
           <End Role="PolicyDetails" Type="Self.PolicyDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -289,7 +512,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VehicleDe__UserM__412EB0B6">
+        <Association Name="FK__VehicleDe__UserM__76969D2E">
           <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1" />
           <End Role="VehicleDetails" Type="Self.VehicleDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -306,31 +529,216 @@
           <EntitySet Name="PolicyDetails" EntityType="Self.PolicyDetail" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
           <EntitySet Name="VehicleDetails" EntityType="Self.VehicleDetail" />
-          <AssociationSet Name="FK__ClaimDeta__PolNo__49C3F6B7" Association="Self.FK__ClaimDeta__PolNo__49C3F6B7">
+          <EntitySet Name="AdminDetails" EntityType="Self.AdminDetail" />
+          <EntitySet Name="ContactUs" EntityType="Self.ContactU" />
+          <AssociationSet Name="FK__ClaimDeta__PolNo__02084FDA" Association="Self.FK__ClaimDeta__PolNo__02084FDA">
             <End Role="PolicyDetails" EntitySet="PolicyDetails" />
             <End Role="ClaimDetails" EntitySet="ClaimDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__ClaimDeta__UserM__47DBAE45" Association="Self.FK__ClaimDeta__UserM__47DBAE45">
+          <AssociationSet Name="FK__ClaimDeta__UserM__00200768" Association="Self.FK__ClaimDeta__UserM__00200768">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="ClaimDetails" EntitySet="ClaimDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__ClaimDeta__VehId__48CFD27E" Association="Self.FK__ClaimDeta__VehId__48CFD27E">
+          <AssociationSet Name="FK__ClaimDeta__VehId__01142BA1" Association="Self.FK__ClaimDeta__VehId__01142BA1">
             <End Role="VehicleDetails" EntitySet="VehicleDetails" />
             <End Role="ClaimDetails" EntitySet="ClaimDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__PolicyDet__UserM__440B1D61" Association="Self.FK__PolicyDet__UserM__440B1D61">
+          <AssociationSet Name="FK__PolicyDet__UserM__7C4F7684" Association="Self.FK__PolicyDet__UserM__7C4F7684">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="PolicyDetails" EntitySet="PolicyDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__PolicyDet__VehId__44FF419A" Association="Self.FK__PolicyDet__VehId__44FF419A">
+          <AssociationSet Name="FK__PolicyDet__VehId__7D439ABD" Association="Self.FK__PolicyDet__VehId__7D439ABD">
             <End Role="VehicleDetails" EntitySet="VehicleDetails" />
             <End Role="PolicyDetails" EntitySet="PolicyDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__VehicleDe__UserM__412EB0B6" Association="Self.FK__VehicleDe__UserM__412EB0B6">
+          <AssociationSet Name="FK__VehicleDe__UserM__76969D2E" Association="Self.FK__VehicleDe__UserM__76969D2E">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+          </AssociationSet>
+          <FunctionImport Name="proc_calcprem">
+            <Parameter Name="policyid" Mode="In" Type="Int64" />
+            <Parameter Name="manu" Mode="In" Type="String" />
+            <Parameter Name="model" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetAllClaimsOfUser" ReturnType="Collection(GeneralInsuranceModel.proc_GetAllClaimsOfUser_Result)">
+          <Parameter Name="mobile" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetAllPoliciesOfUser" ReturnType="Collection(GeneralInsuranceModel.proc_GetAllPoliciesOfUser_Result)">
+          <Parameter Name="mobile" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetBrandNewPrice" ReturnType="Collection(GeneralInsuranceModel.proc_GetBrandNewPrice_Result)">
+            <Parameter Name="manu" Mode="In" Type="String" />
+            <Parameter Name="model" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetCarsOfManufacturer" ReturnType="Collection(String)">
+          <Parameter Name="manu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetManufacturers" ReturnType="Collection(String)" />
+          <FunctionImport Name="proc_UpdatePassword">
+            <Parameter Name="otp" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_UserLoginCheck" ReturnType="Collection(String)">
+            <Parameter Name="uid" Mode="In" Type="String" />
+            <Parameter Name="pswd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetAllVehiclesOfUser" ReturnType="Collection(GeneralInsuranceModel.proc_GetAllVehiclesOfUser_Result)">
+          <Parameter Name="mobile" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="MotorClaimDetailsTables" EntityType="GeneralInsuranceModel.MotorClaimDetailsTable" />
+          <AssociationSet Name="FK__MotorClai__Polic__07C12930" Association="GeneralInsuranceModel.FK__MotorClai__Polic__07C12930">
+            <End Role="PolicyDetail" EntitySet="PolicyDetails" />
+            <End Role="MotorClaimDetailsTable" EntitySet="MotorClaimDetailsTables" />
+          </AssociationSet>
+          <FunctionImport Name="sp_insertMotorClaim">
+            <Parameter Name="Policy_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Mobile_Number" Mode="In" Type="String" />
+            <Parameter Name="Reason" Mode="In" Type="String" />
+            <Parameter Name="Date_Of_Applying" Mode="In" Type="DateTime" />
+            <Parameter Name="Estimated_Amount_For_Repair" Mode="In" Type="Double" />
+            <Parameter Name="License_Copy" Mode="In" Type="String" />
+            <Parameter Name="RC_Copy" Mode="In" Type="String" />
+            <Parameter Name="Insurance_Copy" Mode="In" Type="String" />
+            <Parameter Name="Bill_Copy" Mode="In" Type="String" />
+            <Parameter Name="Authenticated_Letter_from_RTO" Mode="In" Type="String" />
+            <Parameter Name="Claim_Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="TravelClaimDetails" EntityType="GeneralInsuranceModel.TravelClaimDetail" />
+          <EntitySet Name="TravelInsurances" EntityType="GeneralInsuranceModel.TravelInsurance" />
+          <AssociationSet Name="FK__TravelCla__MobNo__5224328E" Association="GeneralInsuranceModel.FK__TravelCla__MobNo__5224328E">
+            <End Role="UserDetail" EntitySet="UserDetails" />
+            <End Role="TravelClaimDetail" EntitySet="TravelClaimDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelCla__Polic__51300E55" Association="GeneralInsuranceModel.FK__TravelCla__Polic__51300E55">
+            <End Role="TravelInsurance" EntitySet="TravelInsurances" />
+            <End Role="TravelClaimDetail" EntitySet="TravelClaimDetails" />
           </AssociationSet>
         </EntityContainer>
+        <ComplexType Name="proc_GetAllClaimsOfUser_Result">
+          <Property Type="Int32" Name="ClaimNo" Nullable="false" />
+          <Property Type="String" Name="UserMobNo" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="VehId" Nullable="true" />
+          <Property Type="Int32" Name="PolNo" Nullable="true" />
+          <Property Type="String" Name="ClaimReason" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ClaimStatus" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="ClaimAmt" Nullable="false" Precision="19" />
+          <Property Type="DateTime" Name="ClaimDate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_GetAllPoliciesOfUser_Result">
+          <Property Type="Int32" Name="PolicyNo" Nullable="false" />
+          <Property Type="String" Name="UserMobNo" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="VehId" Nullable="true" />
+          <Property Type="String" Name="PolicyName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Period" Nullable="false" />
+          <Property Type="Decimal" Name="PolicyAmt" Nullable="false" Precision="19" />
+          <Property Type="String" Name="PolicyStatus" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_GetBrandNewPrice_Result">
+          <Property Type="DateTime" Name="PurchaseDate" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="proc_GetAllVehiclesOfUser_Result">
+          <Property Type="Int32" Name="VehicleID" Nullable="false" />
+          <Property Type="String" Name="UserMobNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Manufacturer" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Model" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleType" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="DrivingLicense" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="RegistrationNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="EngineNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ChassisNo" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="PurchaseDate" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="19" />
+        </ComplexType>
+        <EntityType Name="MotorClaimDetailsTable">
+          <Key>
+            <PropertyRef Name="Claim_Id" />
+          </Key>
+          <Property Name="Claim_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Policy_Id" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile_Number" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Reason" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Of_Applying" Type="DateTime" Precision="0" />
+          <Property Name="Insurance_Copy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="License_Copy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RC_Copy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Authenticated_Letter_from_RTO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Estimated_Amount_For_Repair" Type="Double" />
+          <Property Name="Bill_Copy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Amount_Sanctioned" Type="Double" />
+          <Property Name="Claim_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PolicyDetail" Relationship="GeneralInsuranceModel.FK__MotorClai__Polic__07C12930" FromRole="MotorClaimDetailsTable" ToRole="PolicyDetail" />
+        </EntityType>
+        <Association Name="FK__MotorClai__Polic__07C12930">
+          <End Type="GeneralInsuranceModel.PolicyDetail" Role="PolicyDetail" Multiplicity="0..1" />
+          <End Type="GeneralInsuranceModel.MotorClaimDetailsTable" Role="MotorClaimDetailsTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PolicyDetail">
+              <PropertyRef Name="PolicyNo" />
+            </Principal>
+            <Dependent Role="MotorClaimDetailsTable">
+              <PropertyRef Name="Policy_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TravelClaimDetail">
+          <Key>
+            <PropertyRef Name="Travel_Claim_Id" />
+          </Key>
+          <Property Name="Travel_Claim_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PolicyNo" Type="Int32" />
+          <Property Name="Reason_for_Claim" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MobNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Claim_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserDetail" Relationship="GeneralInsuranceModel.FK__TravelCla__MobNo__5224328E" FromRole="TravelClaimDetail" ToRole="UserDetail" />
+          <NavigationProperty Name="TravelInsurance" Relationship="GeneralInsuranceModel.FK__TravelCla__Polic__51300E55" FromRole="TravelClaimDetail" ToRole="TravelInsurance" />
+        </EntityType>
+        <EntityType Name="TravelInsurance">
+          <Key>
+            <PropertyRef Name="PolicyNo" />
+          </Key>
+          <Property Name="PolicyNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Source" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Destination" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TripStart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TripEnd" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="MobileNo" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="NoOfPassengers" Type="Int32" Nullable="false" />
+          <Property Name="IPlan" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TravelClaimDetails" Relationship="GeneralInsuranceModel.FK__TravelCla__Polic__51300E55" FromRole="TravelInsurance" ToRole="TravelClaimDetail" />
+        </EntityType>
+        <Association Name="FK__TravelCla__MobNo__5224328E">
+          <End Type="GeneralInsuranceModel.UserDetail" Role="UserDetail" Multiplicity="0..1" />
+          <End Type="GeneralInsuranceModel.TravelClaimDetail" Role="TravelClaimDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="MobNo" />
+            </Principal>
+            <Dependent Role="TravelClaimDetail">
+              <PropertyRef Name="MobNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TravelCla__Polic__51300E55">
+          <End Type="GeneralInsuranceModel.TravelInsurance" Role="TravelInsurance" Multiplicity="0..1" />
+          <End Type="GeneralInsuranceModel.TravelClaimDetail" Role="TravelClaimDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TravelInsurance">
+              <PropertyRef Name="PolicyNo" />
+            </Principal>
+            <Dependent Role="TravelClaimDetail">
+              <PropertyRef Name="PolicyNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -369,12 +777,17 @@
           <EntitySetMapping Name="UserDetails">
             <EntityTypeMapping TypeName="GeneralInsuranceModel.UserDetail">
               <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="CustID" ColumnName="CustID" />
                 <ScalarProperty Name="MobNo" ColumnName="MobNo" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmailVerification" ColumnName="EmailVerification" />
+                <ScalarProperty Name="ActivetionCode" ColumnName="ActivetionCode" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -383,7 +796,7 @@
               <MappingFragment StoreEntitySet="VehicleDetails">
                 <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
                 <ScalarProperty Name="UserMobNo" ColumnName="UserMobNo" />
-                <ScalarProperty Name="Maufacturer" ColumnName="Maufacturer" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
                 <ScalarProperty Name="DrivingLicense" ColumnName="DrivingLicense" />
@@ -391,10 +804,140 @@
                 <ScalarProperty Name="EngineNo" ColumnName="EngineNo" />
                 <ScalarProperty Name="ChassisNo" ColumnName="ChassisNo" />
                 <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="AdminDetails">
+            <EntityTypeMapping TypeName="GeneralInsuranceModel.AdminDetail">
+              <MappingFragment StoreEntitySet="AdminDetails">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="MobNo" ColumnName="MobNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactUs">
+            <EntityTypeMapping TypeName="GeneralInsuranceModel.ContactU">
+              <MappingFragment StoreEntitySet="ContactUs">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobNo" ColumnName="MobNo" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_calcprem" FunctionName="GeneralInsuranceModel.Store.proc_calcprem" />
+          <FunctionImportMapping FunctionImportName="proc_GetAllClaimsOfUser" FunctionName="GeneralInsuranceModel.Store.proc_GetAllClaimsOfUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GeneralInsuranceModel.proc_GetAllClaimsOfUser_Result">
+                <ScalarProperty Name="ClaimNo" ColumnName="ClaimNo" />
+                <ScalarProperty Name="UserMobNo" ColumnName="UserMobNo" />
+                <ScalarProperty Name="VehId" ColumnName="VehId" />
+                <ScalarProperty Name="PolNo" ColumnName="PolNo" />
+                <ScalarProperty Name="ClaimReason" ColumnName="ClaimReason" />
+                <ScalarProperty Name="ClaimStatus" ColumnName="ClaimStatus" />
+                <ScalarProperty Name="ClaimAmt" ColumnName="ClaimAmt" />
+                <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetAllPoliciesOfUser" FunctionName="GeneralInsuranceModel.Store.proc_GetAllPoliciesOfUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GeneralInsuranceModel.proc_GetAllPoliciesOfUser_Result">
+                <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+                <ScalarProperty Name="UserMobNo" ColumnName="UserMobNo" />
+                <ScalarProperty Name="VehId" ColumnName="VehId" />
+                <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="PolicyAmt" ColumnName="PolicyAmt" />
+                <ScalarProperty Name="PolicyStatus" ColumnName="PolicyStatus" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetBrandNewPrice" FunctionName="GeneralInsuranceModel.Store.proc_GetBrandNewPrice">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GeneralInsuranceModel.proc_GetBrandNewPrice_Result">
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetCarsOfManufacturer" FunctionName="GeneralInsuranceModel.Store.proc_GetCarsOfManufacturer" />
+          <FunctionImportMapping FunctionImportName="proc_GetManufacturers" FunctionName="GeneralInsuranceModel.Store.proc_GetManufacturers" />
+          <FunctionImportMapping FunctionImportName="proc_UpdatePassword" FunctionName="GeneralInsuranceModel.Store.proc_UpdatePassword" />
+          <FunctionImportMapping FunctionImportName="proc_UserLoginCheck" FunctionName="GeneralInsuranceModel.Store.proc_UserLoginCheck" />
+          <FunctionImportMapping FunctionImportName="proc_GetAllVehiclesOfUser" FunctionName="GeneralInsuranceModel.Store.proc_GetAllVehiclesOfUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GeneralInsuranceModel.proc_GetAllVehiclesOfUser_Result">
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+                <ScalarProperty Name="UserMobNo" ColumnName="UserMobNo" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="DrivingLicense" ColumnName="DrivingLicense" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="EngineNo" ColumnName="EngineNo" />
+                <ScalarProperty Name="ChassisNo" ColumnName="ChassisNo" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="MotorClaimDetailsTables">
+            <EntityTypeMapping TypeName="GeneralInsuranceModel.MotorClaimDetailsTable">
+              <MappingFragment StoreEntitySet="MotorClaimDetailsTable">
+                <ScalarProperty Name="Claim_Status" ColumnName="Claim_Status" />
+                <ScalarProperty Name="Amount_Sanctioned" ColumnName="Amount_Sanctioned" />
+                <ScalarProperty Name="Bill_Copy" ColumnName="Bill_Copy" />
+                <ScalarProperty Name="Estimated_Amount_For_Repair" ColumnName="Estimated_Amount_For_Repair" />
+                <ScalarProperty Name="Authenticated_Letter_from_RTO" ColumnName="Authenticated_Letter_from_RTO" />
+                <ScalarProperty Name="RC_Copy" ColumnName="RC_Copy" />
+                <ScalarProperty Name="License_Copy" ColumnName="License_Copy" />
+                <ScalarProperty Name="Insurance_Copy" ColumnName="Insurance_Copy" />
+                <ScalarProperty Name="Date_Of_Applying" ColumnName="Date_Of_Applying" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Mobile_Number" ColumnName="Mobile_Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Policy_Id" ColumnName="Policy_Id" />
+                <ScalarProperty Name="Claim_Id" ColumnName="Claim_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_insertMotorClaim" FunctionName="GeneralInsuranceModel.Store.sp_insertMotorClaim" />
+          <EntitySetMapping Name="TravelClaimDetails">
+            <EntityTypeMapping TypeName="GeneralInsuranceModel.TravelClaimDetail">
+              <MappingFragment StoreEntitySet="TravelClaimDetails">
+                <ScalarProperty Name="Claim_Status" ColumnName="Claim_Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="MobNo" ColumnName="MobNo" />
+                <ScalarProperty Name="Reason_for_Claim" ColumnName="Reason_for_Claim" />
+                <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+                <ScalarProperty Name="Travel_Claim_Id" ColumnName="Travel_Claim_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TravelInsurances">
+            <EntityTypeMapping TypeName="GeneralInsuranceModel.TravelInsurance">
+              <MappingFragment StoreEntitySet="TravelInsurance">
+                <ScalarProperty Name="IPlan" ColumnName="IPlan" />
+                <ScalarProperty Name="NoOfPassengers" ColumnName="NoOfPassengers" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TripEnd" ColumnName="TripEnd" />
+                <ScalarProperty Name="TripStart" ColumnName="TripStart" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

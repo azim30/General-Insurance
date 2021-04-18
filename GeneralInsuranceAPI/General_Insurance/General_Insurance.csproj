@@ -95,8 +95,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -107,13 +107,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ClaimAPIController.cs" />
     <Compile Include="Controllers\PolicyAPIController.cs" />
+    <Compile Include="Controllers\TravelAPIController.cs" />
+    <Compile Include="Controllers\TravelClaimAPIController.cs" />
     <Compile Include="Controllers\UserAPIController.cs" />
     <Compile Include="Controllers\VehicleAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClaimDataModel.cs" />
     <Compile Include="Models\ClaimDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContactDataModel.cs" />
+    <Compile Include="Models\ContactU.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -131,8 +142,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\MotorClaimDetailsTable.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PolicyDataModel.cs" />
     <Compile Include="Models\PolicyDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_GetAllClaimsOfUser_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_GetAllPoliciesOfUser_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_GetAllVehiclesOfUser_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_GetBrandNewPrice_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TravelClaimDataModel.cs" />
+    <Compile Include="Models\TravelClaimDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TravelDataModel.cs" />
+    <Compile Include="Models\TravelInsurance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserDataModel.cs" />

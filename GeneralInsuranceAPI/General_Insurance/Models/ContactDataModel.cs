@@ -13,6 +13,5 @@ namespace General_Insurance.Models
         public string Subject { get; set; }
         public string Message { get; set; }
 
-
     }
 }

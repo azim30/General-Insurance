@@ -19,17 +19,24 @@ namespace General_Insurance.Models
             this.ClaimDetails = new HashSet<ClaimDetail>();
             this.PolicyDetails = new HashSet<PolicyDetail>();
             this.VehicleDetails = new HashSet<VehicleDetail>();
+            this.TravelClaimDetails = new HashSet<TravelClaimDetail>();
         }
     
-        public decimal MobNo { get; set; }
+        public int CustID { get; set; }
+        public string MobNo { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Address { get; set; }
         public System.DateTime DOB { get; set; }
+        public string Gender { get; set; }
+        public Nullable<bool> EmailVerification { get; set; }
+        public Nullable<System.Guid> ActivetionCode { get; set; }
+        public string OTP { get; set; }
     
         public virtual ICollection<ClaimDetail> ClaimDetails { get; set; }
         public virtual ICollection<PolicyDetail> PolicyDetails { get; set; }
         public virtual ICollection<VehicleDetail> VehicleDetails { get; set; }
+        public virtual ICollection<TravelClaimDetail> TravelClaimDetails { get; set; }
     }
 }

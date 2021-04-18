@@ -14,6 +14,11 @@ namespace General_Insurance.Models
     
     public partial class TravelInsurance
     {
+        public TravelInsurance()
+        {
+            this.TravelClaimDetails = new HashSet<TravelClaimDetail>();
+        }
+    
         public int PolicyNo { get; set; }
         public string Source { get; set; }
         public string Destination { get; set; }
@@ -25,5 +30,7 @@ namespace General_Insurance.Models
         public decimal MobileNo { get; set; }
         public int NoOfPassengers { get; set; }
         public string IPlan { get; set; }
+    
+        public virtual ICollection<TravelClaimDetail> TravelClaimDetails { get; set; }
     }
 }

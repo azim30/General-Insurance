@@ -62,24 +62,46 @@ namespace General_Insurance.Controllers
             }
             return false;
         }
+        
         [Route("api/VehicleAPI/GetVehicleByID/{id}")]
         [HttpGet]
-        public VehicleDetail Get(int id)
+        public IEnumerable<proc_GetAllVehiclesOfUser_Result >Get(string id)
         {
             try
             {
-                var data = db.VehicleDetails.Where(x => x.VehicleID == id).SingleOrDefault();
-                if (data == null)
-                {
-                    throw new Exception("Invalid");
-                }
+                var res = db.proc_GetAllVehiclesOfUser(id);
+                if (res == null)
+                    throw new Exception("Invalid projid");
                 else
-                    return data;
+                    return res;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        [Route("api/VehileAPI/DeleteVehicle/{id}")]
+        public bool Delete(int id)
+        {
+            try
+            {
+                var del = db.VehicleDetails.Where(x => x.VehicleID == id).SingleOrDefault();
+                if (del == null)
+                    throw new Exception("Id cannot be null");
+                else
+                {
+                    db.VehicleDetails.Remove(del);
+                    var res = db.SaveChanges();
+                    if (res > 0)
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return false;
         }
 
     }

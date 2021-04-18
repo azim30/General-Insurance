@@ -8,7 +8,7 @@ namespace General_Insurance.Models
     public class PolicyDataModel
     {
         public int? PolicyNO { get; set; }
-        public long UserMobNo { get; set; }
+        public string UserMobNo { get; set; }
         public int VehID { get; set; }
         public string PolicyName { get; set; }
         public int Period { get; set; }

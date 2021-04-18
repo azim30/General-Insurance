@@ -24,7 +24,7 @@ namespace General_Insurance.Controllers
                            select new PolicyDataModel
                            {
                                PolicyNO = p.PolicyNo,
-                               UserMobNo = (long)p.UserMobNo,
+                               UserMobNo = p.UserMobNo,
                                VehID = (int)p.VehId,
                                PolicyName = p.PolicyName,
                                Period = p.Period,
@@ -56,6 +56,23 @@ namespace General_Insurance.Controllers
                 throw ex;
             }
             return false;
+        }
+        [Route("api/PolicyAPI/GetPolicyByID/{id}")]
+        [HttpGet]
+        public IEnumerable<proc_GetAllPoliciesOfUser_Result> Get(string id)
+        {
+            try
+            {
+                var res = db.proc_GetAllPoliciesOfUser(id);
+                if (res == null)
+                    throw new Exception("Invalid projid");
+                else
+                    return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

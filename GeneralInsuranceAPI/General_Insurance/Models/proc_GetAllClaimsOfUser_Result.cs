@@ -14,7 +14,7 @@ namespace General_Insurance.Models
     public partial class proc_GetAllClaimsOfUser_Result
     {
         public int ClaimNo { get; set; }
-        public Nullable<decimal> UserMobNo { get; set; }
+        public string UserMobNo { get; set; }
         public Nullable<int> VehId { get; set; }
         public Nullable<int> PolNo { get; set; }
         public string ClaimReason { get; set; }
