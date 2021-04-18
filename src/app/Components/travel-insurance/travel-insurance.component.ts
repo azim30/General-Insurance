@@ -14,7 +14,8 @@ export class TravelInsuranceComponent implements OnInit {
   usr=new TravelInsuranceModule();
   ngzone: NgZone;
   router: Router;
-
+  idstore : any;
+  PolicyA : number;
 
   constructor(svc: TravelInsuranceService, ngzone: NgZone,
     router: Router) 
@@ -26,6 +27,13 @@ export class TravelInsuranceComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  try(){
+    if(this.model.plan == "premium")
+      this.PolicyA = (this.model.npassenger)*1000*2;
+    else
+      this.PolicyA = (this.model.npassenger)*1000;
+  }
+
   RegisterData(travelform:NgForm):void{
     console.log(travelform.value);
     

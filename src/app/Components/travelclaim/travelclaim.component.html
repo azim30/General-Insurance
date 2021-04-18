@@ -1,0 +1,53 @@
+
+
+    <!--<label class="fieldlabels">Ticket Copy</label>
+    <input type="file" #Ticket_Copy formControlName="Ticket_Copy" (change)="onSelectFile($event)"
+        [(ngModel)]="travelclaim.Ticket_Copy">-->
+   
+
+
+<div class="row">
+    <div class="main">
+        <div class="card">
+            <h2 style="text-align: center;">Travel Claim</h2>
+<form #TravelClaimForm="ngForm" name="TravelClaimForm" (ngSubmit)="claimData(TravelClaimForm)">
+    <div class="container">
+       
+        
+        <div>
+            <label for="tNo"><b>Enter Policy No:- </b></label>
+            <input type="text" name="tNo" [(ngModel)]="model.tNo" placeholder="Enter Policy No" #tNO="ngModel" required>
+            <!--<span *ngIf="tNo.errors?.required"></span>-->
+        </div>
+        <div>
+            <label for="creason"><b>Select claim reason:-</b></label>
+            <select type="text" name="creason" [(ngModel)]="model.creason" #creason="ngModel" required>
+                <option value="">Select</option>
+                <option value="Accident">Accident</option>
+                <option value="Theft">Theft</option>
+               
+            </select>
+            <!--<input type="text" name="creason" [(ngModel)]="model.creaso " placeholder="Select claim reason" #creason="ngModel" required>-->
+            <span *ngIf="creason.errors?.required"></span>
+        </div>
+        <div>
+            <label for="mno"><b>Mobile No :-</b></label>
+            <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
+            <span *ngIf="mno.errors?.required">Mobile No cannot be blank</span>
+            <span *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</span>
+        </div>
+        <div>
+            <label for="price"><b>Enter Claim Amount:-</b></label>
+            <input type="text" name="price" [(ngModel)]="model.price" placeholder="Enter Claim Amount" #price="ngModel" required>
+            <span *ngIf="price.errors?.required"></span>
+        </div>            
+           </div>
+        <button type="submit" [disabled]="TravelClaimForm.invalid" >Save</button>  
+</form>
+
+</div>
+</div>
+</div>
+<div class="footer">
+    <p>&copy; 2020 Larsen & Toubro Infotech Limited</p>
+  </div>

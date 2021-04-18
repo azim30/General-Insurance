@@ -1,7 +1,8 @@
 <p>userhomepage works!</p>
 <a mat-raised-button color="accent"  (click)="GetAllVehicles()"  role="button">Get all Vehicles</a>&nbsp;
 <a mat-raised-button color="accent"  (click)="GetPolicies()"  role="button">Get all Policies</a>&nbsp;
-
+<a mat-raised-button color="accent"  (click)="GetAllClaims()"  role="button">Get all Claims</a>&nbsp;
+<a mat-raised-button color="accent"  (click)="GetPolicies()"  role="button">Register Vehicle</a>&nbsp;
 <div *ngIf="buttonName1=='GetAllVehicles'">
     <table border="1">
         <tr>
@@ -68,3 +69,27 @@
 
             </tr>
         </table></div>
+
+        <div *ngIf="buttonName3=='GetAllClaims'">
+            <table border="1">
+                <tr>
+                    <th>Claim No</th>
+                    <th>Mobile No.</th>
+                    <th>Vehicle ID</th>
+                    <th>Policy No</th>
+                    <th>Claim Amount</th>
+                    <th>Claim Status</th>
+                    <th>Claim Date</th>
+                    <th>Claim Reason</th>
+                </tr>
+                <tr *ngFor="let value of clist">
+                    <td>{{value.ClaimNo}}</td>
+                    <td>{{value.UserMobNo}}</td>
+                    <td>{{value.VehId}}</td>
+                    <td>{{value.PolNo}}</td>
+                    <td>{{value.ClaimAmt}}</td>
+                    <td>{{value.ClaimStatus}}</td>
+                    <td>{{value.ClaimtDate}}</td>
+                    <td>{{value.ClaimReason}}</td>
+                </tr>
+            </table></div>

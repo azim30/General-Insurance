@@ -50,15 +50,17 @@
             
             <div>
             <label for="npassenger"><b>No Of Passengers :-</b></label>
-            <input type="number" name="npassenger" [(ngModel)]="model.npassenger" placeholder="Enter Number Of Passengers" #npassenger="ngModel" required>
+            <input type="number" name="npassenger" [(ngModel)]="model.npassenger" placeholder="Enter Number Of Passengers" #npassenger="ngModel" required (change)= "try()">
             <span *ngIf="npassenger.errors?.required"></span>
            </div>
            <div>
             <label for="plan"><b>Choose Plan:-</b></label>
-            <input type="radio" value="premiun" name="plan"  [(ngModel)]="model.plan"  required  #plan="ngModel">Gold
-            <input type="radio" value="gold" name="plan" [(ngModel)]="model.plan" required  #plan="ngModel"> Silver
+            <input type="radio" value="premiun" name="plan"  [(ngModel)]="model.plan"  required (change)= "try()"  #plan="ngModel">Gold
+            <input type="radio" value="gold" name="plan" [(ngModel)]="model.plan" required (change)= "try()" #plan="ngModel"> Silver
             
            </div>
+           <div>Amount You have to Pay</div>
+            {{PolicyA}}
         <button type="submit" [disabled]="travelform.invalid" >Save</button>
         
     

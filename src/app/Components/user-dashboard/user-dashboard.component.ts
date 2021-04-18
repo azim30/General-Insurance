@@ -7,6 +7,8 @@ import { VehicleInfoModule } from '../../Modules/vehicle-info/vehicle-info.modul
 import { VehicleinfoService } from '../../Services/vehicleinfo.service';
 import { PolicyinfoModule } from '../../Modules/policyinfo/policyinfo.module';
 import { PolicyinfoService } from '../../Services/policyinfo.service';
+import { ClaiminfoModule } from 'src/app/Modules/claiminfo/claiminfo.module';
+import { ClaiminfoService } from 'src/app/Services/claiminfo.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -18,13 +20,16 @@ export class UserDashboardComponent implements OnInit {
   model: any = [];
   svc: VehicleinfoService;
   psvc: PolicyinfoService;
+  csvc: ClaiminfoService;
   usr: VehicleInfoModule[];
   usrinfo =new UserInfoModule();
   vehinfo = new VehicleInfoModule();
   vehlist: VehicleInfoModule[];
   pollist: PolicyinfoModule[];
+  clist: ClaiminfoModule[];
   buttonName1:string;
   buttonName2: string;
+  buttonName3: string;
   ngzone: NgZone;
   router: Router;
   phone: number;
@@ -34,12 +39,17 @@ export class UserDashboardComponent implements OnInit {
   GetPolicies(){
     this.buttonName2="GetPolicies";
   }
+  GetAllClaims(){
+    this.buttonName3="GetAllClaims";
+  }
+
   
-  constructor(svc: VehicleinfoService,psvc: PolicyinfoService, ngzone: NgZone,
+  constructor(svc: VehicleinfoService,psvc: PolicyinfoService,csvc: ClaiminfoService, ngzone: NgZone,
     router: Router) 
     {
       this.svc = svc;
       this.psvc = psvc;
+      this.csvc = csvc;
       this.ngzone = ngzone;
       this.router = router;
 
@@ -55,6 +65,11 @@ export class UserDashboardComponent implements OnInit {
       this.psvc.GetPolicyByID(this.phone).subscribe((data1:PolicyinfoModule[])=>{
         this.pollist=data1;
         console.log(this.pollist);
+      });
+
+      this.csvc.GetClaimByID(this.phone).subscribe((data2:ClaiminfoModule[])=>{
+        this.clist=data2;
+        console.log(this.clist);
       });
 
       //this.svc.BuyInsurance().subscribe();{
