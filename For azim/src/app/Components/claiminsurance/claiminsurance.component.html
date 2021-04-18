@@ -1,0 +1,47 @@
+<p>Claim insurance works</p>
+<div class="row">
+    <div class="main">
+        <div class="card">
+            <h2 style="text-align: center;">Claim Insurance...</h2>
+
+<form #claimInsuranceForm="ngForm" name="claimInsuranceForm" (ngSubmit)="claimData(claimInsuranceForm)">
+    
+    <!--<span *ngIf="eid.errors?.required">Employee ID cannot be blank</span>-->
+    <div class="container">
+
+    <div>Enter mobile number</div>
+    <input type="text" name="umob" [(ngModel)]="model.umob" #umob="ngModel" required>
+
+    
+    <!--<div>Enter vehicle ID</div>
+    <input type="text" name="vid" [(ngModel)]="model.vid" #vid="ngModel" required>-->
+
+    <div>Vehicle ID</div>
+    <input type="text" name="vehid" [(ngModel)]="model.vehid" #vehid="ngModel" readonly>
+    <!--<span *ngIf="ename.errors?.required">Name cannot be blank</span>-->
+
+    <div>Policy ID</div>
+    <input type="text" name="polid" [(ngModel)]="model.polid" #polid="ngModel" readonly>
+
+    <div>Select claim reason</div>
+    <select type="text" name="creason" [(ngModel)]="model.creason" #creason="ngModel" required>
+        <option value="">Select</option>
+        <option value="Accident">Accident</option>
+        <option value="Theft">Theft</option>
+        <option value="Natural Disasters">Natural Disasters</option>
+        <option value="Fire">Fire</option>
+    </select>
+
+    <div>Enter Claim Amount</div>
+    <input type="number" name="price" [(ngModel)]="model.price" #price="ngModel" required>
+
+    <div>Select claim date</div>
+    <input type="date" name="cdate" [(ngModel)]="model.cdate" #cdate="ngModel" required>
+    <div>
+        <button type="submit" [disabled]="claimInsuranceForm.invalid">Submit</button>
+    </div>
+    </div>
+</form>
+</div>
+</div>
+</div>

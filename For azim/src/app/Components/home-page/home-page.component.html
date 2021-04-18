@@ -1,0 +1,47 @@
+
+  <mat-toolbar color="primary" class="navbar">
+   
+    <a [routerLink]="['background']"> <img src="../../../assets/images/Logo.png"  ></a>
+    
+    <a  [routerLink]="['RegisterVehicle']">Buy </a><!--Working-->
+    <a  [routerLink]="['login']">Renew </a><!--Not yet created-->
+    <a  [routerLink]="['calculate-insurance']">Calculate </a><!--Working-->
+    <a  [routerLink]="['login']">Claim </a><!--Working-->
+    <!--<a mat-raised-button color="accent" [routerLink]="['register']">Register</a>-Working-->
+  
+
+    <div class="dropdown">
+      <button  mat-raised-button color="accent"class="dropbtn">
+        <mat-icon class="material-icons-two-tone">
+        person
+        </mat-icon> User  </button>
+      <div class="dropdown-content">
+        <mat-list>
+         <a mat-list-item  [routerLink]="['Contact-us']">Contact</a>
+          <mat-divider></mat-divider>
+          <a mat-list-item  [routerLink]="['help']">Help</a>
+          <mat-divider></mat-divider>
+          <a mat-list-item  [routerLink]="['Faq']">FAQ</a>
+          <mat-divider></mat-divider>
+          <a mat-list-item  [routerLink]="['About-us']">About US</a>
+          <mat-divider></mat-divider>
+          <a mat-list-item  [routerLink]="['login']">User Login</a>
+          <mat-divider></mat-divider>
+          <a mat-list-item  [routerLink]="['admin-login']">Admin Login </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item  [routerLink]="['register']">Register</a>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+    </div>
+    
+     
+         
+  
+  </mat-toolbar>
+  
+  <div class="footer">
+     
+    © 2020 Copyright:  Larsen & Toubro Infotech Limited
+   <br>
+  </div>

@@ -1,0 +1,10 @@
+.hero-image {
+    background-image: url("../../../assets/images/bg-image.jpg");
+   
+    height:520px;
+    
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: 87%   ;
+    position: relative;
+  }
