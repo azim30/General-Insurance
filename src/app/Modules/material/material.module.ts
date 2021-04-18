@@ -12,6 +12,11 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
 
 const MaterialComponents=[
   MatToolbarModule,
@@ -27,6 +32,12 @@ const MaterialComponents=[
   MatStepperModule,
   MatRadioModule,
   MatSnackBarModule,
+  MatGridListModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatInputModule,
+ 
 ]
 
 @NgModule({
