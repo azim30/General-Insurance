@@ -68,7 +68,7 @@ export class ClaiminsuranceComponent implements OnInit {
       if(data==true)
       {
         alert('Susscessfully registered your claim');
-        this.ngzone.run(()=>this.router.navigateByUrl('/user-dashboard'));
+        this.ngzone.run(()=>this.router.navigateByUrl('/userdashboard'));
       }
     });
   }

@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
     if(data=="Login Successful")
     {
       alert('Login successful');
-      this.ngzone.run(()=>this.router.navigateByUrl('/BuyInsurance'));
+      localStorage.setItem('PID',this.mob.toString());
+      this.ngzone.run(()=>this.router.navigateByUrl('/userdashboard'));
     }
     else
     {

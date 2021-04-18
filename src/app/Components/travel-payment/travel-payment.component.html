@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="main">
+        <div class="card">
+            <h2 style="text-align: center;">Payment Gateway</h2>
+<form #regform="ngForm" name="regform" (ngSubmit)="RegisterData(regform)">
+    <div class="container">
+
+        <div>
+        <label for="cardno"><b>Card No :-</b></label>
+        <input type="text" name="cardno" [(ngModel)]="model.cardno" placeholder="Card No" #cardno="ngModel" pattern="^[0-9]{12}$" required>
+        <span *ngIf="cardno.errors?.required"></span>
+        </div>
+        <div>
+            <label for="expirydate"><b>Expiry Date :-</b></label>
+            <input type="text" name="exdate" [(ngModel)]="model.exdate" placeholder="Expiry Date" #exdate="ngModel" required>
+            <span *ngIf="exdate.errors?.required">Format MM/YY</span>
+         </div>
+         <div>
+            <label for="cvv"><b>CVV :-</b></label>
+            <input type="text" name="cvv" [(ngModel)]="model.cvv" placeholder="cvv" #cvv="ngModel" pattern="^[0-9]{3}$" required>
+            <span *ngIf="cvv.errors?.required">Enter Last three digits</span>
+         </div>
+        <div>Amount</div> {{amtstore}}
+
+        <button type="submit" [disabled]="regform.invalid" >Pay Now </button>
+        
+    
+   
+  </div>
+</form>
+
+</div>
+</div>
+</div>
+<div class="footer">
+    <p>&copy; 2020 Larsen & Toubro Infotech Limited</p>
+  </div>
