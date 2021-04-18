@@ -11,7 +11,7 @@ export class ContactService {
 
   usr: ContactModule;
   http: HttpClient;
-  url: string = 'http://localhost:54887/api/UserAPI';
+  url: string = 'http://localhost:49356/api/UserAPI';
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })

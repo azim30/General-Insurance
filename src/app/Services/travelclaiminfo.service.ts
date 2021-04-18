@@ -6,27 +6,23 @@ import {Observable} from 'rxjs/internal/observable';
 import {HttpHeaders} from '@angular/common/http';
 import { PolicyinfoModule } from '../Modules/policyinfo/policyinfo.module';
 import { VehicleInfoModule } from '../Modules/vehicle-info/vehicle-info.module';
+import { TravelclaiminfoModule } from '../Modules/travelclaiminfo/travelclaiminfo.module';
 @Injectable({
   providedIn: 'root'
 })
-export class ClaiminfoService {
+export class TravelclaiminfoService {
 
-  usr: ClaiminfoModule;
+  usr: TravelclaiminfoModule;
   http: HttpClient;
-  url: string = 'http://localhost:49356/api/ClaimAPI';
+  url: string = 'http://localhost:49356/api/TravelClaimAPI';
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
   };
   constructor(http: HttpClient) { this.http=http; }
 
- 
-  RegisterClaim(usr:ClaiminfoModule):Observable<boolean>
+  RegisterTravelClaim(usr:TravelclaiminfoModule):Observable<boolean>
   {
-    return this.http.post<boolean>(this.url+'/'+ 'RegisterClaim',usr, this.httpOptions);
-  }
-  GetClaimByID(phone:number):Observable<ClaiminfoModule[]>
-  {
-    return this.http.get<ClaiminfoModule[]>(this.url+'/'+'GetClaimByID' +'/'+phone, this.httpOptions);
+    return this.http.post<boolean>(this.url+'/'+ 'TravelClaimDetails',usr, this.httpOptions);
   }
 }

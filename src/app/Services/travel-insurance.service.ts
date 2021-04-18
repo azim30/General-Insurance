@@ -16,9 +16,14 @@ export class TravelInsuranceService {
   })
   };
   constructor(http:HttpClient) {this.http=http; }
+
  RegisterTravelDetails(usr: TravelInsuranceModule):Observable<boolean>
   {
     return this.http.post<boolean>(this.url+'/'+ 'RegisterTravelDetails',usr, this.httpOptions);
+  }
+  GetAllTravels(): Observable<TravelInsuranceModule[]>
+  {
+    return this.http.get<TravelInsuranceModule[]>(this.url+'/'+'GetAllTravels');
   }
  
 }

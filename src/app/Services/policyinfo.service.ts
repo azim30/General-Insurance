@@ -12,7 +12,7 @@ export class PolicyinfoService {
 
   pol: PolicyinfoModule;
   http: HttpClient;
-  url: string = 'http://localhost:54887/api/PolicyAPI';
+  url: string = 'http://localhost:49356/api/PolicyAPI';
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
