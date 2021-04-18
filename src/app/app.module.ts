@@ -26,7 +26,8 @@ import { UserDashboardComponent } from './Components/user-dashboard/user-dashboa
 import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
 import { TravelclaimComponent } from './Components/travelclaim/travelclaim.component';
 import { TravelInsuranceComponent } from './Components/travel-insurance/travel-insurance.component';
-
+import { TravelPaymentComponent } from './Components/travel-payment/travel-payment.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { TravelInsuranceComponent } from './Components/travel-insurance/travel-i
     UserDashboardComponent,
     AdminDashboardComponent,
     TravelclaimComponent,
-    TravelInsuranceComponent
+    TravelInsuranceComponent,
+    TravelPaymentComponent
      
   ],
 
@@ -62,7 +64,8 @@ import { TravelInsuranceComponent } from './Components/travel-insurance/travel-i
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    MatCardModule
 
   ],
   providers: [],
