@@ -14,7 +14,7 @@ export class TravelPaymentComponent implements OnInit {
 
   model:any=[];
   PolicyNo:any;
-  transaction:TransactionService;
+  transaction:TravelInsuranceService;
   tran=new TransactionModule();
   trav=new TravelInsuranceModule();
   ngzone: NgZone;
@@ -23,7 +23,7 @@ export class TravelPaymentComponent implements OnInit {
 
   amtstore: any;
 
-  constructor(transaction: TransactionService, ngzone: NgZone,
+  constructor(transaction: TravelInsuranceService, ngzone: NgZone,
     router: Router) 
     {
       this.transaction=transaction;
@@ -45,6 +45,16 @@ export class TravelPaymentComponent implements OnInit {
     //this.tran.Travel_PolicyNo = this.
     this.tran.Status="Successfull";
     this.tran.TransactionDate=new Date().toDateString();
+    //this.tran.PaymentTravel(this.tran).subscribe((data: boolean) =>
+    {
+      //alert(data);
+      //if(data==true)
+      {
+        alert('Succesful');
+        //sessionStorage.setItem("amtstore",this.PolicyA.toString());
+        //this.ngzone.run(()=>this.router.navigateByUrl('/userdashboard'));
+      }
+    }//);
   }
 
 }
