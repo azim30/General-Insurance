@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GeneralInsuranceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GeneralInsurance.dbo.AdminDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AdminDetails">
+    <Key>
+      <PropertyRef Name="AdminID" />
+      <PropertyRef Name="MobNo" />
+      <PropertyRef Name="Password" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MobNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClaimDetails">
+    <Key>
+      <PropertyRef Name="ClaimNo" />
+    </Key>
+    <Property Name="ClaimNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserMobNo" Type="varchar" MaxLength="50" />
+    <Property Name="VehId" Type="int" />
+    <Property Name="PolNo" Type="int" />
+    <Property Name="ClaimReason" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ClaimStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ClaimAmt" Type="money" Nullable="false" />
+    <Property Name="ClaimDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactUs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MobNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PolicyDetails">
+    <Key>
+      <PropertyRef Name="PolicyNo" />
+    </Key>
+    <Property Name="PolicyNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserMobNo" Type="varchar" MaxLength="50" />
+    <Property Name="VehId" Type="int" />
+    <Property Name="PolicyName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Period" Type="int" Nullable="false" />
+    <Property Name="PolicyAmt" Type="money" Nullable="false" />
+    <Property Name="PolicyStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TravelClaimDetails">
+    <Key>
+      <PropertyRef Name="Travel_Claim_Id" />
+    </Key>
+    <Property Name="Travel_Claim_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PolicyNo" Type="int" />
+    <Property Name="Reason_for_Claim" Type="varchar" MaxLength="30" />
+    <Property Name="MobNo" Type="varchar" MaxLength="50" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="Claim_Status" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TravelInsurance">
+    <Key>
+      <PropertyRef Name="PolicyNo" />
+    </Key>
+    <Property Name="PolicyNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Source" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Destination" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TripStart" Type="date" Nullable="false" />
+    <Property Name="TripEnd" Type="date" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="MobileNo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NoOfPassengers" Type="int" Nullable="false" />
+    <Property Name="IPlan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="MobNo" />
+    </Key>
+    <Property Name="CustID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MobNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="DOB" Type="date" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="20" />
+    <Property Name="EmailVerification" Type="bit" />
+    <Property Name="ActivetionCode" Type="uniqueidentifier" />
+    <Property Name="OTP" Type="nvarchar" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="VehicleDetails">
+    <Key>
+      <PropertyRef Name="VehicleID" />
+    </Key>
+    <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserMobNo" Type="varchar" MaxLength="50" />
+    <Property Name="Manufacturer" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VehicleType" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="DrivingLicense" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="RegistrationNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="EngineNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ChassisNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PurchaseDate" Type="date" Nullable="false" />
+    <Property Name="Price" Type="money" />
+  </EntityType>
+  <Association Name="FK__ClaimDeta__PolNo__17F790F9">
+    <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="0..1" />
+    <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PolicyDetails">
+        <PropertyRef Name="PolicyNo" />
+      </Principal>
+      <Dependent Role="ClaimDetails">
+        <PropertyRef Name="PolNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClaimDeta__UserM__160F4887">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+    <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="MobNo" />
+      </Principal>
+      <Dependent Role="ClaimDetails">
+        <PropertyRef Name="UserMobNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClaimDeta__VehId__17036CC0">
+    <End Role="VehicleDetails" Type="Self.VehicleDetails" Multiplicity="0..1" />
+    <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleDetails">
+        <PropertyRef Name="VehicleID" />
+      </Principal>
+      <Dependent Role="ClaimDetails">
+        <PropertyRef Name="VehId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PolicyDet__UserM__75A278F5">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+    <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="MobNo" />
+      </Principal>
+      <Dependent Role="PolicyDetails">
+        <PropertyRef Name="UserMobNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PolicyDet__VehId__76969D2E">
+    <End Role="VehicleDetails" Type="Self.VehicleDetails" Multiplicity="0..1" />
+    <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleDetails">
+        <PropertyRef Name="VehicleID" />
+      </Principal>
+      <Dependent Role="PolicyDetails">
+        <PropertyRef Name="VehId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TravelCla__MobNo__31B762FC">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+    <End Role="TravelClaimDetails" Type="Self.TravelClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="MobNo" />
+      </Principal>
+      <Dependent Role="TravelClaimDetails">
+        <PropertyRef Name="MobNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TravelCla__Polic__30C33EC3">
+    <End Role="TravelInsurance" Type="Self.TravelInsurance" Multiplicity="0..1" />
+    <End Role="TravelClaimDetails" Type="Self.TravelClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TravelInsurance">
+        <PropertyRef Name="PolicyNo" />
+      </Principal>
+      <Dependent Role="TravelClaimDetails">
+        <PropertyRef Name="PolicyNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VehicleDe__UserM__72C60C4A">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+    <End Role="VehicleDetails" Type="Self.VehicleDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="MobNo" />
+      </Principal>
+      <Dependent Role="VehicleDetails">
+        <PropertyRef Name="UserMobNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="proc_ApproveMotorClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="policyid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_ApproveTravelClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="policyid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_calcprem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="policyid" Type="bigint" Mode="In" />
+    <Parameter Name="manu" Type="varchar" Mode="In" />
+    <Parameter Name="model" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetAllClaimsOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mobile" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetAllPoliciesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mobile" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetAllTravelClaimsOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mobile" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetAllTravelOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mobile" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetAllVehiclesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mobile" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetBrandNewPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="manu" Type="varchar" Mode="In" />
+    <Parameter Name="model" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetCarsOfManufacturer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="manu" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetManufacturers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_UpdatePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="otp" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_UserLoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+    <Parameter Name="pswd" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_insertMotorClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PolicyNo" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="MobNo" Type="varchar" Mode="In" />
+    <Parameter Name="Reason" Type="varchar" Mode="In" />
+    <Parameter Name="Date_Of_Applying" Type="date" Mode="In" />
+    <Parameter Name="Estimated_Amount_For_Repair" Type="float" Mode="In" />
+    <Parameter Name="License_Copy" Type="varchar" Mode="In" />
+    <Parameter Name="RC_Copy" Type="varchar" Mode="In" />
+    <Parameter Name="Insurance_Copy" Type="varchar" Mode="In" />
+    <Parameter Name="Bill_Copy" Type="varchar" Mode="In" />
+    <Parameter Name="Authenticated_Letter_from_RTO" Type="varchar" Mode="In" />
+    <Parameter Name="Claim_Status" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="GeneralInsuranceModelStoreContainer">
+    <EntitySet Name="ClaimDetails" EntityType="Self.ClaimDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PolicyDetails" EntityType="Self.PolicyDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TravelClaimDetails" EntityType="Self.TravelClaimDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TravelInsurance" EntityType="Self.TravelInsurance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleDetails" EntityType="Self.VehicleDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdminDetails" EntityType="Self.AdminDetails" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[AdminDetails].[AdminID] AS [AdminID], 
+[AdminDetails].[MobNo] AS [MobNo], 
+[AdminDetails].[Password] AS [Password]
+FROM [dbo].[AdminDetails] AS [AdminDetails]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__ClaimDeta__PolNo__17F790F9" Association="Self.FK__ClaimDeta__PolNo__17F790F9">
+      <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+      <End Role="ClaimDetails" EntitySet="ClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClaimDeta__UserM__160F4887" Association="Self.FK__ClaimDeta__UserM__160F4887">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="ClaimDetails" EntitySet="ClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClaimDeta__VehId__17036CC0" Association="Self.FK__ClaimDeta__VehId__17036CC0">
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+      <End Role="ClaimDetails" EntitySet="ClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PolicyDet__UserM__75A278F5" Association="Self.FK__PolicyDet__UserM__75A278F5">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PolicyDet__VehId__76969D2E" Association="Self.FK__PolicyDet__VehId__76969D2E">
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+      <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TravelCla__MobNo__31B762FC" Association="Self.FK__TravelCla__MobNo__31B762FC">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="TravelClaimDetails" EntitySet="TravelClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TravelCla__Polic__30C33EC3" Association="Self.FK__TravelCla__Polic__30C33EC3">
+      <End Role="TravelInsurance" EntitySet="TravelInsurance" />
+      <End Role="TravelClaimDetails" EntitySet="TravelClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VehicleDe__UserM__72C60C4A" Association="Self.FK__VehicleDe__UserM__72C60C4A">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
