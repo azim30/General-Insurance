@@ -16,9 +16,13 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
 import {MatInputModule} from '@angular/material/input';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 const MaterialComponents=[
+  MatMenuModule,
   MatToolbarModule,
   MatButtonModule,
   MatSidenavModule,
@@ -48,3 +52,9 @@ const MaterialComponents=[
   
 })
 export class MaterialModule { }
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}

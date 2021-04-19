@@ -22,6 +22,9 @@
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
     "jquery": "^3.6.0",
+    "ng-validate-equal": "^1.0.4",
+    "ng2-search-filter": "^0.5.1",
+    "ngx-captcha": "^9.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

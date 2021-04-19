@@ -1,4 +1,4 @@
-<div class="row">
+<!--<div class="row">
     <div class="main">
         <div class="card">
             <h2 style="text-align: center;">Login to Enjoy our Services...</h2>
@@ -18,14 +18,10 @@
         <span *ngIf="txtpass.errors?.pattern">Follow password restriction</span>
         <span *ngIf="txtpass.errors?.minlength">Minimum password length is 4 characters</span>
     </div>
-    <ngx-recaptcha2 #captchaElem
-    [siteKey]="siteKey" name="cap"  [(ngModel)]="model.cap"  #cap="ngModel" required>
-    <span *ngIf="cap.errors?.required"></span>
-    </ngx-recaptcha2>
+   
     
     
     
-    <button type="submit" [disabled]="LoginForm.invalid">Login</button>
     <input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
     <div class="container" style="background-color:#f1f1f1">
        <button type="button" class="cancelbtn">Cancel</button>
@@ -40,7 +36,55 @@
 
 </div>
 </div>
-</div>
-<div class="footer">
-    <p>&copy; 2020 Larsen & Toubro Infotech Limited</p>
-  </div>
+</div>-->
+
+<img class="wave" src="../../../assets/images/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="../../../assets/images/login.svg">
+		</div>
+		<div class="login-content">
+			<form #LoginForm="ngForm" name="LoginForm" (ngSubmit)="Login(LoginForm)">
+				<img src="../../../assets/images/avatar.svg">
+				<h2 class="title">Welcome</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+                    <mat-icon> account_circle</mat-icon>
+           		   </div>
+           		   <div class="div">
+           		   		<h5><label for="mobile"></label></h5>
+           		        <input class="input" type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
+                        <mat-error *ngIf="mno.errors?.required">Mobile No cannot be blank</mat-error>
+                        <mat-error *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</mat-error>
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<mat-icon> lock</mat-icon>
+           		   </div>
+           		   <div class="div">
+           		    	<h5><label for="psw"></label></h5>
+           		    	   <input matInput class="input" type="password" name="txtpass" [(ngModel)]="model.txtpass" placeholder="Enter Password" minlength="4" maxlength="8" #txtpass="ngModel" required>
+                           <mat-error *ngIf="txtpass.errors?.required">Password cannot be blank</mat-error>
+                           <mat-error *ngIf="txtpass.errors?.pattern">Follow password restriction</mat-error>
+                           <mat-error *ngIf="txtpass.errors?.minlength">Minimum password length is 4 characters</mat-error>           
+                           
+            	   </div>                                     
+            	</div>
+                <div class="input-div pass">
+                    <div class="i"> 
+                       
+                    </div>
+                    <div class="div" >
+                        <ngx-recaptcha2 #captchaElem
+                        [siteKey]="siteKey" name="cap"  [(ngModel)]="model.cap"  #cap="ngModel" required>
+                        <span *ngIf="cap.errors?.required"></span>
+                        </ngx-recaptcha2>
+                 </div>                                     
+              </div>
+            	<a routerLink="../forget-password">Forgot Password?</a>
+            	<button  type="submit" [disabled]="LoginForm.invalid" class="btn" >Login</button>
+                <input type="submit" routerLink="../register" class="btn1" value="Sign-Up">
+            </form>
+        </div>
+    </div>

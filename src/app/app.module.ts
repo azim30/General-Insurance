@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import {MaterialModule} from './Modules/material/material.module';
 import{HttpClientModule}from'@angular/common/http';
 import { BuyInsuranceComponent } from './Components/buy-insurance/buy-insurance.component';
 import {BackgroundComponent} from './Components/background/background.component';
@@ -70,6 +71,7 @@ HelpComponent,
   ],
   imports: [
     BrowserModule,
+    MaterialModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
