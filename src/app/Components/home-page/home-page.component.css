@@ -2,13 +2,12 @@
 .navbar{
 	justify-content:space-between;
   }
-  button{
+  a{
 	font-family: Roboto;
-	font-weight: 600px;
+	font-weight:initial;
 	font-size: 18px;
 	color:antiquewhite;
 	text-decoration: none;
-	
   }
   
   a:hover{
