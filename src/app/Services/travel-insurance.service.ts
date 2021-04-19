@@ -10,7 +10,7 @@ import {  HttpHeaders} from '@angular/common/http';
 export class TravelInsuranceService {
   usr:TravelInsuranceModule;
   http:HttpClient;
-  url:string='http://localhost:49356/api/TravelAPI';
+  url:string='http://localhost:54887/api/TravelAPI';
   httpOptions={headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
@@ -25,6 +25,10 @@ export class TravelInsuranceService {
   {
     return this.http.get<TravelInsuranceModule[]>(this.url+'/'+'GetAllTravels');
   }
+
+  GetTravelByID(phone:number):Observable<TravelInsuranceModule[]>
+  {
+    return this.http.get<TravelInsuranceModule[]>(this.url+'/'+'GetTravelByID' +'/'+phone, this.httpOptions);
+  }
  
 }
-

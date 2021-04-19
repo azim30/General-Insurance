@@ -14,7 +14,7 @@ export class TravelclaiminfoService {
 
   usr: TravelclaiminfoModule;
   http: HttpClient;
-  url: string = 'http://localhost:49356/api/TravelClaimAPI';
+  url: string = 'http://localhost:54887/api/TravelClaimAPI';
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
@@ -24,5 +24,21 @@ export class TravelclaiminfoService {
   RegisterTravelClaim(usr:TravelclaiminfoModule):Observable<boolean>
   {
     return this.http.post<boolean>(this.url+'/'+ 'TravelClaimDetails',usr, this.httpOptions);
+  }
+
+  GetAllTravelClaims(): Observable<TravelclaiminfoModule[]>
+  {
+    return this.http.get<TravelclaiminfoModule[]>(this.url+'/'+'GetAllClaims');
+  }
+
+  ApproveTravelClaim(id:number):Observable<boolean>
+  {
+    return this.http.put<boolean>(this.url+'/'+ 'ApproveTravelClaim',id, this.httpOptions);
+  }
+
+ 
+  GetTravelClaimByID(phone:number):Observable<TravelclaiminfoModule[]>
+  {
+    return this.http.get<TravelclaiminfoModule[]>(this.url+'/'+'GetTravelClaimByID' +'/'+phone, this.httpOptions);
   }
 }

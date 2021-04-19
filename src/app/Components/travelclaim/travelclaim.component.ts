@@ -23,6 +23,7 @@ export class TravelclaimComponent implements OnInit {
   router: Router;
   idstore1 : any;
   idstore2: any;
+  idstore3: any;
   constructor(svc: TravelclaiminfoService, ngzone: NgZone,
     router: Router) 
     {
@@ -34,13 +35,16 @@ export class TravelclaimComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.idstore3= sessionStorage.getItem("idstore3");
+    console.log(this.idstore3);
+    this.model.tNo=this.idstore3;
   }
   claimData(TravelclaimForm: NgForm):void
   {
     console.log(TravelclaimForm.value);
     //this.usr.VehicleID = buyinsuranceform.value.vid;
     this.tclm.PolicyNo = TravelclaimForm.value.tNo;
-    this.tclm.MobNo = TravelclaimForm.value.umob;
+    this.tclm.MobNo = TravelclaimForm.value.mno;
     //this.clm.VehID = claimInsuranceForm.value.vehid;
     //this.clm.PolNo = claimInsuranceForm.value.polid;
     this.tclm.Reason_for_Claim = TravelclaimForm.value.creason;

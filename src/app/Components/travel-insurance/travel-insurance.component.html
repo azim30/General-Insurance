@@ -55,13 +55,13 @@
            </div>
            <div>
             <label for="plan"><b>Choose Plan:-</b></label>
-            <input type="radio" value="premiun" name="plan"  [(ngModel)]="model.plan"  required (change)= "try()"  #plan="ngModel">Gold
-            <input type="radio" value="gold" name="plan" [(ngModel)]="model.plan" required (change)= "try()" #plan="ngModel"> Silver
+            <input type="radio" value="Premiun" name="plan"  [(ngModel)]="model.plan"  required (change)= "try()"  #plan="ngModel">Premium
+            <input type="radio" value="gold" name="plan" [(ngModel)]="model.plan" required (change)= "try()" #plan="ngModel"> Platinum
             
            </div>
            <div>Amount You have to Pay</div>
             {{PolicyA}}
-        <button type="submit" [disabled]="travelform.invalid" >Save</button>
+        <button type="submit" [disabled]="travelform.invalid" >Buy Travel Insurance</button>
         
     
    
@@ -71,6 +71,3 @@
 </div>
 </div>
 </div>
-<div class="footer">
-    <p>&copy; 2020 Larsen & Toubro Infotech Limited</p>
-  </div>

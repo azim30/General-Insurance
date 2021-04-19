@@ -35,8 +35,9 @@
     <div>Enter Claim Amount</div>
     <input type="number" name="price" [(ngModel)]="model.price" #price="ngModel" required>
 
-    <div>Select claim date</div>
-    <input type="date" name="cdate" [(ngModel)]="model.cdate" #cdate="ngModel" required>
+    <div>Your claim date</div>
+    <input name="cdate" [(ngModel)]="today" type="date" #cdate="ngModel" required readonly>
+
     <div>
         <button type="submit" [disabled]="claimInsuranceForm.invalid">Submit</button>
     </div>

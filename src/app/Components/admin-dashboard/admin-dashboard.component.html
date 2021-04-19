@@ -2,12 +2,17 @@
   <a mat-raised-button color="accent" (click)="GetAllUsers()"  role="button">Get all Customers</a>&nbsp;
 
   <a mat-raised-button color="accent"  (click)="GetAllVehicles()"  role="button">Get all Vehicles</a>&nbsp;
-  <a mat-raised-button color="accent"  (click)="GetAllVehicles()"  role="button">Get all Vehicles Claims</a>&nbsp;
-  <a mat-raised-button color="accent"  (click)="GetAllVehicles()"  role="button">Get all Travel Claims</a>&nbsp;
+  <a mat-raised-button color="accent"  (click)="GetAllClaims()"  role="button">Get all Vehicles Claims</a>&nbsp;
+  <a mat-raised-button color="accent"  (click)="GetAllTravelClaims()"  role="button">Get all Travel Claims</a>&nbsp;
 
 <br><br>
 
   <div *ngIf="buttonName1=='GetAllUsers'">
+    <br>
+    <div style="padding-left: 2%;">     
+    <input type="text" [(ngModel)]="term" placeholder="Search..">
+    </div>
+    <br>
     <table class="styled-table" border="1">
         <thead>
         <tr>
@@ -22,7 +27,10 @@
         </tr>
         </thead>
         <tbody>
+
         <tr *ngFor="let value of emplist">
+            <tr *ngFor = "let value of emplist |  filter:term ">
+
             <td>{{value.CustID}}</td>
             <td>{{value.UserName}}</td>
             <td>{{value.Email}}</td>
@@ -32,10 +40,16 @@
             <td>{{value.Gender}}</td>
             <td><button (click)="delete(value.EmpID)">Delete </button></td>
         </tr>
+        
         </tbody>
     </table></div>
 
     <div *ngIf="buttonName1=='GetAllVehicles'">
+        <br>
+        <div style="padding-left: 2%;">     
+        <input type="text" [(ngModel)]="term" placeholder="Search..">
+        </div>
+        <br>
         <table class="styled-table" border="1">
             <thead>
             <tr>
@@ -57,6 +71,8 @@
             </thead>
             <tbody>
             <tr *ngFor="let value of vehlist">
+                <tr *ngFor = "let value of vehlist |  filter:term ">
+
                 <td>{{value.VehicleID}}</td>
                 <td>{{value.UserMobNo}}</td>
                 <td>{{value.VehicleType}}</td>
@@ -73,4 +89,80 @@
             </tr>
             </tbody>
         </table></div>
+
+        
+  <div *ngIf="buttonName1=='GetAllClaims'">
+    <br>
+    <div style="padding-left: 2%;">     
+    <input type="text" [(ngModel)]="term" placeholder="Search..">
+    </div>
+    <br>
+    <table class="styled-table" border="1">
+        <thead>
+        <tr>
+            <th>Claim ID</th>
+            <th>Mob No.</th>
+            <th>Vehicle Id</th>
+            <th>Policy No.</th>
+            <th>Claim Reason</th>
+            <th>Claim Status</th>
+            <th>Claim Amt</th>
+            <th>Claim Date</th>
+            <th>Approve</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let value of claimlist">
+            <tr *ngFor = "let value of claimlist |  filter:term ">
+
+            <td>{{value.ClaimNo}}</td>
+            <td>{{value.UserMobNo}}</td>
+            <td>{{value.VehId}}</td>
+            <td>{{value.PolNo}}</td>
+            <td>{{value.ClaimReason}}</td>
+            <td>{{value.ClaimStatus}}</td>
+            <td>{{value.ClaimAmt}}</td>
+            <td>{{value.ClaimDate}}</td>
+            <td><button (click)="Approve(value.PolNo)">Approve </button></td>
+        </tr>
+        
+        </tbody>
+    </table></div>
+
+    <div *ngIf="buttonName1=='GetAllTravelClaims'">
+        <br>
+        <div style="padding-left: 2%;">     
+        <input type="text" [(ngModel)]="term" placeholder="Search..">
+        </div>
+        <br>
+        <table class="styled-table" border="1">
+            <thead>
+            <tr>
+                <th>Claim ID</th>
+                <th>Policy No</th>
+                <th>Reason of Claim</th>
+                <th>Mob No.</th>
+                <th>Amount </th>
+                <th>Claim Status</th>
+                <th>Approve</th>
+            </tr>
+            </thead>
+            <tbody>
+    
+            <tr *ngFor="let value of tralist">
+                <tr *ngFor = "let value of tralist |  filter:term ">
+    
+                <td>{{value.Travel_Claim_Id}}</td>
+                <td>{{value.PolicyNo}}</td>
+                <td>{{value.Reason_for_Claim}}</td>
+                <td>{{value.MobNo}}</td>
+                <td>{{value.Amount}}</td>
+                <td>{{value.Claim_Status}}</td>
+                <td><button (click)="ApproveTravel(value.PolicyNo)">Approve </button></td>
+            </tr>
+            
+            </tbody>
+        </table></div>
+    
   

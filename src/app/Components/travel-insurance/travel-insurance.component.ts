@@ -28,10 +28,10 @@ export class TravelInsuranceComponent implements OnInit {
   ngOnInit(): void {
   }
   try(){
-    if(this.model.plan == "premium")
-      this.PolicyA = (this.model.npassenger)*1000*2;
+    if(this.model.plan == "gold")
+      this.PolicyA = (this.model.npassenger)*2000;
     else
-      this.PolicyA = (this.model.npassenger)*1000;
+      this.PolicyA = (this.model.npassenger)*1500;
   }
 
   RegisterData(travelform:NgForm):void{
@@ -45,20 +45,20 @@ export class TravelInsuranceComponent implements OnInit {
     this.usr.Address =travelform.value.address;
     this.usr.Age =travelform.value.age;
     this.usr.MobileNo =travelform.value.mno;
-    this.usr. NoOfPassengers =travelform.value.npassenger;
+    this.usr.NoOfPassengers =travelform.value.npassenger;
     this.usr.IPlan=travelform.value.plan;
+    this.usr.Amount= (travelform.value.npassenger)*1000;
+   
     this.svc.RegisterTravelDetails(this.usr).subscribe((data: boolean) =>
     {
       alert(data);
       if(data==true)
       {
-        alert('Proceed to payment');
-        sessionStorage.setItem("amtstore",this.PolicyA.toString());
-        this.ngzone.run(()=>this.router.navigateByUrl('/travelpayment'));
+        alert('New User Registered');
+        this.ngzone.run(()=>this.router.navigateByUrl('/user-dashboard'));
       }
     });
 
   }
- 
+
  }
- 

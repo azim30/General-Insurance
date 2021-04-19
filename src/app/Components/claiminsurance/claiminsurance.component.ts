@@ -26,6 +26,7 @@ export class ClaiminsuranceComponent implements OnInit {
   router: Router;
   idstore1 : any;
   idstore2: any;
+  today: string;
   constructor(svc: ClaiminfoService, ngzone: NgZone,
     router: Router) 
     {
@@ -41,6 +42,8 @@ export class ClaiminsuranceComponent implements OnInit {
    }
   
    ngOnInit(): void {
+    this.today = new Date().toISOString().split('T')[0];
+
     this.idstore1= sessionStorage.getItem("idstore1");
     console.log(this.idstore1);
     this.model.polid=this.idstore1;
@@ -62,13 +65,14 @@ export class ClaiminsuranceComponent implements OnInit {
     this.clm.ClaimDate = claimInsuranceForm.value.cdate;
     this.clm.ClaimStatus = "Pending";
     //alert(this.usr.VehicleID+','+this.usr.Maufacturer);
+    console.log(this.clm);
     this.svc.RegisterClaim(this.clm).subscribe((data: boolean) =>
     {
       alert(data);
       if(data==true)
       {
         alert('Susscessfully registered your claim');
-        this.ngzone.run(()=>this.router.navigateByUrl('/userdashboard'));
+        this.ngzone.run(()=>this.router.navigateByUrl('/user-dashboard'));
       }
     });
   }

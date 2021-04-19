@@ -21,4 +21,5 @@ Address :string;
      MobileNo :string;
       NoOfPassengers :number;
      IPlan:string;
+     Amount: number;
 }

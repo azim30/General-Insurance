@@ -1,10 +1,24 @@
-<p>userhomepage works!</p>
-<a mat-raised-button color="accent"  (click)="GetAllVehicles()"  role="button">Get all Vehicles</a>&nbsp;
-<a mat-raised-button color="accent"  (click)="GetPolicies()"  role="button">Get all Policies</a>&nbsp;
-<a mat-raised-button color="accent"  (click)="GetAllClaims()"  role="button">Get all Claims</a>&nbsp;
-<a mat-raised-button color="accent"  (click)="GetPolicies()"  role="button">Register Vehicle</a>&nbsp;
+<br>
+<a mat-raised-button color="accent"  [routerLink]="['/RegisterVehicle']"  role="button">Register Vehicle</a>&nbsp;
+<a mat-raised-button color="accent"  [routerLink]="['/travelinsurance']"  role="button">Buy Travel Insurance</a>&nbsp;
+<br><br><br>
+<a mat-raised-button color="accent"  (click)="GetAllVehicles()"  role="button">Check all Registered Vehicles</a>&nbsp;
+<a mat-raised-button color="accent"  (click)="GetPolicies()"  role="button">Check all Aplied Policies</a>&nbsp;
+<a mat-raised-button color="accent"  (click)="GetAllClaims()"  role="button">Get all Motor Claims</a>&nbsp;
+<a mat-raised-button color="accent"  (click)="GetAllTravels()"  role="button">Get all Travel Insurance Registered</a>&nbsp;
+<a mat-raised-button color="accent"  (click)="GetAllTravelClaims()"  role="button">Get all Travel Claims</a>&nbsp;<br><br>
+
+
+<br><br>
+
 <div *ngIf="buttonName1=='GetAllVehicles'">
-    <table border="1">
+    <br>
+    <div style="padding-left: 2%;">     
+    <input type="text" [(ngModel)]="term" placeholder="Search..">
+    </div>
+    <br>
+    <table class="styled-table" border="1">
+        <thead>
         <tr>
             <th>Vehicle ID</th>
             <th>Mobile No.</th>
@@ -17,12 +31,11 @@
             <th>Price </th>
             <th>Chassis No.</th>
             <th>Engine No.</th>
-            <th>Update Details</th>
             <th>Buy Insurance</th>
             <th>Delete</th>
 
 
-        </tr>
+        </tr></thead><tbody>
         <tr *ngFor="let value of vehlist">
             <td>{{value.VehicleID}}</td>
             <td>{{value.UserMobNo}}</td>
@@ -35,14 +48,19 @@
             <td>{{value.Price}}</td>
             <td>{{value.ChassisNo}}</td>
             <td>{{value.EngineNo}}</td>
-            <td><button (click)="Update(value.VehicleID)" >Update</button></td>
             <td><button (click)="buyinsurance(value.VehicleID)" >Buy Insurance</button></td>
             <td><button (click)="delete(value.VehicleID)">Delete </button></td>
-        </tr>
+        </tr></tbody>
     </table></div>
 
     <div *ngIf="buttonName2=='GetPolicies'">
-        <table border="1">
+        <br>
+        <div style="padding-left: 2%;">     
+        <input type="text" [(ngModel)]="term" placeholder="Search..">
+        </div>
+        <br>
+        <table class="styled-table" border="1" id="table">
+            <thead>
             <tr>
                 <th>PolicyNo</th>
                 <th>Mobile No.</th>
@@ -52,9 +70,9 @@
                 <th>Policy Amount</th>
                 <th>Policy Status</th>
                 <th>Start Date</th>
-                <th>End Date</th>
                 <th>Claim</th>
-            </tr>
+                <th>Renew Policy</th>
+            </tr></thead><tbody>
             <tr *ngFor="let value of pollist">
                 <td>{{value.PolicyNo}}</td>
                 <td>{{value.UserMobNo}}</td>
@@ -64,14 +82,22 @@
                 <td>{{value.PolicyAmt}}</td>
                 <td>{{value.PolicyStatus}}</td>
                 <td>{{value.StartDate}}</td>
-                <td>{{value.EndDate}}</td>
                 <td><button (click)="ClaimInsurance(value.PolicyNo,value.VehId)">Claim</button></td>
+                <td><button (click)="buyinsurance(value.VehId)">Renew</button></td>
 
-            </tr>
+
+
+
+            </tr></tbody>
         </table></div>
-
         <div *ngIf="buttonName3=='GetAllClaims'">
-            <table border="1">
+            <br>
+            <div style="padding-left: 2%;">     
+            <input type="text" [(ngModel)]="term" placeholder="Search..">
+            </div>
+            <br>
+            <table class="styled-table" border="1">
+                <thead>
                 <tr>
                     <th>Claim No</th>
                     <th>Mobile No.</th>
@@ -81,7 +107,7 @@
                     <th>Claim Status</th>
                     <th>Claim Date</th>
                     <th>Claim Reason</th>
-                </tr>
+                </tr></thead><tbody>
                 <tr *ngFor="let value of clist">
                     <td>{{value.ClaimNo}}</td>
                     <td>{{value.UserMobNo}}</td>
@@ -89,7 +115,78 @@
                     <td>{{value.PolNo}}</td>
                     <td>{{value.ClaimAmt}}</td>
                     <td>{{value.ClaimStatus}}</td>
-                    <td>{{value.ClaimtDate}}</td>
+                    <td>{{value.ClaimDate}}</td>
                     <td>{{value.ClaimReason}}</td>
-                </tr>
+                </tr></tbody>
             </table></div>
+
+            <div *ngIf="buttonName4=='GetAllTravels'">
+                <br>
+                <div style="padding-left: 2%;">     
+                <input type="text" [(ngModel)]="term" placeholder="Search..">
+                </div>
+                <br>
+                <table class="styled-table" border="1">
+                    <thead>
+                    <tr>
+                        <th>Policy No</th>
+                        <th>Source</th>
+                        <th>Destination</th>
+                        <th>TripStart</th>
+                        <th>TripEnd</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Age</th>
+                        <th>MobileNo</th>
+                        <th>NoOfPassengers</th>
+                        <th>Plan</th>
+                        <th>Amount</th>
+                        <th>Claim</th>
+            
+            
+                    </tr></thead><tbody>
+                    <tr *ngFor="let value of tlist">
+                        <td>{{value.PolicyNo}}</td>
+                        <td>{{value.Source}}</td>
+                        <td>{{value.Destination}}</td>
+                        <td>{{value.TripStart}}</td>
+                        <td>{{value.TripEnd}}</td>
+                        <td>{{value.Name}}</td>
+                        <td>{{value.Address}}</td>
+                        <td>{{value.Age}}</td>
+                        <td>{{value.MobileNo}}</td>
+                        <td>{{value.NoOfPassengers}}</td>
+                        <td>{{value.IPlan}}</td>
+                        <td>{{value.Amount}}</td>
+                        <td><button (click)="ClaimTravel(value.PolicyNo)" >Claim Insurance</button></td>
+                    </tr></tbody>
+                </table></div>
+            
+
+                <div *ngIf="buttonName5=='GetAllTravelClaims'">
+                    <br>
+                    <div style="padding-left: 2%;">     
+                    <input type="text" [(ngModel)]="term" placeholder="Search..">
+                    </div>
+                    <br>
+                    <table class="styled-table" border="1">
+                        <thead>
+                        <tr>
+                            <th>Travel Claim No</th>
+                            <th>Policy No</th>
+                            <th>Claim Reason</th>
+                            <th>Mobile No.</th>
+                            <th>Claim Amount</th>
+                            <th>Claim Status</th>
+                          
+                        </tr></thead><tbody>
+                        <tr *ngFor="let value of tclist">
+                            <td>{{value.Travel_Claim_Id}}</td>
+                            <td>{{value.PolicyNo}}</td>
+                            <td>{{value.Reason_for_Claim}}</td>
+                            <td>{{value.MobNo}}</td>
+                            <td>{{value.Amount}}</td>
+                            <td>{{value.Claim_Status}}</td>
+                           
+                        </tr></tbody>
+                    </table></div>

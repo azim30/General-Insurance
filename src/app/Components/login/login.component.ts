@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   Login(LoginForm:NgForm):void{
     this.mob = this.model.mno;
     this.pwd= this.model.txtpass;
-    alert(this.mob+','+this.pwd);
+    //alert(this.mob+','+this.pwd);
 
     this.svc.Login(this.mob,this.pwd).subscribe((data:string)=> {
     console.log(data);
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     {
       alert('Login successful');
       localStorage.setItem('PID',this.mob.toString());
-      this.ngzone.run(()=>this.router.navigateByUrl('/userdashboard'));
+      this.ngzone.run(()=>this.router.navigateByUrl('/user-dashboard'));
     }
     else
     {

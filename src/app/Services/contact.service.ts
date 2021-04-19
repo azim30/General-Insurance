@@ -11,7 +11,7 @@ export class ContactService {
 
   usr: ContactModule;
   http: HttpClient;
-  url: string = 'http://localhost:49356/api/UserAPI';
+  url: string = 'http://localhost:54887/api/ContactUsAPI';
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
@@ -25,6 +25,6 @@ export class ContactService {
  
   RegisterCon(usr: ContactModule):Observable<boolean>
   {
-    return this.http.post<boolean>(this.url+'/'+ 'Contact',usr, this.httpOptions);
+    return this.http.post<boolean>(this.url+'/'+ 'NewData',usr, this.httpOptions);
   }
 }

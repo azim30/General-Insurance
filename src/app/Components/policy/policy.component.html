@@ -9,15 +9,14 @@
     <div>Enter vehicle ID</div>
     <input type="text" name="vid" [(ngModel)]="model.vid"   #vid="ngModel" readonly>
 
-    <div>Enter Policy Name</div>
-    <select type="text" name="pname" [(ngModel)]="model.pname" #pname="ngModel" required>
-        <option value="New India Assurance">New India Assurance. </option>
-        <option value="IFFCO Tokio">IFFCO Tokio.</option>
-        <option value="HDFC ERGO">HDFC ERGO.</option>
-        <option value="Reliance">Reliance.</option>
-        <option value="Tata AIG">Tata AIG.</option>
-        <option value="Bajaj Allianz">Bajaj Allianz.</option>
-    </select>
+ 
+
+    <div>
+        <label for="pname"><b>Choose Plan:-</b></label>
+        <input type="radio" value="Premiun" name="pname"  [(ngModel)]="model.pname"  required (change)= "try()"  #pname="ngModel">Third party
+        <input type="radio" value="gold" name="pname" [(ngModel)]="model.pname" required (change)= "try()" #pname="ngModel"> Comprehensive
+        
+       </div>
 
     <div>Select Period (Years)</div>
     <select type="text" name="period" [(ngModel)]="model.period" #period="ngModel" required (change)= "try()">
@@ -27,15 +26,16 @@
         <option value="3">3</option>
     </select>
 
-   <div>Amount You have to Pay</div>
-   {{PolicyA}}
+   <div>Amount You have to Pay: </div>{{PolicyA}}
+   
   
 
-    <div>Enter Start date</div>
-    <input type="date" name="sdate" [(ngModel)]="model.sdate" #sdate="ngModel" required>
+    <div>Your Start date</div>
 
-    <div>Enter End date</div>
-    <input type="date" name="edate" [(ngModel)]="model.edate" #edate="ngModel" required>
+    <input name="sdate" [(ngModel)]="today" type="date" #sdate="ngModel" required readonly>
+
+
+   
         
     <div>
         <button type="submit" [disabled]="policydetailsform.invalid">Submit</button>

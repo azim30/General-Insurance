@@ -20,6 +20,9 @@ export class PolicyComponent implements OnInit {
   router: Router;
 idstore : any;
 PolicyA : number;
+today: string;
+
+
   constructor(svc: PolicyinfoService, ngzone: NgZone,
     router: Router) 
     {
@@ -30,12 +33,21 @@ PolicyA : number;
     }
 
   ngOnInit(): void {
+    this.today = new Date().toISOString().split('T')[0];
+
     this.idstore= sessionStorage.getItem("idstore");
     console.log(this.idstore);
     this.model.vid=this.idstore;
   }
   try(){
-    this.PolicyA = (this.model.period)*1000;
+    if(this.model.pname == "gold"){
+      this.PolicyA = (this.model.period)*1550;
+
+    }
+    else
+    this.PolicyA = (this.model.period)*900;
+
+
   }
   policyData(policydetailsform: NgForm):void
   {
@@ -48,7 +60,6 @@ PolicyA : number;
    
     this.pol.PolicyStatus = 'Inactive';
     this.pol.StartDate = policydetailsform.value.sdate;
-    this.pol.EndDate = policydetailsform.value.edate;
     //alert(this.usr.VehicleID+','+this.usr.Maufacturer);
     this.svc.PolicyDetails(this.pol).subscribe((data: boolean) =>
     {
@@ -56,7 +67,7 @@ PolicyA : number;
       if(data==true)
       {
         alert('Susscessfully purchased insurance.');
-        //this.ngzone.run(()=>this.router.navigateByUrl('/policy'));
+        this.ngzone.run(()=>this.router.navigateByUrl('/user-dashboard'));
 
       }
   });
