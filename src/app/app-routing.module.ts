@@ -18,6 +18,7 @@ import {ClaiminsuranceComponent} from './Components/claiminsurance/claiminsuranc
 import {TravelclaimComponent} from './Components/travelclaim/travelclaim.component';
 import {TravelInsuranceComponent} from './Components/travel-insurance/travel-insurance.component';
 import {CalculateInsuranceComponent} from './Components/calculate-insurance/calculate-insurance.component'; 
+import {FaqComponent } from './Components/faq/faq.component';
 const routes: Routes = [
  // {path:'',component:HomePageComponent,pathMatch:'full'},
   {path:'register',component:RegisterComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'travelclaim', component: TravelclaimComponent},
   {path: 'travelinsurance', component: TravelInsuranceComponent},
   {path: 'calculate', component:CalculateInsuranceComponent},
+  {path: 'faq',component:FaqComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,14 @@
+mat-panel-title{
+    font-family: Roboto;
+    font-size: large;
+    text-align: justify;
+    }
+    mat-panel-description{
+        font-weight: 700;
+        font-size: 60;
+        color:rgb(51, 44, 44);
+    }
+    button{
+        font-size: medium;
+       margin-right: 5%;
+    }
