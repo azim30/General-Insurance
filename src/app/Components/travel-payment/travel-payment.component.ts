@@ -20,7 +20,7 @@ export class TravelPaymentComponent implements OnInit {
   ngzone: NgZone;
   router: Router;
   tpno:any;
-
+  mpno: any;
   amtstore: any;
 
   constructor(transaction: TravelInsuranceService, ngzone: NgZone,
@@ -34,7 +34,10 @@ export class TravelPaymentComponent implements OnInit {
   ngOnInit(): void {
     this.tpno= sessionStorage.getItem("idstore1");
     console.log(this.tpno);
-    //this.model =this.tpno;
+    this.model.Travel_PolicyNo =this.tpno;
+    this.mpno= sessionStorage.getItem("idstore1");
+    console.log(this.mpno);
+    this.model.Motor_PolicyNo =this.mpno;
     this.amtstore= sessionStorage.getItem("amtstore");
     console.log(this.amtstore);
   
@@ -42,7 +45,7 @@ export class TravelPaymentComponent implements OnInit {
   RegisterData(regform:NgForm):void{
     console.log(regform.value);
     this.tran.Motor_PolicyNo = this.tpno;
-    //this.tran.Travel_PolicyNo = this.
+    this.tran.Travel_PolicyNo = this.mpno;
     this.tran.Status="Successfull";
     this.tran.TransactionDate=new Date().toDateString();
     //this.tran.PaymentTravel(this.tran).subscribe((data: boolean) =>
@@ -52,7 +55,7 @@ export class TravelPaymentComponent implements OnInit {
       {
         alert('Succesful');
         //sessionStorage.setItem("amtstore",this.PolicyA.toString());
-        //this.ngzone.run(()=>this.router.navigateByUrl('/userdashboard'));
+        this.ngzone.run(()=>this.router.navigateByUrl('/userdashboard'));
       }
     }//);
   }
