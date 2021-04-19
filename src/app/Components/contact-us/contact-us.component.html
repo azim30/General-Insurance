@@ -1,4 +1,4 @@
-<mat-card>
+<!--<mat-card>
     <mat-card-content>
         <div class="header">
             <h2 style="text-align: center;">Contact us Freely...</h2></div>
@@ -44,13 +44,77 @@
              
               
                  
-                <!--<div class="form-submit">
+               <div class="form-submit">
                     <input type="submit" value="Register" class="submit" name="submit" id="submit" />
-                </div>-->
+                </div>
                 <button type="submit" class="btn btn-block btn-success" [disabled]="conform.invalid">Submit</button>  
                 </div>
             </form>
         </mat-card-content>
-        </mat-card>
+        </mat-card>-->
+
+        <div class="container">
+            <span class="big-circle"></span>
+            <img src="../../../assets/images/shape.png" class="square" alt="" />
+            <div class="form">
+              <div class="contact-info">
+                <h3 class="title">Let's get in touch</h3>
+                <p class="text">
+                    At Insurance Pay, it is our constant endeavour to provide great customer experience. In case you require assistance,
+                    we have created multiple ways to reach out to us. We commit to resolving your queries to your satisfaction.
+                </p>
+      
+                <div class="info">
+                  <div class="information">
+                    <img src="../../../assets/images/location.png" class="icon" alt="" />
+                    <p>Mind Space, Airoli, Navi Mumbai, Maharashtra 400708</p>
+                  </div>
+                  <div class="information">
+                    <img src="../../../assets/images/mail.png" class="icon" alt="" />
+                    <p>www.insurancepay.com</p>
+                  </div>
+                  <div class="information">
+                    <img src="../../../assets/images/phone.png" class="icon" alt="" />
+                    <p>123-456-789</p>
+                  </div>
+                </div>
+      
+                
+              </div>
+      
+              <div class="contact-form">
+                <span class="circle one"></span>
+                <span class="circle two"></span>
+      
+                <form #conform="ngForm" name="conform" (ngSubmit)="ContactData(conform)">
+                  <h3 class="title">Contact us</h3>
+                  <div class="input-container">
+                    <label for="uname"></label>
+                    <input type="text" name="name" class="input" [(ngModel)]="model.name" placeholder="Enter Name" #name="ngModel" required>
+                    <mat-error *ngIf="name.errors?.required">Name has to be entered</mat-error>
+                   </div>
+                  <div class="input-container">
+                    <label for="email"></label>
+                    <input type="email" class="input" name="txtemail" [(ngModel)]="model.txtemail" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" placeholder="Enter Email" #txtemail="ngModel" required>
+                    <mat-error *ngIf="txtemail.errors?.required">Email cannot be blank</mat-error>
+                    <mat-error *ngIf="txtemail.errors?.pattern">Follow Email restriction</mat-error>
+                  </div>
+                  <div class="input-container">                   
+                    <label for="sub"></label>
+                    <input  class="input"type="text" name="sub" [(ngModel)]="model.sub" placeholder="Enter Subject" #sub="ngModel" required>
+                    <mat-error *ngIf="sub.errors?.required">Subject has to be entered</mat-error>
+                  </div>
+                  <div class="input-container textarea">
+                    <label for="msg"><b></b></label>
+                    <input class="input" type="textarea" name="msg" [(ngModel)]="model.msg" placeholder="Enter Message" #msg="ngModel" required>
+                    <mat-error *ngIf="msg.errors?.required">Message has to be entered</mat-error>
+                  </div>
+                
+                  <input type="submit"[disabled]="conform.invalid" value="Send" class="btn" />
+                 <!-- <input type="submit" [routerLink]="['register']" value="Register" class="btn" />-->
+                </form>
+              </div>
+            </div>
+          </div>
    
    
