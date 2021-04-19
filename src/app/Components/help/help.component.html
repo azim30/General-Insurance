@@ -68,7 +68,7 @@
                 </mat-expansion-panel-header>
                 <p>Just provide your Car/Bike Model and Age of your Vehicle and we will Calculate your premium amount for you.</p>
                 <mat-action-row>
-                <button mat-flat-button color="primary">Calculate Now</button>
+                <button mat-flat-button color="primary"  [routerLink]="['/calculate']">Calculate Now</button>
                 </mat-action-row>
             </mat-expansion-panel>
             <!--Contact Us-->
@@ -83,7 +83,7 @@
                 </mat-expansion-panel-header>
                 <p>Want our personal assistance?. Fill your details and we will reach you soon.</p>
                 <mat-action-row>
-                <button mat-flat-button color="primary">Contact-Us</button>
+                <button mat-flat-button color="primary" [routerLink]="['/Contact-us']">Contact-Us</button>
                 </mat-action-row>
             </mat-expansion-panel>
 

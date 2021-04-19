@@ -13,14 +13,24 @@ export class ClaiminfoService {
 
   usr: ClaiminfoModule;
   http: HttpClient;
-  url: string = 'http://localhost:49356/api/ClaimAPI';
+  url: string = 'http://localhost:54887/api/ClaimAPI';
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
   };
-  constructor(http: HttpClient) { this.http=http; }
+  constructor(http: HttpClient) {this.http=http; }
 
- 
+  GetAllClaims(): Observable<ClaiminfoModule[]>
+  {
+    return this.http.get<ClaiminfoModule[]>(this.url+'/'+'GetAllClaims');
+  }
+
+  
+  ApproveClaim(id:number):Observable<boolean>
+  {
+    return this.http.put<boolean>(this.url+'/'+ 'ApproveClaim',id, this.httpOptions);
+  }
+
   RegisterClaim(usr:ClaiminfoModule):Observable<boolean>
   {
     return this.http.post<boolean>(this.url+'/'+ 'RegisterClaim',usr, this.httpOptions);

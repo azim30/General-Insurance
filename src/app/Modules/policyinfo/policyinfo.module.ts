@@ -18,6 +18,5 @@ export class PolicyinfoModule {
   PolicyAmt: number;
   PolicyStatus: string;
   StartDate: Date;
-  EndDate: Date;
 
  }

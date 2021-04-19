@@ -8,7 +8,7 @@ import {HttpHeaders} from '@angular/common/http';
 })
 export class AdminloginService {
   http: HttpClient;
-  url: string = 'http://localhost:49356/api/AdminAPI';
+  url: string = 'http://localhost:54887/api/AdminAPI';
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })

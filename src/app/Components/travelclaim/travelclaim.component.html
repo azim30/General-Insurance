@@ -1,11 +1,4 @@
 
-
-    <!--<label class="fieldlabels">Ticket Copy</label>
-    <input type="file" #Ticket_Copy formControlName="Ticket_Copy" (change)="onSelectFile($event)"
-        [(ngModel)]="travelclaim.Ticket_Copy">-->
-   
-
-
 <div class="row">
     <div class="main">
         <div class="card">
@@ -16,7 +9,7 @@
         
         <div>
             <label for="tNo"><b>Enter Policy No:- </b></label>
-            <input type="text" name="tNo" [(ngModel)]="model.tNo" placeholder="Enter Policy No" #tNO="ngModel" required>
+            <input type="text" name="tNo" [(ngModel)]="model.tNo" placeholder="Enter Policy No" #tNO="ngModel" required readonly>
             <!--<span *ngIf="tNo.errors?.required"></span>-->
         </div>
         <div>
@@ -48,6 +41,3 @@
 </div>
 </div>
 </div>
-<div class="footer">
-    <p>&copy; 2020 Larsen & Toubro Infotech Limited</p>
-  </div>

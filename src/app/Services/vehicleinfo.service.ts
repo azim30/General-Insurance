@@ -5,7 +5,6 @@ import { Observer} from 'rxjs';
 import {VehicleInfoModule} from '../Modules/vehicle-info/vehicle-info.module';
 import {Observable} from 'rxjs/internal/observable';
 import {HttpHeaders} from '@angular/common/http';
-import { PolicyinfoModule } from '../Modules/policyinfo/policyinfo.module';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +12,7 @@ export class VehicleinfoService {
 
   usr: VehicleInfoModule;
   http: HttpClient;
-  url: string = 'http://localhost:49356/api/VehicleAPI';
-  url1: string = 'http://localhost:49356/api/PolicyAPI';
+  url: string = 'http://localhost:54887/api/VehicleAPI';
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
@@ -25,26 +23,19 @@ export class VehicleinfoService {
   {
     return this.http.get<VehicleInfoModule[]>(this.url+'/'+'GetAllVehicles');
   }
-  GetAllPolicies(): Observable<PolicyinfoModule[]>
+  GetVehicleByID(phone:number):Observable<VehicleInfoModule[]>
   {
-    return this.http.get<PolicyinfoModule[]>(this.url1+'/'+'GetAllPolicies');
+    return this.http.get<VehicleInfoModule[]>(this.url+'/'+'GetVehicleByID' +'/'+phone, this.httpOptions);
   }
-  
 
   Register(usr: VehicleInfoModule):Observable<boolean>
   {
     return this.http.post<boolean>(this.url+'/'+ 'RegisterVehicle',usr, this.httpOptions);
   }
-  GetVehicleByID(phone:number):Observable<VehicleInfoModule[]>
+  DeleteVehicle(id:number):Observable<boolean>
   {
-    return this.http.get<VehicleInfoModule[]>(this.url+'/'+'GetVehicleByID' +'/'+phone, this.httpOptions);
+    return this.http.delete<boolean>(this.url + '/' + 'DeleteVehicle' + '/' +id);
   }
-  DeleteVehicle(id:number):Observable<Boolean>
-  {
-    return this.http.delete<boolean>(this.url+'/'+'DeleteVehicle'+'/'+id);
-  }
-  
-
-  
-
+  UpdateVehicle(id:number,usr: VehicleInfoModule):Observable<boolean>{
+    return this.http.put<boolean>(this.url + '/' + 'UpdateVehicle' + '/'+id ,usr,this.httpOptions)};
 }

@@ -7,8 +7,12 @@ import { VehicleInfoModule } from '../../Modules/vehicle-info/vehicle-info.modul
 import { VehicleinfoService } from '../../Services/vehicleinfo.service';
 import { PolicyinfoModule } from '../../Modules/policyinfo/policyinfo.module';
 import { PolicyinfoService } from '../../Services/policyinfo.service';
-import { ClaiminfoModule } from 'src/app/Modules/claiminfo/claiminfo.module';
-import { ClaiminfoService } from 'src/app/Services/claiminfo.service';
+import { ClaiminfoModule } from '../../Modules/claiminfo/claiminfo.module';
+import { ClaiminfoService } from '../../Services/claiminfo.service';
+import {TravelInsuranceService} from '../../Services/travel-insurance.service';
+import{TravelInsuranceModule} from '../../Modules/travel-insurance/travel-insurance.module';
+import {TravelclaiminfoModule} from '../../Modules/travelclaiminfo/travelclaiminfo.module';
+import {TravelclaiminfoService} from '../../Services/travelclaiminfo.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -21,15 +25,22 @@ export class UserDashboardComponent implements OnInit {
   svc: VehicleinfoService;
   psvc: PolicyinfoService;
   csvc: ClaiminfoService;
+  tsvc: TravelInsuranceService
+  tcsvc: TravelclaiminfoService;
   usr: VehicleInfoModule[];
   usrinfo =new UserInfoModule();
   vehinfo = new VehicleInfoModule();
+  trvinfo = new TravelInsuranceModule();
   vehlist: VehicleInfoModule[];
   pollist: PolicyinfoModule[];
   clist: ClaiminfoModule[];
+  tlist: TravelInsuranceModule[];
+  tclist: TravelclaiminfoModule[];
   buttonName1:string;
   buttonName2: string;
   buttonName3: string;
+  buttonName4: string;
+  buttonName5: string;
   ngzone: NgZone;
   router: Router;
   phone: number;
@@ -42,14 +53,22 @@ export class UserDashboardComponent implements OnInit {
   GetAllClaims(){
     this.buttonName3="GetAllClaims";
   }
-
+  GetAllTravels(){
+    this.buttonName4="GetAllTravels";
+  }
+  GetAllTravelClaims(){
+    this.buttonName5="GetAllTravelClaims";
+  }
   
-  constructor(svc: VehicleinfoService,psvc: PolicyinfoService,csvc: ClaiminfoService, ngzone: NgZone,
+  constructor(svc: VehicleinfoService,psvc: PolicyinfoService, csvc: ClaiminfoService, tscv: TravelInsuranceService, tcsvc: TravelclaiminfoService,ngzone: NgZone,
     router: Router) 
     {
       this.svc = svc;
       this.psvc = psvc;
       this.csvc = csvc;
+      this.tsvc= tscv;
+      this.tcsvc= tcsvc;
+
       this.ngzone = ngzone;
       this.router = router;
 
@@ -71,6 +90,16 @@ export class UserDashboardComponent implements OnInit {
         this.clist=data2;
         console.log(this.clist);
       });
+
+      this.tsvc.GetTravelByID(this.phone).subscribe((data3:TravelInsuranceModule[])=>{
+        this.tlist=data3;
+        console.log(this.tlist);
+      })
+
+      this.tcsvc.GetTravelClaimByID(this.phone).subscribe((data4:TravelclaiminfoModule[])=>{
+        this.tclist=data4;
+        console.log(this.tclist);
+      })
 
       //this.svc.BuyInsurance().subscribe();{
         //localStorage.setItem('VID',this.vehinfo.VehicleID.toString());
@@ -107,7 +136,12 @@ export class UserDashboardComponent implements OnInit {
       sessionStorage.setItem("idstore2", id2.toString());
 
       this.ngzone.run(()=>this.router.navigateByUrl('/claim-insurance'));
+    }
+    
+      ClaimTravel(id3:number):void{
+      console.log(id3);
+      sessionStorage.setItem("idstore3",id3.toString());
+      this.ngzone.run(()=>this.router.navigateByUrl('/travelclaim'));
 
-  
     }
 }
