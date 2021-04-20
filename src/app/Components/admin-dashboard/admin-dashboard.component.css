@@ -1,3 +1,29 @@
+mat-sidenav-container{
+  height:100%; position:fixed;
+}
+mat-sidenav,mat-side-content{
+  padding:20px;
+}
+mat-sidenav{
+  width:250px;
+  background-image: linear-gradient(#e0eafc,#cfdef3);
+}
+mat-sidenav-content{
+  background-color: white;
+}
+mat-sidenav span{
+  text-align: center;
+  font-size: 25px;
+  font-weight: 500;
+}
+marquee{
+  margin-top: 5px;
+  position: fixed;
+font-size: 25px;
+font-family: roboto;
+font-weight: 500;
+
+}
 .card-container {
     display: flex;
     flex-wrap: wrap;
