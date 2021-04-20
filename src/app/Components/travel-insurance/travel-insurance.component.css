@@ -1,126 +1,155 @@
 *{
-    box-sizing: border-box;
-    font-family: 'Muli', 'Baloo Da 2', 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
 }
-body{
-    font-family: Arial;
-    padding: 10px;
-    background: cornsilk;
-    /* background: rgb(241,241,242); */
-
+.body{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #71b7e6, #8BC6EC);
 }
-
-.header{
-    padding: 10px;
-    text-align: center;
-    background: white;
-    width: 80%;
-    margin: auto;
+.container{
+  max-width: 700px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
 }
-
-/* Style the top navigation bar */
-.topnav {
-    overflow: hidden; 
-    background-color: darkcyan;
+.container .title{
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
+.container .title::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #71b7e6, #8BC6EC);
+}
+.content form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+form .user-details .input-box{
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+}
+form .input-box span.details{
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.user-details .input-box input{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+.user-details .input-box select{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+  border-color: #8BC6EC;
+}
+ form .gender-details .gender-title{
+  font-size: 20px;
+  font-weight: 500;
+ }
+ form .category{
+   display: flex;
+   width: 80%;
+   margin: 14px 0 ;
+   justify-content: space-between;
+ }
+ form .category label{
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+ }
+ form .category label .dot{
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: #d9d9d9;
+  border: 5px solid transparent;
+  transition: all 0.3s ease;
+}
+ #dot-1:checked ~ .category label .one,
+ #dot-2:checked ~ .category label .two{
+   background: #8BC6EC;
+   border-color: #9599E2;
+ }
+ form input[type="radio"]{
+   display: none;
+ }
+ form .button{
+  height: 45px;
+  margin: 35px 0
+}
+form .button input{
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+form .button input:hover{
+ /* transform: scale(0.99); */
+ background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+ }
+ @media(max-width: 584px){
+ .container{
+  max-width: 100%;
+}
+form .user-details .input-box{
+    margin-bottom: 15px;
     width: 100%;
-    margin: auto;
   }
- 
-  .topnav ul {
-    list-style-type: none;
-  }
- 
-  /* Style the topnav links */
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-    letter-spacing: 1px;
-    height: 70px;
-  } 
-  .main {  
-    width: 100%;
-    margin: auto;
-    background-color:cornsilk;
-
-  }
- 
-  /* Add a card effect for articles */
-  .card {
-    padding: 20px;
-    overflow: hidden;
-  }
- 
-  /* Clear floats after the columns */
-  /* .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  } */
-
-  .cc {
-    float: left;
-    padding: 20px;
-  }
-
-  img{
-      width: 500px;
-      max-width: 192px;
-      height: 200px;
-     
-  }
-
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  .footer {
-    padding: 20px;
-    text-align: center;
-    background: #ddd;
-    margin-top: 20px;
-    width: 100%;
-    margin: auto;
-  }
-
-  .container {
-    padding: 16px;
-    width: 350px;
-    margin: auto;
-  }
-  /* Full-width inputs */
-  input[type=text], input[type=password], input[type=email], input[type=tel] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-
-  /* Set a style for all buttons */
-  button {
-    background-color: khaki;
-    color: black;
-    padding: 50px 20px;
-    margin: 20px 0;
-    border: none;
-    cursor: pointer;
+  form .category{
     width: 100%;
   }
-
-  .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
+  .content form .user-details{
+    max-height: 300px;
+    overflow-y: scroll;
   }
-  span.psw {
-    float: right;
-    padding-top: 16px;
+  .user-details::-webkit-scrollbar{
+    width: 5px;
   }
-  button:hover {
-    opacity: 0.8;
   }
+  @media(max-width: 459px){
+  .container .content .category{
+    flex-direction: column;
+  }
+} 
