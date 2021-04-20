@@ -39,6 +39,7 @@ import { UpdateVehicleComponent } from './Components/update-vehicle/update-vehic
 import { TravelInsuranceComponent } from './Components/travel-insurance/travel-insurance.component';
 import { TravelclaimComponent } from './Components/travelclaim/travelclaim.component';
 import { CalculateInsuranceComponent } from './Components/calculate-insurance/calculate-insurance.component';
+import { DummyComponent } from './Components/dummy/dummy.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ HelpComponent,
     TravelInsuranceComponent,
     TravelclaimComponent,
     CalculateInsuranceComponent,
+    DummyComponent,
 
     
   ],
