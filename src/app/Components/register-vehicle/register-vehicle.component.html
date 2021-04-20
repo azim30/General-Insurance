@@ -1,61 +1,60 @@
-<div class="row">
-    <div class="main">
-        <div class="card">
-            <h2 style="text-align: center;">Register Your Vehicle...</h2>
-
-<form #vehicleRegisterationForm="ngForm" name="vehicleRegisterationForm" (ngSubmit)="vehicleData(vehicleRegisterationForm)">
-    
-    <!--<span *ngIf="eid.errors?.required">Employee ID cannot be blank</span>-->
+<div class="body">
     <div class="container">
-
-
-    <div>Enter mobile number</div>
-    <input type="text" name="umob" [(ngModel)]="model.umob" #umob="ngModel" required>
-
-    
-    <!--<div>Enter vehicle ID</div>
-    <input type="text" name="vid" [(ngModel)]="model.vid" #vid="ngModel" required>-->
-
-    <div>Enter car/bike manufacturer</div>
-    <input type="text" name="cbmanu" [(ngModel)]="model.cbmanu" #cbmanu="ngModel" required>
-    <!--<span *ngIf="ename.errors?.required">Name cannot be blank</span>-->
-
-    <div>Select model</div>
-    <input type="text" name="cbmodel" [(ngModel)]="model.cbmodel" #cbmodel="ngModel" required>
-    <!--<span *ngIf="dept.errors?.required">Department cannot be blank</span>-->
-
-    <div>Select Vehicle type</div>
-    <select type="text" name="vtype" [(ngModel)]="model.vtype" #vtype="ngModel" required>
-        <option value="">Select</option>
-        <option value="Four Wheeler">Four Wheeler</option>
-        <option value="Two Wheeler">Two Wheeler</option>
-    </select>
-
-    <div>Enter driving license</div>
-    <input type="text" name="lic" [(ngModel)]="model.lic" #lic="ngModel" required>
-    
-
-    <div>Enter purchase date</div>
-    <input type="date" name="pdate" [(ngModel)]="model.pdate" #pdate="ngModel" required>
-    
-
-    <div>Enter registeration number</div>
-    <input type="text" name="rno" [(ngModel)]="model.rno" #rno="ngModel" required>
-
-    <div>Enter engine number</div>
-    <input type="text" name="enum" [(ngModel)]="model.enum" #enum="ngModel" required>
-
-    <div>Enter chassis number</div>
-    <input type="text" name="cnum" [(ngModel)]="model.cnum" #cnum="ngModel" required>
-
-    <div>Enter Price Of vehicle</div>
-    <input type="number" name="price" [(ngModel)]="model.price" #price="ngModel" required>
-    
-    <div>
-        <button type="submit" [disabled]="vehicleRegisterationForm.invalid">Submit</button>
-    </div>
-    </div>
+        <div class="title">Register Your Vehicle</div>
+            <div class="content">
+                <form #vehicleRegisterationForm="ngForm" name="vehicleRegisterationForm" (ngSubmit)="vehicleData(vehicleRegisterationForm)">
+                    <div class="user-details">
+                        <div  class="input-box">
+                            <span class="details">Enter mobile number</span>
+                             <input type="text" Placeholder="Enter Your Mobile No"name="umob" [(ngModel)]="model.umob" #umob="ngModel" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Enter car/bike manufacturer</span>
+                             <input type="text" placeholder="Enter Your Vehicle Manufacturer " name="cbmanu" [(ngModel)]="model.cbmanu" #cbmanu="ngModel" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Select model</span>
+                            <input type="text" placeholder="Select Your Vehicle Model" name="cbmodel" [(ngModel)]="model.cbmodel" #cbmodel="ngModel" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Vehicle Type</span>
+                            <select type="text"  name="vtype" [(ngModel)]="model.vtype" #vtype="ngModel" required>
+                            <option value="">Select</option>
+                            <option value="Four Wheeler">Four Wheeler</option>
+                            <option value="Two Wheeler">Two Wheeler</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                             <span class="details">Enter driving license</span>
+                            <input type="text" placeholder="Enter Your Driving License No."  name="lic" [(ngModel)]="model.lic" #lic="ngModel" required>
+                         </div>
+                         <div class="input-box">
+                            <span class="details">Enter purchase date</span>
+                            <input type="date"  placeholder="Enter Purchase Date" name="pdate" [(ngModel)]="model.pdate" #pdate="ngModel" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Enter registeration number</span>
+                            <input type="text" placeholder="Enter Your Vehicle Registeration No." name="rno" [(ngModel)]="model.rno" #rno="ngModel" required>
+                         </div>
+                        <div class="input-box">
+                            <span class="details">Enter engine number</span>
+                            <input type="text" placeholder="Enter Engine No"  name="enum" [(ngModel)]="model.enum" #enum="ngModel" required>
+                        </div>
+                         <div class="input-box">
+                            <span class="details">Enter chassis number</span>
+                            <input type="text" placeholder="Enter chassis number" name="cnum" [(ngModel)]="model.cnum" #cnum="ngModel" required>
+                        </div>
+                        <div class="input-box">
+                             <span class="details">Enter Price Of vehicle</span>
+                            <input type="number"  placeholder="Enter Price Of vehicle" name="price" [(ngModel)]="model.price" #price="ngModel" required>
+                        </div>
+                         <div class="button">
+                             <input type="submit" [disabled]="vehicleRegisterationForm.invalid" value="Submit">
+                        </div>
+                    </div>
 </form>
+
 </div>
 </div>
+
 </div>

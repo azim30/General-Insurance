@@ -1,9 +1,9 @@
-<h1><strong>Policy Details</strong></h1>
+<!--<h1><strong>Policy Details</strong></h1>
 
 <form #policydetailsform="ngForm" name="policydetailsform" (ngSubmit)="policyData(policydetailsform)">
 
     <div>Enter mobile number</div>
-    <input type="text" name="umob" [(ngModel)]="model.umob" #umob="ngModel" required>
+    <input type="text" name="umob" [(ngModel)]="model.umob" #umob="ngModel" required readonly>
 
     
     <div>Enter vehicle ID</div>
@@ -40,4 +40,61 @@
     <div>
         <button type="submit" [disabled]="policydetailsform.invalid">Submit</button>
     </div>
-</form>
+</form>  -->
+
+
+
+
+
+
+
+<div class="body"><div class="container">
+    <div class="title">Policy Details</div>
+    <div class="content">
+        <form #policydetailsform="ngForm" name="policydetailsform" (ngSubmit)="policyData(policydetailsform)">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Phone Number</span>
+                    <input type="text" name="umob" [(ngModel)]="model.umob" #umob="ngModel" required readonly>
+                </div>
+          <div class="input-box">
+            <span class="details">Vehicle ID</span>
+            <input type="text" name="vid" [(ngModel)]="model.vid"   #vid="ngModel" readonly>
+        </div>
+       
+
+
+        <div class="input-box">
+            <span class="details">Choose plan</span>
+            <select type="text" name="pname" [(ngModel)]="model.pname" #pname="ngModel" required (change)= "try()">
+                <option value="Premiun">Third Party</option>
+                <option value="gold">Comprehensive</option>
+            </select>          </div>
+
+
+
+          <div class="input-box">
+            <span class="details">Period Of Years</span>
+            <select type="text" name="period" [(ngModel)]="model.period" #period="ngModel" required (change)= "try()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>          </div>
+          <div class="input-box">
+            <span class="details">Amount You Have To Pay : </span>
+            {{PolicyA}}          </div>
+          
+          <div class="input-box">
+            <span class="details">Start Date</span>
+            <input name="sdate" [(ngModel)]="today" type="date" #sdate="ngModel" required readonly>
+        </div>
+         
+        </div>
+       
+        <div class="button">
+          <input type="submit" [disabled]="policydetailsform.invalid" value="Submit">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
