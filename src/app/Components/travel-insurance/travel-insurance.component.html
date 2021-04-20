@@ -1,71 +1,78 @@
-<div class="row">
-    <div class="main">
-        <div class="card">
+<div class="body">
+    <div class="container">
+        <div class="content">
             <h2 style="text-align: center;">Enter Travel Details To Buy Insurance</h2>
 <form #travelform="ngForm" name="travelform" (ngSubmit)="RegisterData(travelform)">
-    <div class="container">
+    <div class="user-details">
        
         
-        <div>
+        <div class="input-box">
             <label for="source"><b>Source:- </b></label>
             <input type="text" name="source" [(ngModel)]="model.source" placeholder="Enter Source" #source="ngModel" required>
             <span *ngIf="source.errors?.required"></span>
         </div>
-        <div>
+        <div class="input-box">
             <label for="destination"><b>Destination:-</b></label>
             <input type="text" name="destination" [(ngModel)]="model.destination" placeholder="Enter Destination" #destination="ngModel" required>
             <span *ngIf="destination.errors?.required"></span>
         </div>
-        <div>
+        <div class="input-box">
             <label for="sdate"><b> Trip Start date :-</b></label>
             <input type="date" name="sdate" [(ngModel)]="model.sdate" placeholder="Enter date of Travel" #sdate="ngModel" required>
             <span *ngIf="sdate.errors?.required"></span>
         </div>
-        <div>
+        <div class="input-box">
             <label for="edate"><b>Trip End Date  :-</b></label>
             <input type="date" name="edate" [(ngModel)]="model.edate" placeholder="Enter date of Travel" #edate="ngModel" required>
             <span *ngIf="edate.errors?.required"></span>
         </div>
-        <div>
+        <div class="input-box">
             <label for="uname"><b>Enter Name  :- </b></label>
             <input type="text" name="uname" [(ngModel)]="model.uname" placeholder="Enter Name" #uname="ngModel" required>
             <span *ngIf="uname.errors?.required"></span>
-            </div>
-            <div>
+        </div>
+        <div class="input-box">
                 <label for="address"><b>Address :- </b></label>
                 <input type="text" name="address" [(ngModel)]="model.address" placeholder="Enter Address" #address="ngModel" required>
                 <span *ngIf="address.errors?.required"></span>
-            </div>
-            <div>
+        </div>
+        <div class="input-box">
                 <label for="age"><b>Age:-</b></label>
                 <input type="number" name="age" [(ngModel)]="model.age" placeholder="Enter Age" #age="ngModel" required>
                 <span *ngIf="age.errors?.required"></span>
-            </div>
-            <div>
+        </div>
+        <div class="input-box">
                 <label for="mno"><b>Mobile No :-</b></label>
                 <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
                 <span *ngIf="mno.errors?.required">Mobile No cannot be blank</span>
                 <span *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</span>
-            </div>
+        </div>
             
-            <div>
+        <div class="input-box">
             <label for="npassenger"><b>No Of Passengers :-</b></label>
             <input type="number" name="npassenger" [(ngModel)]="model.npassenger" placeholder="Enter Number Of Passengers" #npassenger="ngModel" required (change)= "try()">
             <span *ngIf="npassenger.errors?.required"></span>
-           </div>
-           <div>
-            <label for="plan"><b>Choose Plan:-</b></label>
+        </div>
+        <div class="input-box">
+            <!--<label for="plan"><b>Choose Plan:-</b></label>
             <input type="radio" value="Premiun" name="plan"  [(ngModel)]="model.plan"  required (change)= "try()"  #plan="ngModel">Premium
-            <input type="radio" value="gold" name="plan" [(ngModel)]="model.plan" required (change)= "try()" #plan="ngModel"> Platinum
-            
-           </div>
-           <div>Amount You have to Pay</div>
-            {{PolicyA}}
-        <button type="submit" [disabled]="travelform.invalid" >Buy Travel Insurance</button>
-        
+            <input type="radio" value="gold" name="plan" [(ngModel)]="model.plan" required (change)= "try()" #plan="ngModel"> Platinum -->  
+            <span class="details">Choose Plan:-</span>
+                            <select type="text"  name="plan" [(ngModel)]="model.plan" #plan="ngModel" required (change)= "try()">
+                            <option value="">Select</option>
+                            <option value="Premium">Premium</option>
+                            <option value="Platinum">Platinum</option>
+                            </select>         
+        </div>
+        <div class="input-box">
+            <span class="details">Amount You Have To Pay : </span>
+            {{PolicyA}}          </div>
     
-   
   </div>
+  <div class="button">
+    <button type="submit" [disabled]="travelform.invalid" >Buy Travel Insurance</button>
+  </div>
+  
 </form>
 
 </div>
