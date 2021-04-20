@@ -27,6 +27,7 @@ export class ClaiminsuranceComponent implements OnInit {
   idstore1 : any;
   idstore2: any;
   today: string;
+  mob:any;
   constructor(svc: ClaiminfoService, ngzone: NgZone,
     router: Router) 
     {
@@ -50,6 +51,9 @@ export class ClaiminsuranceComponent implements OnInit {
     this.idstore2= sessionStorage.getItem("idstore2");
     console.log(this.idstore2);
     this.model.vehid=this.idstore2;
+    this.mob= sessionStorage.getItem("mob");
+    console.log(this.mob);
+    this.model.umob=this.mob;
     
    }
    

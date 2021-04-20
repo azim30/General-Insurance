@@ -21,7 +21,7 @@ export class PolicyComponent implements OnInit {
 idstore : any;
 PolicyA : number;
 today: string;
-
+mob: any;
 
   constructor(svc: PolicyinfoService, ngzone: NgZone,
     router: Router) 
@@ -38,6 +38,10 @@ today: string;
     this.idstore= sessionStorage.getItem("idstore");
     console.log(this.idstore);
     this.model.vid=this.idstore;
+
+    this.mob= sessionStorage.getItem("mob");
+    console.log(this.mob);
+    this.model.umob=this.mob;
   }
   try(){
     if(this.model.pname == "gold"){
@@ -58,7 +62,7 @@ today: string;
     this.pol.Period = policydetailsform.value.period;
     this.pol.PolicyAmt = (this.model.period)*1000;
    
-    this.pol.PolicyStatus = 'Inactive';
+    this.pol.PolicyStatus = 'Active';
     this.pol.StartDate = policydetailsform.value.sdate;
     //alert(this.usr.VehicleID+','+this.usr.Maufacturer);
     this.svc.PolicyDetails(this.pol).subscribe((data: boolean) =>
