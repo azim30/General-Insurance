@@ -1,5 +1,11 @@
+
+---- database
 create database GeneralInsurance
 
+
+
+
+----User Details Table (1)
 create table UserDetails
 ( CustID int identity(1,1),
 MobNo varchar(50) primary key, 
@@ -10,15 +16,13 @@ Address varchar(70) not null,
 DOB date not null
 )
 
-ALTER TABLE UserDetails drop
-column EmailVerification,ActivetionCode,OTP
 
-
+--- added this to change password
 ALTER TABLE UserDetails ADD
 EmailVerification [bit] Null,
 [ActivetionCode] [uniqueidentifier],
 [OTP] [nvarchar](4) Null
-
+---added gender column
 ALTER TABLE UserDetails ADD
 Gender varchar(20)
 
@@ -37,7 +41,7 @@ begin
 	update UserDetails set Password=@Password where OTP=@otp
 	update UserDetails set OTP=NUll where OTP=@otp
 end
- 
+ ------sp for login
 create or alter proc proc_UserLoginCheck(@uid varchar(15),@pswd varchar(15))
 as
 begin
@@ -45,8 +49,30 @@ begin
 end
 proc_UserLoginCheck 'mitesh09','test09'
 
+---- To find username from userdetails table
+create or alter proc proc_UserName(@mobile varchar(12))
+as
+begin
+	select UserName from UserDetails where MobNo=@mobile
+end
 
---3. Creating table VehicleDetails
+exec proc_UserName '1234567899'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Creating table VehicleDetails (2)
 
 create table VehicleDetails(
 VehicleID int primary key identity(1,1),
@@ -128,23 +154,7 @@ exec proc_GetAllVehiclesOfUser '9123456789'
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---4.Creating table PolicyDetails
+--Creating table PolicyDetails (3)
 
 create table PolicyDetails(
 PolicyNo int primary key identity(1,1),
@@ -166,7 +176,15 @@ insert into PolicyDetails Values(6123456789,4,'BAJAJ ALLIANZ',7,2890,'ACTIVE','1
 insert into PolicyDetails Values(5123456789,5,'BAJAJ ALLIANZ',5,2300,'ACTIVE','11-11-2012','11-12-2022');
 select * from PolicyDetails
 
---5. Creating Table ClaimDetails
+
+
+
+
+
+
+
+
+-- Creating Table ClaimDetails (4)
 
 create table ClaimDetails
 (
@@ -180,13 +198,14 @@ create table ClaimDetails
 	ClaimDate date not null
 )
 
+
 select * from ClaimDetails
 insert into ClaimDetails Values(9123456789,1,23,'Accident','Approved',300000,'12-10-2010');
 insert into ClaimDetails Values(8123456789,2,24,'Accident','Approved',37000,'2-08-2010');
 insert into ClaimDetails Values(7123456789,3,89,'Accident','Approved',200000,'12-11-2008');
 insert into ClaimDetails Values(1234567899,6,14,'Theft','Pending',400000,'12-08-2008');
 
-
+---- to change status to approve 
 create proc proc_ApproveMotorClaim(@policyid int)
 as
 begin 
@@ -197,7 +216,25 @@ end
 exec proc_ApproveMotorClaim 12
 
 
+----to change status to decline
+create proc proc_DeclineMotorClaim(@policyid int)
+as
+begin 
+	update ClaimDetails set ClaimStatus='Declined' where PolNo=@policyid;
+	
+end
 
+exec proc_DeclineMotorClaim 12
+
+
+
+
+
+
+
+
+
+----- creating travel insurance (5)
 create table TravelInsurance
 (
     PolicyNo int primary key identity(1,1) ,
@@ -215,6 +252,7 @@ create table TravelInsurance
 )
 select * from TravelInsurance
 
+---- to get all details of user 
 create or alter proc proc_GetAllTravelOfUser(@mobile varchar(12))
 as
 begin
@@ -226,7 +264,7 @@ exec proc_GetAllTravelOfUser '1234567899'
 
 
 
-
+---- create travel claim (6)
 create table TravelClaimDetails
 (
 Travel_Claim_Id int identity(1,1) primary key,
@@ -236,9 +274,11 @@ MobNo  varchar(50) foreign key references UserDetails(MobNo) ,
 Amount money not null, 
 Claim_Status varchar(20),
 )
-
 select * from TravelClaimDetails
 
+
+
+---- to change status to approve
 create proc proc_ApproveTravelClaim(@policyid int)
 as
 begin 
@@ -248,6 +288,19 @@ end
 
 exec proc_ApproveTravelClaim 1
 
+
+
+------ to change status to decline
+create proc proc_DeclineTravelClaim(@policyid int)
+as
+begin 
+	update TravelClaimDetails set Claim_Status='Declined' where PolicyNo=@policyid;
+	
+end
+
+exec proc_DeclineTravelClaim 1
+
+----to get all travel claim of that user
 create or alter proc proc_GetAllTravelClaimsOfUser(@mobile varchar(12))
 as
 begin
@@ -256,26 +309,9 @@ end
 
 exec proc_GetAllTravelClaimsOfUser '1234567899'
 
---6. Creating Table ticket details
-create table TicketDetails
-(
-	TicketNo int primary key,
-	Source varchar(10) not null,
-	Destination varchar(10) not null,
-	DateOfTravel date not null,
-	NoOfPassengers int not null,
-	--InsuraceAmount money not null,
-	ValidityOfInsurance numeric not null
-)
 
---To calculate the premium
-create or alter proc proc_calcprem(@policyid bigint, @manu varchar(20),@model varchar(40))
-as
-begin
-select Maufacturer, PolicyNo  from PolicyDetails p, VehicleDetails v where v.Maufacturer=@manu and v.Model=@model and p.PolicyNo=@policyid 
-end
 
-exec proc_calcprem 23, 'Maruti', 'Maruti Dezirezxi'
+
 
 --Get all policies
 create or alter proc proc_GetAllPoliciesOfUser(@mobile varchar(12))
@@ -296,7 +332,7 @@ end
 exec proc_GetAllClaimsOfUser '9123456789'
 
 
-
+-----creating contact us table (7)
 create table ContactUs
 ( Id int primary key identity (1,1)  ,
 UserName varchar(50) not null,
@@ -305,11 +341,12 @@ MobNo varchar(50) not null,
 Subject varchar(50) not null,
 Message varchar(100) not null,
 )
-drop table ContactUs
 
 insert into ContactUs Values('Azim Shaikh', 'shaikh@gmail.com',9856741236,'ACTIVE','Hello How are you this is message');
 select * from ContactUs
 
+
+--- creating admin table (8)
 create table AdminDetails
 ( AdminID int identity(1,1),
 MobNo varchar(50) not null, 
@@ -324,4 +361,11 @@ insert into AdminDetails Values(9856544436 , 'Azhar@50');
 
 
 select * from AdminDetails
+select * from UserDetails
+select * from ClaimDetails
+select * from VehicleDetails
+select * from PolicyDetails
+select * from TravelInsurance
+select * from TravelClaimDetails
+select * from ContactUs
 
