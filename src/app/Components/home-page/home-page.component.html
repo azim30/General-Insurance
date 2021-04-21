@@ -3,32 +3,39 @@
    
     <a [routerLink]="['background']"> <img src="../../../assets/images/Logo.png"  ></a>
     
-    <button mat-button color="primary" [routerLink]="['login']"><mat-icon>shopping_cart</mat-icon>Buy </button>
-    <button mat-button  [routerLink]="['login']"><mat-icon>published_with_changes</mat-icon>Renew </button>
-    <button mat-button [routerLink]="['calculate']"><mat-icon>calculate</mat-icon>Calculate </button>
-    <button mat-button  [routerLink]="['login']"><mat-icon>attach_money</mat-icon>Claim </button>
-    
+    <a  [routerLink]="['login']">Buy </a><!--Working-->
+    <a  [routerLink]="['login']">Renew </a><!--Not yet created-->
+    <a  [routerLink]="['calculate']">Calculate </a><!--Working-->
+    <a  [routerLink]="['login']">Claim </a><!--Working-->
+    <!--<a mat-raised-button color="accent" [routerLink]="['register']">Register</a>-Working-->
   
-      <button  mat-raised-button color="accent" [matMenuTriggerFor]="beforeMenu">
-        <mat-icon > person</mat-icon> User  </button>
-        <mat-menu #beforeMenu="matMenu" xPosition="before">
-          <button mat-menu-item  [routerLink]="['Contact-us']"><mat-icon > call</mat-icon>Contact</button>
+
+    <div class="dropdown">
+      <button  mat-raised-button color="accent"class="dropbtn">
+        <mat-icon class="material-icons-two-tone">
+        person
+        </mat-icon> {{user}}  </button>
+      <div class="dropdown-content">
+        <mat-list>
+         <a mat-list-item  [routerLink]="['Contact-us']">Contact</a>
           <mat-divider></mat-divider>
-          <button mat-menu-item  [routerLink]="['help']"><mat-icon > help</mat-icon>Help</button>
+          <a mat-list-item  [routerLink]="['help']">Help</a>
           <mat-divider></mat-divider>
-          <button mat-menu-item  [routerLink]="['faq']"><mat-icon > info</mat-icon>FAQ</button>
+          <a mat-list-item  [routerLink]="['Faq']">FAQ</a>
           <mat-divider></mat-divider>
-          <button  mat-menu-item [routerLink]="['About-us']"><mat-icon > people_alt</mat-icon>About US</button>
+          <a mat-list-item  [routerLink]="['About-us']">About US</a>
           <mat-divider></mat-divider>
-          <button mat-menu-item [routerLink]="['login']"><mat-icon > login</mat-icon>User Login</button>
+          <a mat-list-item  [routerLink]="['register']">Register</a>
           <mat-divider></mat-divider>
-          <button mat-menu-item [routerLink]="['admin-login']"> <mat-icon > face</mat-icon>Admin Login </button>
+          <a mat-list-item  [routerLink]="['login']">User Login</a>
           <mat-divider></mat-divider>
-          <button  mat-menu-item [routerLink]="['register']"><mat-icon > how_to_reg</mat-icon>Register</button>
-          
-       
-      </mat-menu>
-      
+          <a mat-list-item  [routerLink]="['admin-login']">Admin Login </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item  (click)= "onLogout()">Logout </a>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+    </div>
     
      
          

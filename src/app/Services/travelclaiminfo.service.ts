@@ -35,7 +35,10 @@ export class TravelclaiminfoService {
   {
     return this.http.put<boolean>(this.url+'/'+ 'ApproveTravelClaim',id, this.httpOptions);
   }
-
+  DeclineTravelClaim(id:number):Observable<boolean>
+  {
+    return this.http.put<boolean>(this.url+'/'+ 'DeclineTravelClaim',id, this.httpOptions);
+  }
  
   GetTravelClaimByID(phone:number):Observable<TravelclaiminfoModule[]>
   {

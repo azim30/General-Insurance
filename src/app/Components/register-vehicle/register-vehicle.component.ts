@@ -55,16 +55,8 @@ export class RegisterVehicleComponent implements OnInit {
         this.ngzone.run(()=>this.router.navigateByUrl('/user-dashboard'));
 
       }
-      localStorage.setItem('Man',this.usr.Manufacturer);
-      localStorage.setItem('Mod',this.usr.Model);
-      localStorage.setItem('Dr',this.usr.DrivingLicense);
-      localStorage.setItem('Vt',this.usr.VehicleType);
-      localStorage.setItem('Reg',this.usr.RegistrationNo);
-      localStorage.setItem('Eng',this.usr.EngineNo);
-      localStorage.setItem('Chas',this.usr.ChassisNo);
-      localStorage.setItem('Pdate',this.usr.PurchaseDate.toString());
+    
       localStorage.setItem('Mob',this.usr.UserMobNo);
-      localStorage.setItem('Prc',this.usr.Price.toString());
   });
  
  }

@@ -10,13 +10,13 @@ using System.Web.Http.Cors;
 namespace General_Insurance.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [Route("api/UserAPI")]
+    [Route("api/VehicleAPI")]
     public class VehicleAPIController : ApiController
     {
         GeneralInsuranceEntities db = new GeneralInsuranceEntities();
 
         [HttpGet]
-        [Route("api/VehicleAPI/GetAllVehicles")]
+        [Route("api/VehicleAPI/GetAllVehicles")]                 // To get all registered vehicles
         public IEnumerable<VehicleDataModel> GetAllVehicles()
         {
             try
@@ -39,13 +39,12 @@ namespace General_Insurance.Controllers
                            };
                 return data;
             }
-            //this Get() method retrieves all employees from the table
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        [Route("api/VehicleAPI/GetVehicleByID/{id}")]
+        [Route("api/VehicleAPI/GetVehicleByID/{id}")]                       // To get Particular Vehicle By ID
         [HttpGet]
         public IEnumerable<proc_GetAllVehiclesOfUser_Result> Get(string id)
         {
@@ -62,7 +61,7 @@ namespace General_Insurance.Controllers
                 throw ex;
             }
         }
-        [Route("api/VehicleAPI/RegisterVehicle")]
+        [Route("api/VehicleAPI/RegisterVehicle")]                  // To register new Vehicle 
         [HttpPost]
         public bool Post([FromBody] VehicleDetail v)
         {
@@ -79,7 +78,7 @@ namespace General_Insurance.Controllers
             }
             return false;
         }
-        [Route("api/VehicleAPI/DeleteVehicle/{id}")]
+        [Route("api/VehicleAPI/DeleteVehicle/{id}")]                        // To delete Vehicle
         [HttpDelete]
         public bool Delete(int id)
         {
@@ -102,42 +101,7 @@ namespace General_Insurance.Controllers
             }
             return false;
         }
-        [Route("api/VehicleAPI/UpdateVehicle/{id}")]
-        [HttpPut]
-        public bool Put(int id, [FromBody] VehicleDetail newveh)
-        {
-            try
-            {
-                var olddata = db.VehicleDetails.Where(x => x.VehicleID == id).SingleOrDefault();
-                if (olddata == null)
-                {
-                    throw new Exception("Invalid id");
-                }
-                else
-                {
-                    olddata.VehicleID = newveh.VehicleID;
-                    olddata.VehicleType = newveh.VehicleType;
-                    olddata.UserMobNo = newveh.UserMobNo;
-                    olddata.RegistrationNo = newveh.RegistrationNo;
-                    olddata.PurchaseDate = newveh.PurchaseDate;
-                    olddata.Price = newveh.Price;
-                    olddata.Model = newveh.Model;
-                    olddata.Manufacturer = newveh.Manufacturer;
-                    olddata.DrivingLicense = newveh.DrivingLicense;
-                    olddata.ChassisNo = newveh.ChassisNo;
-
-                    var res = db.SaveChanges();
-                    if (res > 0)
-                        return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return false;
-        }
-
+       
 
     }
 }

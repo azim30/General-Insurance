@@ -15,7 +15,7 @@ namespace General_Insurance.Controllers
     {
         GeneralInsuranceEntities db = new GeneralInsuranceEntities();
         [HttpGet]
-        [Route("api/PolicyAPI/GetAllPolicies")]
+        [Route("api/PolicyAPI/GetAllPolicies")]                       //To get all Policy
         public IEnumerable<PolicyDataModel> Get()
         {
             try
@@ -39,13 +39,13 @@ namespace General_Insurance.Controllers
                 throw ex;
             }
         }
-        [Route("api/PolicyAPI/GetPolicyByID/{id}")]
+        [Route("api/PolicyAPI/GetPolicyByID/{id}")]                            // To fetch Policy by ID
         [HttpGet]
         public IEnumerable<proc_GetAllPoliciesOfUser_Result> Get(string id)
         {
             try
             {
-                var res = db.proc_GetAllPoliciesOfUser(id);
+                var res = db.proc_GetAllPoliciesOfUser(id);          // Used SP
                 if (res == null)
                     throw new Exception("Invalid projid");
                 else
@@ -56,7 +56,7 @@ namespace General_Insurance.Controllers
                 throw ex;
             }
         }
-        [Route("api/PolicyAPI/PolicyDetails")]
+        [Route("api/PolicyAPI/PolicyDetails")]              //To add new Policy 
         [HttpPost]
         public bool Post([FromBody] PolicyDetail p)
         {

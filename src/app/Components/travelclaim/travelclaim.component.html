@@ -1,4 +1,4 @@
-
+<!--
 <div class="row">
     <div class="main">
         <div class="card">
@@ -10,7 +10,7 @@
         <div>
             <label for="tNo"><b>Enter Policy No:- </b></label>
             <input type="text" name="tNo" [(ngModel)]="model.tNo" placeholder="Enter Policy No" #tNO="ngModel" required readonly>
-            <!--<span *ngIf="tNo.errors?.required"></span>-->
+            <span *ngIf="tNo.errors?.required"></span>
         </div>
         <div>
             <label for="creason"><b>Select claim reason:-</b></label>
@@ -20,12 +20,12 @@
                 <option value="Theft">Theft</option>
                
             </select>
-            <!--<input type="text" name="creason" [(ngModel)]="model.creaso " placeholder="Select claim reason" #creason="ngModel" required>-->
+            <input type="text" name="creason" [(ngModel)]="model.creaso " placeholder="Select claim reason" #creason="ngModel" required>
             <span *ngIf="creason.errors?.required"></span>
         </div>
         <div>
             <label for="mno"><b>Mobile No :-</b></label>
-            <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
+            <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." readonly required>
             <span *ngIf="mno.errors?.required">Mobile No cannot be blank</span>
             <span *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</span>
         </div>
@@ -40,4 +40,43 @@
 
 </div>
 </div>
+</div>     -->
+
+
+
+
+
+<div class="body"><div class="container">
+    <div class="title">Travel Claim</div>
+    <div class="content">
+        <form #TravelClaimForm="ngForm" name="TravelClaimForm" (ngSubmit)="claimData(TravelClaimForm)">
+            <div class="user-details">
+          <div class="input-box">
+            <span class="details">Policy No</span>
+            <input type="text" name="tNo" [(ngModel)]="model.tNo" placeholder="Enter Policy No" #tNO="ngModel" required readonly>
+          </div>
+          <div class="input-box">
+            <span class="details">Claim Reason</span>
+            <select type="text" name="creason" [(ngModel)]="model.creason" #creason="ngModel" required>
+                <option value="Accident">Accident</option>
+                <option value="Theft">Theft</option>
+               
+            </select>          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." readonly required>
+          </div>
+          <div class="input-box">
+            <span class="details">Claim Amount</span>
+            <input type="text" name="price" [(ngModel)]="model.price" placeholder="Enter Claim Amount" #price="ngModel" required>
+          </div>
+       
+        </div>
+      
+        <div class="button">
+          <input type="submit" [disabled]="TravelClaimForm.invalid" value="Submit">
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

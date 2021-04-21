@@ -3,7 +3,7 @@ import {FormsModule,NgForm,FormGroup} from '@angular/forms';
 import {UserInfoModule} from '../../Modules/user-info/user-info.module';
 import {UserInfoService} from '../../Services/user-info.service';
 import {Router} from '@angular/router';
-
+import { ValidateEqualModule } from 'ng-validate-equal';
 
 @Component({
   selector: 'app-forget-password',
@@ -43,18 +43,18 @@ export class ForgetPasswordComponent implements OnInit {
       console.log(data);
       if(data=="success")
       {
-        alert('Email Present in System');
+        alert('Email is present in system');
         this.flag=true;
         this.svc.VerifyLinkEmail(this.usr).subscribe((data:string)=>{
           if(data=="success")
           {
-            alert('Check Your Inbox for Verification Link');
+            alert('Verification link is sent');
             this.EmailVerify=false;
             this.Acknowledgement=true;
             this.ResetPwd=true;
           }
           else{
-            alert('Sending link Failed!!');
+            alert('Sending link failed!!');
           }
         });
       }

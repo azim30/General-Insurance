@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {MaterialModule} from './Modules/material/material.module';
 import{HttpClientModule}from'@angular/common/http';
-import { BuyInsuranceComponent } from './Components/buy-insurance/buy-insurance.component';
 import {BackgroundComponent} from './Components/background/background.component';
 import {FooterComponent} from './Components/footer/footer.component';
 import {HelpComponent} from './Components/help/help.component';
@@ -35,11 +33,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { UserDashboardComponent } from './Components/user-dashboard/user-dashboard.component';
 import { PolicyComponent } from './Components/policy/policy.component';
 import { ClaiminsuranceComponent } from './Components/claiminsurance/claiminsurance.component';
-import { UpdateVehicleComponent } from './Components/update-vehicle/update-vehicle.component';
 import { TravelInsuranceComponent } from './Components/travel-insurance/travel-insurance.component';
 import { TravelclaimComponent } from './Components/travelclaim/travelclaim.component';
 import { CalculateInsuranceComponent } from './Components/calculate-insurance/calculate-insurance.component';
-import { DummyComponent } from './Components/dummy/dummy.component';
+import { TravelPaymentComponent } from './Components/travel-payment/travel-payment.component';
 
 
 @NgModule({
@@ -51,7 +48,6 @@ import { DummyComponent } from './Components/dummy/dummy.component';
     AboutUsComponent,
     ContactUsComponent,
     FaqComponent,
-    BuyInsuranceComponent,
 BackgroundComponent,
 FooterComponent,
 HelpComponent,
@@ -63,17 +59,15 @@ HelpComponent,
     UserDashboardComponent,
     PolicyComponent,
     ClaiminsuranceComponent,
-    UpdateVehicleComponent,
     TravelInsuranceComponent,
     TravelclaimComponent,
     CalculateInsuranceComponent,
-    DummyComponent,
+    TravelPaymentComponent,
 
     
   ],
   imports: [
     BrowserModule,
-    MaterialModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

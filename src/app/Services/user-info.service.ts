@@ -21,7 +21,11 @@ export class UserInfoService {
   {
     return this.http.get<UserInfoModule[]>(this.url+'/'+'GetAllUsers');
   }
- 
+
+  GetUser(mob:string):Observable<string>
+  {
+    return this.http.get<string>(this.url+'/'+'GetUserName' +'/'+mob + '/');
+  }
   
   Login(mob: number, pwd: string): Observable<string>
   {

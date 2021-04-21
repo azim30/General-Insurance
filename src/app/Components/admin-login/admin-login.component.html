@@ -1,45 +1,5 @@
-<!--<p>admin-login works!</p>
-<div class="row">
-    <div class="main">
-        <div class="card">
-            <h2 style="text-align: center;">Admin Login</h2>
-<form #LoginForm="ngForm" name="LoginForm" (ngSubmit)="Login(LoginForm)">
-    <div class="container">
 
-    
-        <label for="mobile"><b>Mobile No.</b></label>
-        <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
-        <span *ngIf="mno.errors?.required">Mobile No cannot be blank</span>
-        <span *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</span>
-    
-    <div>
-        <label for="psw"><b>Password</b></label>
-        <input type="password" name="txtpass" [(ngModel)]="model.txtpass" placeholder="Enter Password" minlength="4" maxlength="15" #txtpass="ngModel" required>
-        <span *ngIf="txtpass.errors?.required">Password cannot be blank</span>
-        <span *ngIf="txtpass.errors?.pattern">Follow password restriction</span>
-        <span *ngIf="txtpass.errors?.minlength">Minimum password length is 4 characters</span>
-    </div>
-    <ngx-recaptcha2 #captchaElem
-    [siteKey]="siteKey" name="cap"  [(ngModel)]="model.cap"  #cap="ngModel" required>
-    <span *ngIf="cap.errors?.required"></span>
-    </ngx-recaptcha2>
-    
-    
-    
-    <button type="submit" [disabled]="LoginForm.invalid">Login</button>
-    <input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
-    <div class="container" style="background-color:#f1f1f1">
-       <button type="button" class="cancelbtn">Cancel</button>
-       <span class="psw">Forget <a routerLink="../forget-password">Password ?</a>
-       </span>
-     </div>
-   
-  </div>
-</form>
 
-</div>
-</div>
-</div>-->
 
 <img class="wave" src="../../../assets/images/wave.png">
 	<div class="container">
@@ -57,7 +17,6 @@
            		   <div class="div">
            		   		<h5><label for="mobile"></label></h5>
            		        <input class="input" type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
-                        <mat-error *ngIf="mno.errors?.required">Mobile No cannot be blank</mat-error>
                         <mat-error *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</mat-error>
            		   </div>
            		</div>
@@ -68,7 +27,6 @@
            		   <div class="div">
            		    	<h5><label for="psw"></label></h5>
            		    	   <input matInput class="input" type="password" name="txtpass" [(ngModel)]="model.txtpass" placeholder="Enter Password" minlength="4" maxlength="8" #txtpass="ngModel" required>
-                           <mat-error *ngIf="txtpass.errors?.required">Password cannot be blank</mat-error>
                            <mat-error *ngIf="txtpass.errors?.pattern">Follow password restriction</mat-error>
                            <mat-error *ngIf="txtpass.errors?.minlength">Minimum password length is 4 characters</mat-error>           
                            

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { Router } from '@angular/router';import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import{MaterialModule} from '../../Modules/material/material.module';
@@ -16,11 +16,23 @@ export class HomePageComponent implements OnInit {
     shareReplay()
   ); */
   opened=false;
-
-constructor(private breakpointObserver: BreakpointObserver) {}
+user:string;
+ngzone: NgZone;
+router: Router;
+constructor(private breakpointObserver: BreakpointObserver, ngzone: NgZone,
+  router: Router) {
+    this.ngzone = ngzone;
+    this.router = router;}
 
 
   ngOnInit(): void {
+    this.user=localStorage.getItem('Uname');
   }
+
+  onLogout(){  
+    window.localStorage.removeItem("Uname");
+  this.ngzone.run(()=>this.router.navigateByUrl('/login'));
+
+  }  
 
 }

@@ -1,57 +1,8 @@
-<!--<mat-card>
-    <mat-card-content>
-        <div class="header">
-            <h2 style="text-align: center;">Contact us Freely...</h2></div>
-            <form #conform="ngForm" name="conform" (ngSubmit)="ContactData(conform)">
-                <div class="container">
-                    <div class="selectinput">
-                        <mat-form-field  class="full-width" appearence="outline">
-                        <label for="uname"><b>Name</b></label>
-                    <input type="text" name="name" [(ngModel)]="model.name" placeholder="Enter Name" #name="ngModel" required>
-                    <span *ngIf="name.errors?.required">Name has to be entered</span>
-                    </mat-form-field>
-                </div>  
-                <div class="selectinput">
-                    <mat-form-field  class="full-width" appearence="outline">                    <label for="email"><b>Email Address</b></label>
-                    <input type="email" name="txtemail" [(ngModel)]="model.txtemail" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" placeholder="Enter Email" #txtemail="ngModel" required>
-                    <span *ngIf="txtemail.errors?.required">Email cannot be blank</span>
-                    <span *ngIf="txtemail.errors?.pattern">Follow Email restriction</span>
-                </mat-form-field>
-                </div>
-                <div class="selectinput">
-                    <mat-form-field  class="full-width" appearence="outline"> 
-                <label for="mobile"><b>Mobile No.</b></label>
-                <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
-                <span *ngIf="mno.errors?.required">Mobile No cannot be blank</span>
-                <span *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</span>
-            </mat-form-field>
-            </div>
-            
-                <div class="selectinput">
-                    <mat-form-field  class="full-width" appearence="outline">                    <label for="sub"><b>Subject</b></label>
-                    <input type="text" name="sub" [(ngModel)]="model.sub" placeholder="Enter Subject" #sub="ngModel" required>
-                    <span *ngIf="sub.errors?.required">Subject has to be entered</span>
-                </mat-form-field>
-                </div>
-                
-           
-                <div class="selectinput">
-                    <mat-form-field  class="full-width" appearence="outline">                    <label for="msg"><b>Message</b></label>
-                    <input type="text" name="msg" [(ngModel)]="model.msg" placeholder="Enter Message" #msg="ngModel" required>
-                    <span *ngIf="msg.errors?.required">Message has to be entered</span>
-                </mat-form-field>
-                </div>
-             
-              
-                 
-               <div class="form-submit">
-                    <input type="submit" value="Register" class="submit" name="submit" id="submit" />
-                </div>
-                <button type="submit" class="btn btn-block btn-success" [disabled]="conform.invalid">Submit</button>  
-                </div>
-            </form>
-        </mat-card-content>
-        </mat-card>-->
+
+   
+
+
+
 
         <div class="container">
             <span class="big-circle"></span>
@@ -99,6 +50,12 @@
                     <mat-error *ngIf="txtemail.errors?.required">Email cannot be blank</mat-error>
                     <mat-error *ngIf="txtemail.errors?.pattern">Follow Email restriction</mat-error>
                   </div>
+                  <div class="input-container">
+                <label for="mobile"></label>
+                <input class="input" type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
+                <mat-error *ngIf="mno.errors?.required">Mobile No cannot be blank</mat-error>
+                <mat-error *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</mat-error>
+            </div>
                   <div class="input-container">                   
                     <label for="sub"></label>
                     <input  class="input"type="text" name="sub" [(ngModel)]="model.sub" placeholder="Enter Subject" #sub="ngModel" required>
@@ -116,5 +73,3 @@
               </div>
             </div>
           </div>
-   
-   

@@ -72,6 +72,24 @@ namespace General_Insurance.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_calcprem", policyidParameter, manuParameter, modelParameter);
         }
     
+        public virtual int proc_DeclineMotorClaim(Nullable<int> policyid)
+        {
+            var policyidParameter = policyid.HasValue ?
+                new ObjectParameter("policyid", policyid) :
+                new ObjectParameter("policyid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_DeclineMotorClaim", policyidParameter);
+        }
+    
+        public virtual int proc_DeclineTravelClaim(Nullable<int> policyid)
+        {
+            var policyidParameter = policyid.HasValue ?
+                new ObjectParameter("policyid", policyid) :
+                new ObjectParameter("policyid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_DeclineTravelClaim", policyidParameter);
+        }
+    
         public virtual ObjectResult<proc_GetAllClaimsOfUser_Result> proc_GetAllClaimsOfUser(string mobile)
         {
             var mobileParameter = mobile != null ?
@@ -144,6 +162,15 @@ namespace General_Insurance.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("proc_GetManufacturers");
         }
     
+        public virtual ObjectResult<proc_GetUserByid_Result> proc_GetUserByid(string mobile)
+        {
+            var mobileParameter = mobile != null ?
+                new ObjectParameter("mobile", mobile) :
+                new ObjectParameter("mobile", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetUserByid_Result>("proc_GetUserByid", mobileParameter);
+        }
+    
         public virtual int proc_UpdatePassword(string otp, string password)
         {
             var otpParameter = otp != null ?
@@ -168,6 +195,15 @@ namespace General_Insurance.Models
                 new ObjectParameter("pswd", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("proc_UserLoginCheck", uidParameter, pswdParameter);
+        }
+    
+        public virtual ObjectResult<string> proc_UserName(string mobile)
+        {
+            var mobileParameter = mobile != null ?
+                new ObjectParameter("mobile", mobile) :
+                new ObjectParameter("mobile", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("proc_UserName", mobileParameter);
         }
     
         public virtual int sp_insertMotorClaim(Nullable<int> policyNo, string name, string mobNo, string reason, Nullable<System.DateTime> date_Of_Applying, Nullable<double> estimated_Amount_For_Repair, string license_Copy, string rC_Copy, string insurance_Copy, string bill_Copy, string authenticated_Letter_from_RTO, string claim_Status)

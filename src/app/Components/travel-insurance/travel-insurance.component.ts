@@ -55,8 +55,14 @@ export class TravelInsuranceComponent implements OnInit {
       if(data==true)
       {
         alert('New User Registered');
-        this.ngzone.run(()=>this.router.navigateByUrl('/user-dashboard'));
-      }
+        sessionStorage.setItem("amtstore",this.PolicyA.toString());
+        this.ngzone.run(()=>this.router.navigateByUrl('/travelpayment'));     
+       }
+        else{
+          alert('You have Already Claimed it');
+          this.ngzone.run(()=>this.router.navigateByUrl('/user-dashboard'));
+  
+        }
     });
 
   }

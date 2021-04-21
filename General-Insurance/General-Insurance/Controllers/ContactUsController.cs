@@ -15,7 +15,7 @@ namespace General_Insurance.Controllers
         GeneralInsuranceEntities db = new GeneralInsuranceEntities();
         [HttpGet]
         [Route("api/ContactUsAPI/GetAllDetails")]
-        public IEnumerable<ContactDataModel> Get()
+        public IEnumerable<ContactDataModel> Get()          // Get All Contact registered
         {
             try
             {
@@ -30,13 +30,12 @@ namespace General_Insurance.Controllers
                            };
                 return data;
             }
-            //this Get() method retrieves all employees from the table
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        [Route("api/ContactUsAPI/NewData")]
+        [Route("api/ContactUsAPI/NewData")]       //To Register new Contact/Complain
         [HttpPost]
         public bool Post([FromBody] ContactU v)
         {

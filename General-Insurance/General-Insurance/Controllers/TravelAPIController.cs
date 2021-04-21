@@ -15,7 +15,7 @@ namespace General_Insurance.Controllers
     {
         GeneralInsuranceEntities db = new GeneralInsuranceEntities();
         [HttpGet]
-        [Route("api/TravelAPI/GetAllTravels")]
+        [Route("api/TravelAPI/GetAllTravels")]                        // To get all Travels registered by user
         public IEnumerable<TravelDataModel> GetAllTravels()
         {
             try
@@ -45,7 +45,7 @@ namespace General_Insurance.Controllers
                 throw ex;
             }
         }
-        [Route("api/TravelAPI/RegisterTravelDetails")]
+        [Route("api/TravelAPI/RegisterTravelDetails")]           // To register new Travel
         [HttpPost]
         public bool Post( [FromBody]TravelInsurance u)
         {
@@ -62,7 +62,7 @@ namespace General_Insurance.Controllers
             }
             return false;
         }
-        [Route("api/TravelAPI/GetTravelByID/{id}")]
+        [Route("api/TravelAPI/GetTravelByID/{id}")]                  // Get Particular User by ID
         [HttpGet]
         public IEnumerable<proc_GetAllTravelOfUser_Result> Get(string id)
         {

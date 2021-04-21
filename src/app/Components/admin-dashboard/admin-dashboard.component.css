@@ -96,3 +96,15 @@ font-weight: 500;
 .styled-table tbody tr:last-of-type {
   border-bottom: 2px solid #009879;
 }
+
+
+input[type=text] {
+  transition: width 0.4s ease-in-out;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}

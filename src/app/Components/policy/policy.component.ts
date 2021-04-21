@@ -71,8 +71,8 @@ mob: any;
       if(data==true)
       {
         alert('Susscessfully purchased insurance.');
-        this.ngzone.run(()=>this.router.navigateByUrl('/user-dashboard'));
-
+        sessionStorage.setItem("amtstore",this.PolicyA.toString());
+        this.ngzone.run(()=>this.router.navigateByUrl('/travelpayment'));
       }
   });
  

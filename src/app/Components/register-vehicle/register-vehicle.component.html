@@ -1,3 +1,73 @@
+
+<!--<div class="row">
+    <div class="main">
+        <div class="card">
+            <h2 style="text-align: center;">Register Your Vehicle...</h2>
+
+<form #vehicleRegisterationForm="ngForm" name="vehicleRegisterationForm" (ngSubmit)="vehicleData(vehicleRegisterationForm)">
+    
+    <div class="container">
+
+
+    <div>Enter mobile number</div>
+    <input type="text" name="umob" [(ngModel)]="model.umob" #umob="ngModel" pattern="^[0-9]{10}$" required>
+    <span *ngIf="umob.errors?.pattern">Provide Correct Mobile No</span>
+
+    
+   
+
+    <div>Enter car/bike manufacturer</div>
+    <input type="text" name="cbmanu" [(ngModel)]="model.cbmanu" #cbmanu="ngModel" required>
+
+    <div>Select model</div>
+    <input type="text" name="cbmodel" [(ngModel)]="model.cbmodel" #cbmodel="ngModel" required>
+
+    <div>Select Vehicle type</div>
+    <select type="text" name="vtype" [(ngModel)]="model.vtype" #vtype="ngModel" required>
+        <option value="">Select</option>
+        <option value="Four Wheeler">Four Wheeler</option>
+        <option value="Two Wheeler">Two Wheeler</option>
+    </select>
+
+    <div>Enter driving license</div>
+    <input type="text" name="lic" [(ngModel)]="model.lic" #lic="ngModel" pattern="^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$" required>
+    <span *ngIf="lic.errors?.pattern">Provide Correct License No</span>
+
+
+    <div>Enter purchase date</div>
+    <input type="date" name="pdate" [(ngModel)]="model.pdate" #pdate="ngModel" required>
+    
+
+    <div>Enter registeration number</div>
+    <input type="text" name="rno" [(ngModel)]="model.rno" #rno="ngModel" pattern="^[A-Z]{2}\s[0-9]{2}\s[A-Z]{2}\s[0-9]{4}$" required>
+    <span *ngIf="rno.errors?.pattern">Provide Correct Registration No</span>
+
+    <div>Enter engine number</div>
+    <input type="text" name="enum" [(ngModel)]="model.enum" #enum="ngModel" pattern="^([A-z]{2}[A-z0-9]{5,16})$" required>
+    <span *ngIf="enum.errors?.pattern">Provide Correct Engine No</span>
+
+    <div>Enter chassis number</div>
+    <input type="text" name="cnum" [(ngModel)]="model.cnum" #cnum="ngModel" pattern="^([A-z]{2}[A-z0-9]{5,16})$" required>
+    <span *ngIf="cnum.errors?.pattern">Provide Correct Chassis No</span>
+
+    <div>Enter Price Of vehicle</div>
+    <input type="number" name="price" [(ngModel)]="model.price" #price="ngModel" required>
+    
+    <div>
+        <button type="submit" [disabled]="vehicleRegisterationForm.invalid">Submit</button>
+    </div>
+    </div>
+</form>
+</div>
+</div>
+</div>
+
+
+-->
+
+
+
+
 <div class="body">
     <div class="container">
         <div class="title">Register Your Vehicle</div>
@@ -5,53 +75,55 @@
                 <form #vehicleRegisterationForm="ngForm" name="vehicleRegisterationForm" (ngSubmit)="vehicleData(vehicleRegisterationForm)">
                     <div class="user-details">
                         <div  class="input-box">
-                            <span class="details">Enter mobile number</span>
-                             <input type="text" Placeholder="Enter Your Mobile No"name="umob" [(ngModel)]="model.umob" #umob="ngModel" required>
-                        </div>
+                            <span class="details">Enter Mobile number</span>
+                            <input type="text" name="umob" [(ngModel)]="model.umob" #umob="ngModel" placeholder="Enter Mobile No." pattern="^[0-9]{10}$" required>
+                            <span *ngIf="umob.errors?.pattern">Provide Correct Mobile No</span>                        </div>
                         <div class="input-box">
-                            <span class="details">Enter car/bike manufacturer</span>
+                            <span class="details">Enter car/bike Manufacturer</span>
                              <input type="text" placeholder="Enter Your Vehicle Manufacturer " name="cbmanu" [(ngModel)]="model.cbmanu" #cbmanu="ngModel" required>
                         </div>
                         <div class="input-box">
-                            <span class="details">Select model</span>
-                            <input type="text" placeholder="Select Your Vehicle Model" name="cbmodel" [(ngModel)]="model.cbmodel" #cbmodel="ngModel" required>
+                            <span class="details">Enter Model</span>
+                            <input type="text" placeholder="Enter Your Vehicle Model" name="cbmodel" [(ngModel)]="model.cbmodel" #cbmodel="ngModel" required>
                         </div>
                         <div class="input-box">
                             <span class="details">Vehicle Type</span>
-                            <select type="text"  name="vtype" [(ngModel)]="model.vtype" #vtype="ngModel" required>
-                            <option value="">Select</option>
+                            <select type="text"  name="vtype" [(ngModel)]="model.vtype"  #vtype="ngModel" required>
                             <option value="Four Wheeler">Four Wheeler</option>
                             <option value="Two Wheeler">Two Wheeler</option>
                             </select>
                         </div>
                         <div class="input-box">
-                             <span class="details">Enter driving license</span>
-                            <input type="text" placeholder="Enter Your Driving License No."  name="lic" [(ngModel)]="model.lic" #lic="ngModel" required>
+                             <span class="details">Enter Driving license</span>
+                            <input type="text" placeholder="Enter Your Driving License No."  pattern="^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$" name="lic" [(ngModel)]="model.lic" #lic="ngModel" required>
+                            <span *ngIf="lic.errors?.pattern">Provide Correct License No</span>
+
                          </div>
                          <div class="input-box">
-                            <span class="details">Enter purchase date</span>
+                            <span class="details">Enter Purchase date</span>
                             <input type="date"  placeholder="Enter Purchase Date" name="pdate" [(ngModel)]="model.pdate" #pdate="ngModel" required>
                         </div>
                         <div class="input-box">
-                            <span class="details">Enter registeration number</span>
-                            <input type="text" placeholder="Enter Your Vehicle Registeration No." name="rno" [(ngModel)]="model.rno" #rno="ngModel" required>
-                         </div>
+                            <span class="details">Enter Registeration number</span>
+                            <input type="text" name="rno" [(ngModel)]="model.rno" #rno="ngModel" placeholder="Enter Registration No." pattern="^[A-Z]{2}\s[0-9]{2}\s[A-Z]{2}\s[0-9]{4}$" required>
+                            <span *ngIf="rno.errors?.pattern">Provide Correct Registration No</span>                         </div>
                         <div class="input-box">
-                            <span class="details">Enter engine number</span>
-                            <input type="text" placeholder="Enter Engine No"  name="enum" [(ngModel)]="model.enum" #enum="ngModel" required>
-                        </div>
+                            <span class="details">Enter Engine number</span>
+                            <input type="text" name="enum" [(ngModel)]="model.enum" #enum="ngModel" placeholder="Enter Engine No." pattern="^([A-z]{2}[A-z0-9]{5,16})$" required>
+                            <span *ngIf="enum.errors?.pattern">Provide Correct Engine No</span>                        </div>
                          <div class="input-box">
-                            <span class="details">Enter chassis number</span>
-                            <input type="text" placeholder="Enter chassis number" name="cnum" [(ngModel)]="model.cnum" #cnum="ngModel" required>
-                        </div>
+                            <span class="details">Enter Chassis number</span>
+                            <input type="text" name="cnum" [(ngModel)]="model.cnum" #cnum="ngModel" placeholder="Enter Chassis No." pattern="^([A-z]{2}[A-z0-9]{5,16})$" required>
+                            <span *ngIf="cnum.errors?.pattern">Provide Correct Chassis No</span>                        </div>
                         <div class="input-box">
                              <span class="details">Enter Price Of vehicle</span>
                             <input type="number"  placeholder="Enter Price Of vehicle" name="price" [(ngModel)]="model.price" #price="ngModel" required>
                         </div>
+                    </div>
                          <div class="button">
                              <input type="submit" [disabled]="vehicleRegisterationForm.invalid" value="Submit">
                         </div>
-                    </div>
+                   
 </form>
 
 </div>

@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
       else
       {
         console.log(data);
-        alert('Register UnSuccessfull');
+        alert('This Email-id or Mobile Number is Already Registered');
       }
   });
 

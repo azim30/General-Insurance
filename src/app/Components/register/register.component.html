@@ -1,4 +1,4 @@
-<!---<div class="row">
+<!-- <div class="row">
     <div class="main">
         <div class="card">
             <h2 style="text-align: center;">Register Yourself for Your Security...</h2>
@@ -12,7 +12,10 @@
     
         
         <div>
-          
+            <label for="email"><b>Email Address</b></label>
+            <input type="email" name="txtemail" [(ngModel)]="model.txtemail" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" placeholder="Enter Email" #txtemail="ngModel" required>
+            <span *ngIf="txtemail.errors?.required">Email cannot be blank</span>
+            <span *ngIf="txtemail.errors?.pattern">Follow Email restriction</span>
         </div>
     <div>
         <label for="uname"><b>Name</b></label>
@@ -20,23 +23,34 @@
         <span *ngIf="name.errors?.required">Name has to be entered</span>
     </div>
     <div>
-      
+        <label for="psw"><b>Password</b></label>
+        <input type="password" name="txtpass" [(ngModel)]="model.txtpass" placeholder="Enter Password" #txtpass="ngModel" minlength="4" maxlength="8" required>
+        <span *ngIf="txtpass.errors?.required">Password cannot be blank</span>
+        <span *ngIf="txtpass.errors?.pattern">Follow password restriction</span>
+        <span *ngIf="txtpass.errors?.minlength">Minimum password length is 4 characters</span>
     </div>
   
     <div>
-       
+        <label for="city"><b>Address</b></label>
+        <input type="text" name="city" [(ngModel)]="model.city" placeholder="Enter Address" #city="ngModel" required>
+        <span *ngIf="city.errors?.required">Address has to be entered</span>
     </div>
     <div>
-       
+        <label for="dob"><b>DOB</b></label>
+        <input type="date" name="dob" [(ngModel)]="model.dob" placeholder="Enter DOB" #dob="ngModel" required>
+        <span *ngIf="dob.errors?.required">DOB has to be entered</span>
     </div><br><br>
     <div>
-        
+        <label for="gen"><b>Select Gender</b></label>
+        <input type="radio" name="gen" [(ngModel)]="model.gen" placeholder="Enter Gender " #gen="ngModel" required value="Male">Male
+        <input type="radio" name="gen" [(ngModel)]="model.gen" #gen="ngModel" required value="Female">Female<br>
+        <span *ngIf="gen.errors?.required">Gender has to be selected</span>
     </div>
 
                  
     
     
-       
+        <button type="submit" [disabled]="regform.invalid">Register</button>
     
    
   </div>
@@ -44,8 +58,19 @@
 
 </div>
 </div>
-</div>-->
-<div class="body"><div class="container">
+</div>
+<div class="footer">
+    <p>&copy; 2020 Larsen & Toubro Infotech Limited</p>
+  </div>  -->
+
+
+
+
+
+
+
+
+  <div class="body"><div class="container">
     <div class="title">Registration</div>
     <div class="content">
       <form #regform="ngForm" name="regform" (ngSubmit)="RegisterData(regform)">
@@ -53,32 +78,27 @@
           <div class="input-box">
             <label for="uname" class="details">Name</label>
             <input type="text" name="name" [(ngModel)]="model.name" placeholder="Enter Name" #name="ngModel" required>
-            <mat-error *ngIf="name.errors?.required">Name has to be entered</mat-error>
 
           </div>
           <div class="input-box">
-            <label class="details" for="mobile">Phone NUmber</label>
+            <label class="details" for="mobile">Phone Number</label>
             <input type="tel" name="mno" [(ngModel)]="model.mno" #mno="ngModel" pattern="^[0-9]{10}$" placeholder="Enter Mobile No." required>
-            <mat-error *ngIf="mno.errors?.required">Mobile No cannot be blank</mat-error>
             <mat-error *ngIf="mno.errors?.pattern">MobNo has to be numeric and 10 digits</mat-error>
           </div>
           <div class="input-box">
-            <label class="details" for="email">Email Address</label>
+            <label class="details" for="email">Email E-Mail ID</label>
             <input type="email" name="txtemail" [(ngModel)]="model.txtemail" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" placeholder="Enter Email" #txtemail="ngModel" required>
-            <mat-error *ngIf="txtemail.errors?.required">Email cannot be blank</mat-error>
             <mat-error *ngIf="txtemail.errors?.pattern">Follow Email restriction</mat-error>
           </div>
           <div class="input-box">
             <label class="details" for="psw">Password</label>
             <input type="password" name="txtpass" [(ngModel)]="model.txtpass" placeholder="Enter Password" #txtpass="ngModel" minlength="4" maxlength="8" required>
-            <mat-error *ngIf="txtpass.errors?.required">Password cannot be blank</mat-error>
             <mat-error *ngIf="txtpass.errors?.pattern">Follow password restriction</mat-error>
             <mat-error *ngIf="txtpass.errors?.minlength">Minimum password length is 4 characters</mat-error>
           </div>
           <div class="input-box">
             <label for="city" class="details">Address</label>
             <input type="text" name="city" [(ngModel)]="model.city" placeholder="Enter Address" #city="ngModel" required>
-            <mat-error *ngIf="city.errors?.required">Address has to be entered</mat-error>
           </div>
           <div class="input-box">
             <label class="details" for="gen">Gender</label>
@@ -86,12 +106,10 @@
                 <option value="Female">Female</option><mat-divider></mat-divider>
                 <option value="Male">Male</option>        
             </select> 
-            <mat-error *ngIf="gen.errors?.required">Gender has to be selected</mat-error>
           </div>
           <div class="input-box" >
             <label  class="details"for="dob">Date Of Birth</label>
             <input type="date" name="dob" [(ngModel)]="model.dob" placeholder="Enter DOB" #dob="ngModel" required>
-            <mat-error *ngIf="dob.errors?.required">Date of birth has to be entered</mat-error>
           </div>
         </div>
        

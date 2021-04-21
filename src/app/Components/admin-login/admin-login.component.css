@@ -4,7 +4,10 @@
 	box-sizing: border-box;
 }
 
-
+body{
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
 
 .wave{
 	position: fixed;
@@ -21,8 +24,6 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap :7rem;
     padding: 0 2rem;
-	font-family: 'Poppins', sans-serif;
-    overflow: hidden;
 }
 
 .img{

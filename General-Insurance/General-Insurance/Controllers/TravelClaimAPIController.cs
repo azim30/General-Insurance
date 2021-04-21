@@ -15,7 +15,7 @@ namespace General_Insurance.Controllers
     {
         GeneralInsuranceEntities db = new GeneralInsuranceEntities();
         [HttpGet]
-        [Route("api/TravelClaimAPI/GetAllClaims")]
+        [Route("api/TravelClaimAPI/GetAllClaims")]           //To get all Claims 
         public IEnumerable<TravelClaimDataModel> Get()
         {
             try
@@ -27,9 +27,7 @@ namespace General_Insurance.Controllers
                                PolicyNo = p.PolicyNo,
                                Reason_for_Claim = p.Reason_for_Claim,
                                MobNo = p.MobNo,
-                               //TicketCopy = p.Ticket_Copy,
                                Amount = (decimal)p.Amount,
-                               //ComplaintCopy = p.Complaint_Copy,
                                Claim_Status = p.Claim_Status,
 
 
@@ -41,13 +39,18 @@ namespace General_Insurance.Controllers
                 throw ex;
             }
         }
-        [Route("api/TravelClaimAPI/TravelClaimDetails")]
+        [Route("api/TravelClaimAPI/TravelClaimDetails")]        // To claim your Travel Insurance
         [HttpPost]
         public bool Post([FromBody] TravelClaimDetail p)
         {
             try
             {
                 db.TravelClaimDetails.Add(p);
+                var data = db.TravelClaimDetails.Where(x => x.PolicyNo == p.PolicyNo).SingleOrDefault();   // will check if already claimed or not. 
+                if (data != null)
+                {
+                    return false;
+                }
                 var res = db.SaveChanges();
                 if (res > 0)
                     return true;
@@ -58,7 +61,7 @@ namespace General_Insurance.Controllers
             }
             return false;
         }
-        [Route("api/TravelClaimAPI/GetTravelClaimByID/{id}")]
+        [Route("api/TravelClaimAPI/GetTravelClaimByID/{id}")]                // To fetch particular data by ID
         [HttpGet]
         public IEnumerable<proc_GetAllTravelClaimsOfUser_Result> Get(string id)
         {
@@ -75,7 +78,7 @@ namespace General_Insurance.Controllers
                 throw ex;
             }
         }
-        [Route("api/TravelClaimAPI/ApproveTravelClaim")]
+        [Route("api/TravelClaimAPI/ApproveTravelClaim")]                     // To approve Claim
         [HttpPut]
         public bool ApproveTravelClaim([FromBody] int PolicyNo)
         {
@@ -83,6 +86,26 @@ namespace General_Insurance.Controllers
             {
                 Console.WriteLine(PolicyNo);
                 int res = db.proc_ApproveTravelClaim(PolicyNo);
+                if (res > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return false;
+        }
+
+        [Route("api/TravelClaimAPI/DeclineTravelClaim")]                     //To Decline the Claim
+        [HttpPut]
+        public bool DeclineTravelClaim([FromBody] int PolicyNo)
+        {
+            try
+            {
+                Console.WriteLine(PolicyNo);
+                int res = db.proc_DeclineTravelClaim(PolicyNo);
                 if (res > 0)
                 {
                     return true;

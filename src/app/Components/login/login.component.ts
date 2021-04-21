@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   svc:UserInfoService;
   mob:number;
   pwd:string;
+  user:string;
   ngzone: NgZone;
   router: Router;
   constructor(svc: UserInfoService, ngzone: NgZone,
@@ -30,11 +31,14 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit(): void {
+
   }
   Login(LoginForm:NgForm):void{
     this.mob = this.model.mno;
     this.pwd= this.model.txtpass;
     //alert(this.mob+','+this.pwd);
+
+    
 
     this.svc.Login(this.mob,this.pwd).subscribe((data:string)=> {
     console.log(data);
@@ -42,6 +46,13 @@ export class LoginComponent implements OnInit {
     {
       alert('Login successful');
       localStorage.setItem('PID',this.mob.toString());
+
+      this.svc.GetUser(this.mob.toString()).subscribe((data2:string)=>{
+        this.user=data2;
+        alert(data2);
+        localStorage.setItem('Uname',data2);
+      });
+      
       this.ngzone.run(()=>this.router.navigateByUrl('/user-dashboard'));
     }
     else

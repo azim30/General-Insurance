@@ -12,16 +12,16 @@ using System.Runtime;
 
 namespace General_Insurance.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]               //cross-domain access to your Web API methods.
     [Route("api/UserAPI")]
     public class UserAPIController : ApiController
     {
         GeneralInsuranceEntities db = new GeneralInsuranceEntities();
         [HttpGet]
-        [Route("api/UserAPI/GetAllUsers")]
+        [Route("api/UserAPI/GetAllUsers")]                               // To get all users 
         public IEnumerable<UserDataModel> Get()
         {
-            try
+            try                                                            //try catch block will handle the exception to ensure that the application does not cause an unhandled exception.
             {
                 var data = from u in db.UserDetails
                            select new UserDataModel
@@ -36,51 +36,41 @@ namespace General_Insurance.Controllers
                            };
                 return data;
             }
-            //this Get() method retrieves all employees from the table
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        [HttpGet]
-        [Route("api/UserAPI/GetAllVehicles")]
-        public IEnumerable<VehicleDataModel> GetVehicle()
-        {
-            try
-            {
-                var data = from u in db.VehicleDetails
-                           select new VehicleDataModel
-                           {
-                               VehicleID=u.VehicleID,
-                               UserMobNo=u.UserMobNo,
-                               VehicleType=u.VehicleType,
-                               Manufacturer=u.Manufacturer,
-                               Model=u.Model,
-                               DrivingLicense=u.DrivingLicense,
-                               RegistrationNo=u.RegistrationNo,
-                               PurchaseDate=u.PurchaseDate,
-                               Price=u.Price,
-                               ChassisNo=u.ChassisNo,
-                               EngineNo=u.EngineNo,
-                               
-                           };
-                return data;
-            }
-            //this Get() method retrieves all employees from the table
             catch (Exception ex)
             {
                 throw ex;
             }
         }
 
-        [Route("api/UserAPI/Login/{mob}/{pwd}")]
+
+        [Route("api/UserAPI/GetUserName/{id}")]           // will get particular row by id
+        [HttpGet]
+        public string GetName(string id)
+        {
+            try
+            {
+                var res = db.UserDetails.Where(x=> x.MobNo == id ).SingleOrDefault();
+                if (res == null)
+                    throw new Exception("Invalid id");
+                else
+                    return res.UserName;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+       
+        [Route("api/UserAPI/Login/{mob}/{pwd}")]               // Login using Mob and Pwd
         [HttpGet]
         public string Get(string mob, string pwd)
         {
             string result = "";
             try
             {
-                pwd = Convert.ToBase64String(System.Security.Cryptography.SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(pwd)));
+                pwd = Convert.ToBase64String(System.Security.Cryptography.SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(pwd)));   // For password encryption. Base64 is a way to encode binary data into an ASCII character. Sha256 is most secure.
                 var data = db.UserDetails.Where(x => x.MobNo == mob && x.Password == pwd);
                 if (data.Count() == 0)
                     result = "invalid credentials";
@@ -93,7 +83,7 @@ namespace General_Insurance.Controllers
             }
             return result;
         }
-        [Route("api/UserAPI/Register")]
+        [Route("api/UserAPI/Register")]             // To register New User
         [HttpPost]
         public bool Post(UserDetail u)
         {
@@ -101,6 +91,11 @@ namespace General_Insurance.Controllers
             {
                 Console.WriteLine(u.Password);
                 u.Password= Convert.ToBase64String(System.Security.Cryptography.SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(u.Password)));
+                var data = db.UserDetails.Where(x => x.Email == u.Email).SingleOrDefault();
+                if (data != null)
+                {
+                    return false;
+                }
                 db.UserDetails.Add(u);
                 var res = db.SaveChanges();
                 if (res > 0)
@@ -115,49 +110,8 @@ namespace General_Insurance.Controllers
 
 
 
-        [Route("api/UserAPI/Contact")]
-        [HttpPost]
-        public bool PostContact(ContactU u)
-        {
-            try
-            {
-                db.ContactUs.Add(u);
-                var res = db.SaveChanges();
-                if (res > 0)
-                    return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return false;
-        }
-
-
-        [HttpGet]
-        [Route("api/UserAPI/GetAllContact")]
-        public IEnumerable<ContactDataModel> GetContact()
-        {
-            try
-            {
-                var data = from u in db.ContactUs
-                           select new ContactDataModel
-                           {
-                               MobNo = u.MobNo,
-                               Email = u.Email,
-                               UserName = u.UserName,
-                               Subject=u.Subject,
-                               Message=u.Message
-                           };
-                return data;
-            }
-            //this Get() method retrieves all employees from the table
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        [Route("api/UserAPI/CheckEmail/{email}")]
+       
+        [Route("api/UserAPI/CheckEmail/{email}")]      // To check whether Email is present or not. 
         [HttpGet]
         public string Get(string email)
         {
@@ -180,7 +134,7 @@ namespace General_Insurance.Controllers
         }
 
 
-        [Route("api/UserAPI/VerifyLinkEmail")]
+        [Route("api/UserAPI/VerifyLinkEmail")]                   // For verification link
         [HttpPost]
         public string post([FromBody] UserDetail usr)
         {
@@ -191,7 +145,7 @@ namespace General_Insurance.Controllers
                 if (data == null)
                     return result;
                 string OTP = GeneratePassword();
-                data.ActivetionCode = Guid.NewGuid();
+                data.ActivetionCode = Guid.NewGuid();                   //A GUID (Global Unique IDentifier) is a 128-bit integer used as a unique identifier.
                 data.OTP = OTP;
                 db.Entry(data).State = System.Data.EntityState.Modified;
                 var res = db.SaveChanges();
@@ -236,9 +190,6 @@ namespace General_Insurance.Controllers
             var link = GenarateUserVerificationLink;
 
 
-            //var link= Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.PathAndQuery, GenarateUserVerificationLink);
-            //string current_url = System.Web.HttpContext.Current.Request.Url.ToString();
-            //var link = System.Web.HttpContext.Current.Request.Url.ToString().Replace(current_url, GenarateUserVerificationLink);
 
             var fromMail = new MailAddress("projectgiteam5@gmail.com", "Team05"); //enter your mail id
             var fromEmailpassword = "Project@5"; // Set your email password
@@ -260,7 +211,7 @@ namespace General_Insurance.Controllers
 
             smtp.Send(Message);
         }
-            [Route("api/UserAPI/SetNewPassword")]
+            [Route("api/UserAPI/SetNewPassword")]           // To change Password
             [HttpPost]
             public bool Put([FromBody] UserDetail usr)
             {
@@ -268,7 +219,9 @@ namespace General_Insurance.Controllers
                 try
                 {
                     string otp = usr.OTP; ;
-                    string NewPass = usr.Password;
+                usr.Password = Convert.ToBase64String(System.Security.Cryptography.SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(usr.Password)));
+
+                string NewPass = usr.Password;
 
                     var res = db.proc_UpdatePassword(otp, NewPass);
                     if (res > 0)

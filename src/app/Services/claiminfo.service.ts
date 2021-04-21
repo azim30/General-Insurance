@@ -30,7 +30,10 @@ export class ClaiminfoService {
   {
     return this.http.put<boolean>(this.url+'/'+ 'ApproveClaim',id, this.httpOptions);
   }
-
+  DeclineClaim(id:number):Observable<boolean>
+  {
+    return this.http.put<boolean>(this.url+'/'+ 'DeclineClaim',id, this.httpOptions);
+  }
   RegisterClaim(usr:ClaiminfoModule):Observable<boolean>
   {
     return this.http.post<boolean>(this.url+'/'+ 'RegisterClaim',usr, this.httpOptions);

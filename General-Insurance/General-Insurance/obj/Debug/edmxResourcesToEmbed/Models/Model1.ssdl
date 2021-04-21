@@ -216,6 +216,12 @@ warning 6002: The table/view 'GeneralInsurance.dbo.AdminDetails' does not have a
     <Parameter Name="manu" Type="varchar" Mode="In" />
     <Parameter Name="model" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="proc_DeclineMotorClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="policyid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_DeclineTravelClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="policyid" Type="int" Mode="In" />
+  </Function>
   <Function Name="proc_GetAllClaimsOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="mobile" Type="varchar" Mode="In" />
   </Function>
@@ -239,6 +245,9 @@ warning 6002: The table/view 'GeneralInsurance.dbo.AdminDetails' does not have a
     <Parameter Name="manu" Type="varchar" Mode="In" />
   </Function>
   <Function Name="proc_GetManufacturers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_GetUserByid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mobile" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="proc_UpdatePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="otp" Type="varchar" Mode="In" />
     <Parameter Name="Password" Type="varchar" Mode="In" />
@@ -246,6 +255,9 @@ warning 6002: The table/view 'GeneralInsurance.dbo.AdminDetails' does not have a
   <Function Name="proc_UserLoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="uid" Type="varchar" Mode="In" />
     <Parameter Name="pswd" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_UserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mobile" Type="varchar" Mode="In" />
   </Function>
   <Function Name="sp_insertMotorClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PolicyNo" Type="int" Mode="In" />

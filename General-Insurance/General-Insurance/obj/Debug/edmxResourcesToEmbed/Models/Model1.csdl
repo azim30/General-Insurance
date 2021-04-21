@@ -271,6 +271,12 @@
       <Parameter Name="manu" Mode="In" Type="String" />
       <Parameter Name="model" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="proc_DeclineMotorClaim">
+      <Parameter Name="policyid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_DeclineTravelClaim">
+      <Parameter Name="policyid" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="proc_GetAllClaimsOfUser" ReturnType="Collection(GeneralInsuranceModel.proc_GetAllClaimsOfUser_Result)">
       <Parameter Name="mobile" Mode="In" Type="String" />
     </FunctionImport>
@@ -294,6 +300,9 @@
       <Parameter Name="manu" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="proc_GetManufacturers" ReturnType="Collection(String)" />
+    <FunctionImport Name="proc_GetUserByid" ReturnType="Collection(GeneralInsuranceModel.proc_GetUserByid_Result)">
+      <Parameter Name="mobile" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="proc_UpdatePassword">
       <Parameter Name="otp" Mode="In" Type="String" />
       <Parameter Name="Password" Mode="In" Type="String" />
@@ -301,6 +310,9 @@
     <FunctionImport Name="proc_UserLoginCheck" ReturnType="Collection(String)">
       <Parameter Name="uid" Mode="In" Type="String" />
       <Parameter Name="pswd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_UserName" ReturnType="Collection(String)">
+      <Parameter Name="mobile" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_insertMotorClaim">
       <Parameter Name="PolicyNo" Mode="In" Type="Int32" />
@@ -375,5 +387,18 @@
   <ComplexType Name="proc_GetBrandNewPrice_Result">
     <Property Type="DateTime" Name="PurchaseDate" Nullable="false" />
     <Property Type="Decimal" Name="Price" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="proc_GetUserByid_Result">
+    <Property Type="Int32" Name="CustID" Nullable="false" />
+    <Property Type="String" Name="MobNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="70" />
+    <Property Type="DateTime" Name="DOB" Nullable="false" />
+    <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+    <Property Type="Boolean" Name="EmailVerification" Nullable="true" />
+    <Property Type="Guid" Name="ActivetionCode" Nullable="true" />
+    <Property Type="String" Name="OTP" Nullable="true" MaxLength="4" />
   </ComplexType>
 </Schema>

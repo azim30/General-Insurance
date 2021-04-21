@@ -7,6 +7,7 @@ import {ClaiminfoModule} from '../../Modules/claiminfo/claiminfo.module';
 import{ClaiminfoService} from '../../Services/claiminfo.service';
 import {TravelclaiminfoModule} from '../../Modules/travelclaiminfo/travelclaiminfo.module';
 import{TravelclaiminfoService} from '../../Services/travelclaiminfo.service';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -14,7 +15,7 @@ import{TravelclaiminfoService} from '../../Services/travelclaiminfo.service';
 })
 export class AdminDashboardComponent implements OnInit {
   term: string;
-
+  model: any = [];
   svc: VehicleinfoService;
   svc1: UserInfoService;
   svc2: ClaiminfoService;
@@ -39,7 +40,7 @@ export class AdminDashboardComponent implements OnInit {
 
     constructor(svc: VehicleinfoService, svc1: UserInfoService, svc2: ClaiminfoService, svc3: TravelclaiminfoService) {this.svc=svc; this.svc1=svc1; this.svc2=svc2; this.svc3=svc3;}
   
-    ngOnInit(): void {
+    ngOnInit(): void {   
   this.svc1.GetUsers().subscribe((data:UserInfoModule[])=>{
     this.emplist=data;
     console.log(this.emplist);
@@ -67,7 +68,7 @@ export class AdminDashboardComponent implements OnInit {
       {
         if(data)
         {
-          alert("Status Upadted");
+          alert("Status Updated");
           location.reload();
         }
         else{
@@ -81,7 +82,37 @@ export class AdminDashboardComponent implements OnInit {
       {
         if(data)
         {
-          alert("Status Upadted");
+          alert("Status Updated");
+          location.reload();
+        }
+        else{
+          alert("Status Not Updated");
+        }
+      });
+    }
+
+
+
+    Decline(id:number){
+      this.svc2.DeclineClaim(id).subscribe((data:boolean)=>
+      {
+        if(data)
+        {
+          alert("Status Updated");
+          location.reload();
+        }
+        else{
+          alert("Status Not Updated");
+        }
+      });
+    }
+
+    DeclineTravel(id:number){
+      this.svc3.DeclineTravelClaim(id).subscribe((data:boolean)=>
+      {
+        if(data)
+        {
+          alert("Status Updated");
           location.reload();
         }
         else{

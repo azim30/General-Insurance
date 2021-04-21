@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6ed74477f9494da19fafb7c93a96b048" Name="Diagram1">
-        <EntityTypeShape EntityType="GeneralInsuranceModel.ClaimDetail" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GeneralInsuranceModel.ContactU" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GeneralInsuranceModel.PolicyDetail" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GeneralInsuranceModel.TravelClaimDetail" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+      <Diagram DiagramId="9e3f832190bb4a2e967ff857f99a84dc" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="GeneralInsuranceModel.ClaimDetail" Width="1.5" PointX="6.875" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneralInsuranceModel.ContactU" Width="1.5" PointX="7" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneralInsuranceModel.PolicyDetail" Width="1.5" PointX="10.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneralInsuranceModel.TravelClaimDetail" Width="1.5" PointX="4.375" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="GeneralInsuranceModel.TravelInsurance" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GeneralInsuranceModel.UserDetail" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="GeneralInsuranceModel.VehicleDetail" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GeneralInsuranceModel.AdminDetail" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneralInsuranceModel.UserDetail" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneralInsuranceModel.VehicleDetail" Width="1.5" PointX="4.125" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneralInsuranceModel.AdminDetail" Width="1.5" PointX="9.625" PointY="2.375" IsExpanded="true" />
         <AssociationConnector Association="GeneralInsuranceModel.FK__ClaimDeta__PolNo__17F790F9" ManuallyRouted="false" />
         <AssociationConnector Association="GeneralInsuranceModel.FK__ClaimDeta__UserM__160F4887" ManuallyRouted="false" />
         <AssociationConnector Association="GeneralInsuranceModel.FK__ClaimDeta__VehId__17036CC0" ManuallyRouted="false" />

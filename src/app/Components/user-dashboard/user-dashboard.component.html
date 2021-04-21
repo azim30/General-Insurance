@@ -1,12 +1,12 @@
-<!----
-<a mat-raised-button color="accent"  [routerLink]="['/RegisterVehicle']"  role="button">Register Vehicle</a>&nbsp;
-<a mat-raised-button color="accent"  [routerLink]="['/travelinsurance']"  role="button">Buy Travel Insurance</a>&nbsp;
-<br><br><br>
-<a mat-raised-button color="accent"  (click)="GetAllVehicles()"  role="button">Check all Registered Vehicles</a>&nbsp;
-<a mat-raised-button color="accent"  (click)="GetPolicies()"  role="button">Check all Aplied Policies</a>&nbsp;
-<a mat-raised-button color="accent"  (click)="GetAllClaims()"  role="button">Get all Motor Claims</a>&nbsp;
-<a mat-raised-button color="accent"  (click)="GetAllTravels()"  role="button">Get all Travel Insurance Registered</a>&nbsp;
-<a mat-raised-button color="accent"  (click)="GetAllTravelClaims()"  role="button">Get all Travel Claims</a>&nbsp;<br><br>
+<!--<br>
+&nbsp;<a mat-raised-button color="primary"  [routerLink]="['/RegisterVehicle']"  role="button">Register Vehicle</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a mat-raised-button color="primary"  [routerLink]="['/travelinsurance']"  role="button">Buy Travel Insurance</a>&nbsp;
+<br><br><hr><br>
+<a mat-raised-button color="accent"  (click)="GetAllVehicles()"  role="button">View all Registered Vehicles</a>&nbsp;
+<a mat-raised-button color="accent"  (click)="GetPolicies()"  role="button">View all Aplied Policies</a>&nbsp;
+<a mat-raised-button color="accent"  (click)="GetAllTravels()"  role="button">View all Registered Travel Insurance</a>&nbsp;<br><br><br><hr><br>
+<a mat-raised-button color="warn"  (click)="GetAllClaims()"  role="button">Applied Motor Claims</a>&nbsp;
+<a mat-raised-button color="warn"  (click)="GetAllTravelClaims()"  role="button">Applied Travel Claims</a>&nbsp;<br><br>
 
 
 <br><br>
@@ -48,7 +48,7 @@
             <td>{{value.Price}}</td>
             <td>{{value.ChassisNo}}</td>
             <td>{{value.EngineNo}}</td>
-            <td><button (click)="buyinsurance(value.VehicleID)" >Buy Insurance</button></td>
+            <td><button (click)="buyinsurance(value.VehicleID,value.UserMobNo)" >Buy Insurance</button></td>
             <td><button (click)="delete(value.VehicleID)">Delete </button></td>
         </tr></tbody>
     </table></div>
@@ -68,7 +68,6 @@
                 <th>Policy Name</th>
                 <th>Period</th>
                 <th>Policy Amount</th>
-                <th>Policy Status</th>
                 <th>Start Date</th>
                 <th>Claim</th>
                 <th>Renew Policy</th>
@@ -80,10 +79,9 @@
                 <td>{{value.PolicyName}}</td>
                 <td>{{value.Period}}</td>
                 <td>{{value.PolicyAmt}}</td>
-                <td>{{value.PolicyStatus}}</td>
                 <td>{{value.StartDate}}</td>
-                <td><button (click)="ClaimInsurance(value.PolicyNo,value.VehId)">Claim</button></td>
-                <td><button (click)="buyinsurance(value.VehId)">Renew</button></td>
+                <td><button (click)="ClaimInsurance(value.PolicyNo,value.VehId,value.UserMobNo)">Claim</button></td>
+                <td><button (click)="buyinsurance(value.VehId,value.UserMobNo)">Renew</button></td>
 
 
 
@@ -158,7 +156,7 @@
                         <td>{{value.NoOfPassengers}}</td>
                         <td>{{value.IPlan}}</td>
                         <td>{{value.Amount}}</td>
-                        <td><button (click)="ClaimTravel(value.PolicyNo)" >Claim Insurance</button></td>
+                        <td><button (click)="ClaimTravel(value.PolicyNo,value.MobileNo)" >Claim Insurance</button></td>
                     </tr></tbody>
                 </table></div>
             
@@ -189,121 +187,211 @@
                             <td>{{value.Claim_Status}}</td>
                            
                         </tr></tbody>
-                    </table></div>-->
+                    </table></div>   -->
 
-<mat-sidenav-container>
-    <mat-sidenav mode="side" opened><span>Hi ,Nupur</span>
-        <mat-nav-list>
-            <mat-list-item> <a   [routerLink]="['/RegisterVehicle']"  role="button">   Register Vehicle </a></mat-list-item>
-            <mat-list-item> <a    [routerLink]="['/travelinsurance']"  role="button">Buy Travel Insurance </a></mat-list-item>
-            <mat-list-item> <a   mat-button (click)="GetAllVehicles()"  role="button">My Vehicle</a> </mat-list-item>
-            <mat-list-item> <a   (click)="GetPolicies()"  role="button">My Policy</a>  </mat-list-item>
-            <mat-list-item> <a   (click)="GetAllClaims()"  role="button">My Claims</a>  </mat-list-item>
-            <mat-list-item> <a   (click)="GetAllTravels()"  role="button">My Travel Insurance</a> </mat-list-item>
-            <mat-list-item> <a   (click)="GetAllTravelClaims()"  role="button">Claim Travel Insurance</a> </mat-list-item>
-           </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <marquee width="97%" direction="left" height="100px">Welcome to Insurance Pay Nupur.  </marquee>
-        <div *ngIf="buttonName3=='GetAllClaims'">
-            <br>
-            <div style="padding-left: 2%;">     
-            <input type="text" [(ngModel)]="term" placeholder="Search..">
-            </div>
-            <br>
-            <table class="styled-table" border="1">
-                <thead>
-                <tr>
-                    <th>Claim No</th>
-                    <th>Mobile No.</th>
-                    <th>Vehicle ID</th>
-                    <th>Policy No</th>
-                    <th>Claim Amount</th>
-                    <th>Claim Status</th>
-                    <th>Claim Date</th>
-                    <th>Claim Reason</th>
-                </tr></thead><tbody>
-                <tr *ngFor="let value of clist">
-                    <td>{{value.ClaimNo}}</td>
-                    <td>{{value.UserMobNo}}</td>
-                    <td>{{value.VehId}}</td>
-                    <td>{{value.PolNo}}</td>
-                    <td>{{value.ClaimAmt}}</td>
-                    <td>{{value.ClaimStatus}}</td>
-                    <td>{{value.ClaimDate}}</td>
-                    <td>{{value.ClaimReason}}</td>
-                </tr></tbody>
-            </table></div>
 
-            <div *ngIf="buttonName4=='GetAllTravels'">
-                <br>
-                <div style="padding-left: 2%;">     
-                <input type="text" [(ngModel)]="term" placeholder="Search..">
-                </div>
-                <br>
-                <table class="styled-table" border="1">
-                    <thead>
-                    <tr>
-                        <th>Policy No</th>
-                        <th>Source</th>
-                        <th>Destination</th>
-                        <th>TripStart</th>
-                        <th>TripEnd</th>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>Age</th>
-                        <th>MobileNo</th>
-                        <th>NoOfPassengers</th>
-                        <th>Plan</th>
-                        <th>Amount</th>
-                        <th>Claim</th>
-            
-            
-                    </tr></thead><tbody>
-                    <tr *ngFor="let value of tlist">
-                        <td>{{value.PolicyNo}}</td>
-                        <td>{{value.Source}}</td>
-                        <td>{{value.Destination}}</td>
-                        <td>{{value.TripStart}}</td>
-                        <td>{{value.TripEnd}}</td>
-                        <td>{{value.Name}}</td>
-                        <td>{{value.Address}}</td>
-                        <td>{{value.Age}}</td>
-                        <td>{{value.MobileNo}}</td>
-                        <td>{{value.NoOfPassengers}}</td>
-                        <td>{{value.IPlan}}</td>
-                        <td>{{value.Amount}}</td>
-                        <td><button (click)="ClaimTravel(value.PolicyNo)" >Claim Insurance</button></td>
-                    </tr></tbody>
-                </table></div>
-            
 
-                <div *ngIf="buttonName5=='GetAllTravelClaims'">
-                    <br>
-                    <div style="padding-left: 2%;">     
-                    <input type="text" [(ngModel)]="term" placeholder="Search..">
-                    </div>
-                    <br>
-                    <table class="styled-table" border="1">
-                        <thead>
-                        <tr>
-                            <th>Travel Claim No</th>
-                            <th>Policy No</th>
-                            <th>Claim Reason</th>
-                            <th>Mobile No.</th>
-                            <th>Claim Amount</th>
-                            <th>Claim Status</th>
-                          
-                        </tr></thead><tbody>
-                        <tr *ngFor="let value of tclist">
-                            <td>{{value.Travel_Claim_Id}}</td>
-                            <td>{{value.PolicyNo}}</td>
-                            <td>{{value.Reason_for_Claim}}</td>
-                            <td>{{value.MobNo}}</td>
-                            <td>{{value.Amount}}</td>
-                            <td>{{value.Claim_Status}}</td>
-                           
-                        </tr></tbody>
-                    </table></div>
-      </mat-sidenav-content>
-</mat-sidenav-container>
+                    <mat-sidenav-container>
+                        <mat-sidenav mode="side" opened><span>Welcome</span>
+                            <mat-nav-list>
+                                <mat-list-item> <a   [routerLink]="['/RegisterVehicle']"  role="button">   Register Vehicle </a></mat-list-item>
+                                <mat-list-item> <a    [routerLink]="['/travelinsurance']"  role="button">Buy Travel Insurance </a></mat-list-item>
+                                <mat-list-item> <a    (click)="GetAllVehicles()"  role="button">My Vehicle</a> </mat-list-item>
+                                <mat-list-item> <a   (click)="GetPolicies()"  role="button">My Policy</a>  </mat-list-item>
+                                <mat-list-item> <a   (click)="GetAllClaims()"  role="button">My Claims</a>  </mat-list-item>
+                                <mat-list-item> <a   (click)="GetAllTravels()"  role="button">My Travel Insurance</a> </mat-list-item>
+                                <mat-list-item> <a   (click)="GetAllTravelClaims()"  role="button">Claim Travel Insurance</a> </mat-list-item>
+                               </mat-nav-list>
+                        </mat-sidenav>
+                        <mat-sidenav-content>
+                            <marquee width="97%" direction="left" height="100px">Welcome to Insurance Pay , You are in Safe Hands.  </marquee><br><br><br>
+                            <div *ngIf="buttonName1=='GetAllVehicles'">
+                                <br><br><br><br>
+                                <div style="padding-left: 2%;">     
+                                <input type="text" [(ngModel)]="term" placeholder="Search..">
+                                </div> 
+                                <br>
+                                <table class="styled-table" border="1">
+                                    <thead>
+                                    <tr>
+                                        <th>Vehicle ID</th>
+                                        <th>Mobile No.</th>
+                                        <th>Vehicle Type</th>
+                                        <th>Manufacturer</th>
+                                        <th>Model</th>
+                                        <th>Driving License</th>
+                                        <th>Registration No.</th>
+                                        <th>Purchase Date</th>
+                                        <th>Price </th>
+                                        <th>Chassis No.</th>
+                                        <th>Engine No.</th>
+                                        <th>Buy Insurance</th>
+                                        <th>Delete</th>
+                            
+                            
+                                    </tr></thead><tbody>
+                                    <tr *ngFor="let value of vehlist">
+                                    <tr *ngFor = "let value of vehlist |  filter:term ">
+
+                                        <td>{{value.VehicleID}}</td>
+                                        <td>{{value.UserMobNo}}</td>
+                                        <td>{{value.VehicleType}}</td>
+                                        <td>{{value.Manufacturer}}</td>
+                                        <td>{{value.Model}}</td>
+                                        <td>{{value.DrivingLicense}}</td>
+                                        <td>{{value.RegistrationNo}}</td>
+                                        <td>{{value.PurchaseDate}}</td>
+                                        <td>{{value.Price}}</td>
+                                        <td>{{value.ChassisNo}}</td>
+                                        <td>{{value.EngineNo}}</td>
+                                        <td><button mat-flat-button color="primary" (click)="buyinsurance(value.VehicleID,value.UserMobNo)" >Buy Insurance</button></td>
+                                        <td><button mat-flat-button color="warn" (click)="delete(value.VehicleID)">Delete </button></td>
+                                    </tr></tbody>
+                                </table></div>
+                            
+                                <div *ngIf="buttonName2=='GetPolicies'">
+                                    <br><br><br><br>
+                                    <div style="padding-left: 2%;">     
+                                    <input type="text" [(ngModel)]="term" placeholder="Search..">
+                                    </div>
+                                    <br>
+                                    <table class="styled-table" border="1" id="table">
+                                        <thead>
+                                        <tr>
+                                            <th>PolicyNo</th>
+                                            <th>Mobile No.</th>
+                                            <th>Vehicle ID</th>
+                                            <th>Policy Name</th>
+                                            <th>Period</th>
+                                            <th>Policy Amount</th>
+                                            <th>Start Date</th>
+                                            <th>Claim</th>
+                                            <th>Renew Policy</th>
+                                        </tr></thead><tbody>
+                                        <tr *ngFor="let value of pollist">
+                                            <tr *ngFor = "let value of pollist |  filter:term ">
+
+                                            <td>{{value.PolicyNo}}</td>
+                                            <td>{{value.UserMobNo}}</td>
+                                            <td>{{value.VehId}}</td>
+                                            <td>{{value.PolicyName}}</td>
+                                            <td>{{value.Period}}</td>
+                                            <td>{{value.PolicyAmt}}</td>
+                                            <td>{{value.StartDate}}</td>
+                                            <td><button mat-flat-button color="primary" (click)="ClaimInsurance(value.PolicyNo,value.VehId,value.UserMobNo)">Claim</button></td>
+                                            <td><button mat-flat-button color="warn" (click)="buyinsurance(value.VehId,value.UserMobNo)">Renew</button></td>
+                            
+                            
+                            
+                            
+                                        </tr></tbody>
+                                    </table></div>
+                            
+                            <div *ngIf="buttonName3=='GetAllClaims'">
+                                <br><br><br><br>
+                                <div style="padding-left: 2%;">     
+                                <input type="text" [(ngModel)]="term" placeholder="Search..">
+                                </div>
+                                <br>
+                                <table class="styled-table" border="1">
+                                    <thead>
+                                    <tr>
+                                        <th>Claim No</th>
+                                        <th>Mobile No.</th>
+                                        <th>Vehicle ID</th>
+                                        <th>Policy No</th>
+                                        <th>Claim Amount</th>
+                                        <th>Claim Status</th>
+                                        <th>Claim Date</th>
+                                        <th>Claim Reason</th>
+                                    </tr></thead><tbody>
+                                    <tr *ngFor="let value of clist">
+                                        <tr *ngFor = "let value of clist |  filter:term ">
+
+                                        <td>{{value.ClaimNo}}</td>
+                                        <td>{{value.UserMobNo}}</td>
+                                        <td>{{value.VehId}}</td>
+                                        <td>{{value.PolNo}}</td>
+                                        <td>{{value.ClaimAmt}}</td>
+                                        <td>{{value.ClaimStatus}}</td>
+                                        <td>{{value.ClaimDate}}</td>
+                                        <td>{{value.ClaimReason}}</td>
+                                    </tr></tbody>
+                                </table></div>
+                    
+                                <div *ngIf="buttonName4=='GetAllTravels'">
+                                    <br><br><br><br>
+                                    <div style="padding-left: 2%;">     
+                                    <input type="text" [(ngModel)]="term" placeholder="Search..">
+                                    </div>
+                                    <br>
+                                    <table class="styled-table" border="1">
+                                        <thead>
+                                        <tr>
+                                            <th>Policy No</th>
+                                            <th>Source</th>
+                                            <th>Destination</th>
+                                            <th>TripStart</th>
+                                            <th>TripEnd</th>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Age</th>
+                                            <th>MobileNo</th>
+                                            <th>NoOfPassengers</th>
+                                            <th>Plan</th>
+                                            <th>Amount</th>
+                                            <th>Claim</th>
+                                
+                                
+                                        </tr></thead><tbody>
+                                        <tr *ngFor="let value of tlist">
+                                            <tr *ngFor = "let value of tlist |  filter:term ">
+
+                                            <td>{{value.PolicyNo}}</td>
+                                            <td>{{value.Source}}</td>
+                                            <td>{{value.Destination}}</td>
+                                            <td>{{value.TripStart}}</td>
+                                            <td>{{value.TripEnd}}</td>
+                                            <td>{{value.Name}}</td>
+                                            <td>{{value.Address}}</td>
+                                            <td>{{value.Age}}</td>
+                                            <td>{{value.MobileNo}}</td>
+                                            <td>{{value.NoOfPassengers}}</td>
+                                            <td>{{value.IPlan}}</td>
+                                            <td>{{value.Amount}}</td>
+                                            <td><button mat-flat-button color="primary" (click)="ClaimTravel(value.PolicyNo,value.MobileNo)" >Claim Insurance</button></td>
+                                        </tr></tbody>
+                                    </table></div>
+                                
+                    
+                                    <div *ngIf="buttonName5=='GetAllTravelClaims'">
+                                        <br><br><br><br>
+                                        <div style="padding-left: 2%;">     
+                                        <input type="text" [(ngModel)]="term" placeholder="Search..">
+                                        </div>
+                                        <br>
+                                        <table class="styled-table" border="1">
+                                            <thead>
+                                            <tr>
+                                                <th>Travel Claim No</th>
+                                                <th>Policy No</th>
+                                                <th>Claim Reason</th>
+                                                <th>Mobile No.</th>
+                                                <th>Claim Amount</th>
+                                                <th>Claim Status</th>
+                                              
+                                            </tr></thead><tbody>
+                                            <tr *ngFor="let value of tclist">
+                                                <tr *ngFor = "let value of tclist |  filter:term ">
+
+                                                <td>{{value.Travel_Claim_Id}}</td>
+                                                <td>{{value.PolicyNo}}</td>
+                                                <td>{{value.Reason_for_Claim}}</td>
+                                                <td>{{value.MobNo}}</td>
+                                                <td>{{value.Amount}}</td>
+                                                <td>{{value.Claim_Status}}</td>
+                                               
+                                            </tr></tbody>
+                                        </table></div>
+                          </mat-sidenav-content>
+                    </mat-sidenav-container>

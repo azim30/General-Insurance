@@ -13,6 +13,7 @@ import {TravelInsuranceService} from '../../Services/travel-insurance.service';
 import{TravelInsuranceModule} from '../../Modules/travel-insurance/travel-insurance.module';
 import {TravelclaiminfoModule} from '../../Modules/travelclaiminfo/travelclaiminfo.module';
 import {TravelclaiminfoService} from '../../Services/travelclaiminfo.service';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -20,7 +21,7 @@ import {TravelclaiminfoService} from '../../Services/travelclaiminfo.service';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent implements OnInit {
-
+term: string;
   model: any = [];
   svc: VehicleinfoService;
   psvc: PolicyinfoService;
@@ -122,25 +123,33 @@ export class UserDashboardComponent implements OnInit {
       );
   
     }
-    buyinsurance(id:number):void{
+    buyinsurance(id:number,mob:number):void{
       console.log(id);
+      console.log(mob);
       sessionStorage.setItem("idstore",id.toString());
+      sessionStorage.setItem("mob",mob.toString());
+
       this.ngzone.run(()=>this.router.navigateByUrl('/policy'));
 
   
     }
-    ClaimInsurance(id1:number, id2:number):void{
+    ClaimInsurance(id1:number, id2:number,mob:number):void{
       console.log(id1);
       console.log(id2);
+      console.log(mob);
       sessionStorage.setItem("idstore1",id1.toString());
       sessionStorage.setItem("idstore2", id2.toString());
+      sessionStorage.setItem("mob", mob.toString());
+
 
       this.ngzone.run(()=>this.router.navigateByUrl('/claim-insurance'));
     }
     
-      ClaimTravel(id3:number):void{
+      ClaimTravel(id3:number,mob:number):void{
       console.log(id3);
+      console.log(mob);
       sessionStorage.setItem("idstore3",id3.toString());
+      sessionStorage.setItem("mob",mob.toString());
       this.ngzone.run(()=>this.router.navigateByUrl('/travelclaim'));
 
     }

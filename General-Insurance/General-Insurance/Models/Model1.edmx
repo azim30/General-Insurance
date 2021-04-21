@@ -221,6 +221,12 @@ warning 6002: The table/view 'GeneralInsurance.dbo.AdminDetails' does not have a
           <Parameter Name="manu" Type="varchar" Mode="In" />
           <Parameter Name="model" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_DeclineMotorClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="policyid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_DeclineTravelClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="policyid" Type="int" Mode="In" />
+        </Function>
         <Function Name="proc_GetAllClaimsOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="mobile" Type="varchar" Mode="In" />
         </Function>
@@ -244,6 +250,9 @@ warning 6002: The table/view 'GeneralInsurance.dbo.AdminDetails' does not have a
           <Parameter Name="manu" Type="varchar" Mode="In" />
         </Function>
         <Function Name="proc_GetManufacturers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_GetUserByid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mobile" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="proc_UpdatePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="otp" Type="varchar" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
@@ -251,6 +260,9 @@ warning 6002: The table/view 'GeneralInsurance.dbo.AdminDetails' does not have a
         <Function Name="proc_UserLoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="uid" Type="varchar" Mode="In" />
           <Parameter Name="pswd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_UserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mobile" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_insertMotorClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PolicyNo" Type="int" Mode="In" />
@@ -590,6 +602,12 @@ FROM [dbo].[AdminDetails] AS [AdminDetails]</DefiningQuery>
             <Parameter Name="manu" Mode="In" Type="String" />
             <Parameter Name="model" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="proc_DeclineMotorClaim">
+            <Parameter Name="policyid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_DeclineTravelClaim">
+            <Parameter Name="policyid" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="proc_GetAllClaimsOfUser" ReturnType="Collection(GeneralInsuranceModel.proc_GetAllClaimsOfUser_Result)">
             <Parameter Name="mobile" Mode="In" Type="String" />
           </FunctionImport>
@@ -613,6 +631,9 @@ FROM [dbo].[AdminDetails] AS [AdminDetails]</DefiningQuery>
             <Parameter Name="manu" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_GetManufacturers" ReturnType="Collection(String)" />
+          <FunctionImport Name="proc_GetUserByid" ReturnType="Collection(GeneralInsuranceModel.proc_GetUserByid_Result)">
+            <Parameter Name="mobile" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="proc_UpdatePassword">
             <Parameter Name="otp" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
@@ -620,6 +641,9 @@ FROM [dbo].[AdminDetails] AS [AdminDetails]</DefiningQuery>
           <FunctionImport Name="proc_UserLoginCheck" ReturnType="Collection(String)">
             <Parameter Name="uid" Mode="In" Type="String" />
             <Parameter Name="pswd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_UserName" ReturnType="Collection(String)">
+            <Parameter Name="mobile" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_insertMotorClaim">
             <Parameter Name="PolicyNo" Mode="In" Type="Int32" />
@@ -694,6 +718,19 @@ FROM [dbo].[AdminDetails] AS [AdminDetails]</DefiningQuery>
         <ComplexType Name="proc_GetBrandNewPrice_Result">
           <Property Type="DateTime" Name="PurchaseDate" Nullable="false" />
           <Property Type="Decimal" Name="Price" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="proc_GetUserByid_Result">
+          <Property Type="Int32" Name="CustID" Nullable="false" />
+          <Property Type="String" Name="MobNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="70" />
+          <Property Type="DateTime" Name="DOB" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="EmailVerification" Nullable="true" />
+          <Property Type="Guid" Name="ActivetionCode" Nullable="true" />
+          <Property Type="String" Name="OTP" Nullable="true" MaxLength="4" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -817,6 +854,8 @@ FROM [dbo].[AdminDetails] AS [AdminDetails]</DefiningQuery>
           <FunctionImportMapping FunctionImportName="proc_ApproveMotorClaim" FunctionName="GeneralInsuranceModel.Store.proc_ApproveMotorClaim" />
           <FunctionImportMapping FunctionImportName="proc_ApproveTravelClaim" FunctionName="GeneralInsuranceModel.Store.proc_ApproveTravelClaim" />
           <FunctionImportMapping FunctionImportName="proc_calcprem" FunctionName="GeneralInsuranceModel.Store.proc_calcprem" />
+          <FunctionImportMapping FunctionImportName="proc_DeclineMotorClaim" FunctionName="GeneralInsuranceModel.Store.proc_DeclineMotorClaim" />
+          <FunctionImportMapping FunctionImportName="proc_DeclineTravelClaim" FunctionName="GeneralInsuranceModel.Store.proc_DeclineTravelClaim" />
           <FunctionImportMapping FunctionImportName="proc_GetAllClaimsOfUser" FunctionName="GeneralInsuranceModel.Store.proc_GetAllClaimsOfUser">
             <ResultMapping>
               <ComplexTypeMapping TypeName="GeneralInsuranceModel.proc_GetAllClaimsOfUser_Result">
@@ -902,8 +941,26 @@ FROM [dbo].[AdminDetails] AS [AdminDetails]</DefiningQuery>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="proc_GetCarsOfManufacturer" FunctionName="GeneralInsuranceModel.Store.proc_GetCarsOfManufacturer" />
           <FunctionImportMapping FunctionImportName="proc_GetManufacturers" FunctionName="GeneralInsuranceModel.Store.proc_GetManufacturers" />
+          <FunctionImportMapping FunctionImportName="proc_GetUserByid" FunctionName="GeneralInsuranceModel.Store.proc_GetUserByid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GeneralInsuranceModel.proc_GetUserByid_Result">
+                <ScalarProperty Name="CustID" ColumnName="CustID" />
+                <ScalarProperty Name="MobNo" ColumnName="MobNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmailVerification" ColumnName="EmailVerification" />
+                <ScalarProperty Name="ActivetionCode" ColumnName="ActivetionCode" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="proc_UpdatePassword" FunctionName="GeneralInsuranceModel.Store.proc_UpdatePassword" />
           <FunctionImportMapping FunctionImportName="proc_UserLoginCheck" FunctionName="GeneralInsuranceModel.Store.proc_UserLoginCheck" />
+          <FunctionImportMapping FunctionImportName="proc_UserName" FunctionName="GeneralInsuranceModel.Store.proc_UserName" />
           <FunctionImportMapping FunctionImportName="sp_insertMotorClaim" FunctionName="GeneralInsuranceModel.Store.sp_insertMotorClaim" />
         </EntityContainerMapping>
       </Mapping>
